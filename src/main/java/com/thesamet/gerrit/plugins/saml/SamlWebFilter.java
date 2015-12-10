@@ -134,7 +134,7 @@ class SamlWebFilter implements Filter {
             if (null == redirectUri || redirectUri.isEmpty()) {
                 redirectUri = "/";
             }
-            context.getResponse().sendRedirect(redirectUri);
+            context.getResponse().sendRedirect(context.getRequest().getContextPath() + redirectUri);
         } else {
             signout(context.getRequest(), context.getResponse());
         }
