@@ -35,6 +35,9 @@ taken from the NameId field of the SAML assertion.
       "Okta username prefix".
 - Obtain your IdP metadata (either URL or a local XML file)
 
+If you are using Active Directory Federation Services (ADFS), follow the below steps to configure Gerrit.
+You can then [go here](doc/Setup_ADFS.md) for more details on howto make gerrit-saml-plugin work with ADFS.
+
 ### Download the plugin
 
 Download Gerrit SAML plugin for the appropriate version of gerrit:
@@ -88,8 +91,8 @@ Add a new `[saml]` section to `$site_path/etc/gerrit.config`:
 ```
 [saml]
     keystorePath = /path/to/samlKeystore.jks
-    keystorePassword = pac4j-demo-passwd
-    privateKeyPassword = pac4j-demo-passwd
+    keystorePassword = pac4j-demo-password
+    privateKeyPassword = pac4j-demo-password
     metadataPath = https://mycompany.okta.com/app/hashash/sso/saml/metadata
 ```
 
