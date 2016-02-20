@@ -37,7 +37,10 @@ taken from the NameId field of the SAML assertion.
 
 ### Download the plugin
 
-Download [gerrit-saml-plugin](https://bintray.com/artifact/download/thesamet/maven/gerrit-saml-plugin-2.11.5-1.jar) and put it in $gerrit_site/lib/.
+Download Gerrit SAML plugin for the appropriate version of gerrit:
+
+- [gerrit-saml-plugin-2.12-1.jar](https://bintray.com/artifact/download/thesamet/maven/gerrit-saml-plugin-2.12-1.jar) and put it in $gerrit_site/lib/.
+- [gerrit-saml-plugin-2.11.5-1.jar](https://bintray.com/artifact/download/thesamet/maven/gerrit-saml-plugin-2.11.5-1.jar) and put it in $gerrit_site/lib/.
 
 ### Configure Gerrit to use the SAML filter:
 In `$site_path/etc/gerrit.config` file, the `[httpd]` section should contain
