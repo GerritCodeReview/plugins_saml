@@ -132,11 +132,3 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `UserName`
 
-## Development
-
-- Clone this repository.
-- Install sbt.
-- Edit the code.
-- Run 'sbt assembly' to build the jar.
-- Copy target/out/gerrit-saml-plugin-$VERSION.jar into $site_path/lib/
-
