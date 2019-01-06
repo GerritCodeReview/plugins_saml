@@ -14,13 +14,17 @@
 
 package com.thesamet.gerrit.plugins.saml;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.extensions.annotations.PluginData;
+import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -76,10 +80,17 @@ class SamlWebFilter implements Filter {
   @Inject
   SamlWebFilter(
       @GerritServerConfig Config gerritConfig,
+      @PluginName String pluginName,
       @PluginData Path defaultDataDirectory,
+      @CanonicalWebUrl Provider<String> urlProvider,
       SamlConfig samlConfig) {
     this.samlConfig = samlConfig;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
+    String callbackUrl =
+        String.format(
+            "%s/plugins/%s/saml",
+            CharMatcher.is('/').trimTrailingFrom(urlProvider.get()), pluginName);
+
     SAML2Configuration samlClientConfig =
         new SAML2Configuration(
             samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
@@ -87,11 +98,9 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
     samlClientConfig.setServiceProviderMetadataPath(
         ensureDataDirectoryExists(defaultDataDirectory).resolve("sp-metadata.xml").toString());
+    samlClientConfig.setServiceProviderEntityId(callbackUrl + "?client_name=SAML2Client");
 
     saml2Client = new SAML2Client(samlClientConfig);
-    String callbackUrl =
-        gerritConfig.getString("gerrit", null, "canonicalWebUrl")
-            + "plugins/gerrit-saml-plugin/saml";
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
     httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
     httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
@@ -109,6 +118,7 @@ class SamlWebFilter implements Filter {
               + "are required.");
     }
 
+    log.debug("Assertion Consumer Service URL: {}", callbackUrl);
     saml2Client.setCallbackUrl(callbackUrl);
   }
 
