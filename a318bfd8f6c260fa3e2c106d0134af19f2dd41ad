@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32f9e4cd_0c4f9ff2",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-06T16:26:47Z",
+      "side": 0,
+      "message": "Unrelated to this change.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "a318bfd8f6c260fa3e2c106d0134af19f2dd41ad",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
