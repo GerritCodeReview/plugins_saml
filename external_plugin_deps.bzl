@@ -7,10 +7,23 @@ OPENSAML_VERSION = "3.4.0"
 PAC4J_VERSION = "3.4.0"
 
 def external_plugin_deps():
+    # Transitive dependency of velocity
+    maven_jar(
+        name = "commons-collections",
+        artifact = "commons-collections:commons-collections:3.2.2",
+        sha1 = "8ad72fe39fa8c91eaaf12aadb21e0c3661fe26d5",
+    )
+
     maven_jar(
         name = "cryptacular",
         artifact = "org.cryptacular:cryptacular:1.2.1",
         sha1 = "c470bac7309ac04b0b9529bd7dcb1e0b75954f11",
+    )
+
+    maven_jar(
+        name = "joda-time",
+        artifact = "joda-time:joda-time:2.9.9",
+        sha1 = "f7b520c458572890807d143670c9b24f4de90897",
     )
 
     maven_jar(
@@ -153,6 +166,12 @@ def external_plugin_deps():
         name = "stax2-api",
         artifact = "org.codehaus.woodstox:stax2-api:3.1.4",
         sha1 = "ac19014b1e6a7c08aad07fe114af792676b685b7",
+    )
+
+    maven_jar(
+        name = "velocity",
+        artifact = "org.apache.velocity:velocity:1.7",
+        sha1 = "2ceb567b8f3f21118ecdec129fe1271dbc09aa7a",
     )
 
     maven_jar(
