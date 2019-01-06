@@ -17,12 +17,9 @@ package com.thesamet.gerrit.plugins.saml;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import org.eclipse.jgit.lib.Config;
 
-/**
- * SAML 2.0 related settings from {@code gerrit.config}.
- */
+/** SAML 2.0 related settings from {@code gerrit.config}. */
 @Singleton
 public class SamlConfig {
 
@@ -42,11 +39,9 @@ public class SamlConfig {
     keystorePath = getString(cfg, "keystorePath");
     privateKeyPassword = getString(cfg, "privateKeyPassword");
     keystorePassword = getString(cfg, "keystorePassword");
-    displayNameAttr =
-        getGetStringWithDefault(cfg, "displayNameAttr", "DisplayName");
+    displayNameAttr = getGetStringWithDefault(cfg, "displayNameAttr", "DisplayName");
     userNameAttr = getGetStringWithDefault(cfg, "userNameAttr", "UserName");
-    emailAddressAttr =
-        getGetStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
+    emailAddressAttr = getGetStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
     maxAuthLifetimeAttr = cfg.getInt("saml", "maxAuthLifetime", maxAuthLifetimeDefault);
   }
 
@@ -86,8 +81,7 @@ public class SamlConfig {
     return cfg.getString("saml", null, name);
   }
 
-  private static String getGetStringWithDefault(Config cfg, String name,
-      String defaultValue) {
+  private static String getGetStringWithDefault(Config cfg, String name, String defaultValue) {
     String result = getString(cfg, name);
     if (result != null) {
       return result;
