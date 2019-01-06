@@ -15,6 +15,8 @@
 package com.thesamet.gerrit.plugins.saml;
 
 public class AuthenticatedUser implements java.io.Serializable {
+  private static final long serialVersionUID = 1L;
+
   private String username;
   private String displayName;
   private String email;
