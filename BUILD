@@ -8,7 +8,9 @@ gerrit_plugin(
     ],
     resources = glob(["src/main/resources/**"]),
     deps = [
+        "@commons-collections//jar",
         "@cryptacular//jar",
+        "@joda-time//jar",
         "@opensaml-core//jar",
         "@opensaml-messaging-api//jar",
         "@opensaml-messaging-impl//jar",
@@ -30,6 +32,7 @@ gerrit_plugin(
         "@shibboleth-xmlsectool//jar",
         "@spring-core//jar",
         "@stax2-api//jar",
+        "@velocity//jar",
         "@woodstox-core//jar",
     ],
 )
