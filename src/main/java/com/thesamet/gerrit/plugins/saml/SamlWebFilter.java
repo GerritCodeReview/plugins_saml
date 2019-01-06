@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
-import javax.annotation.Nonnull;
+import java.util.Objects;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -238,9 +238,9 @@ class SamlWebFilter implements Filter {
   private class AuthenticatedHttpRequest extends HttpServletRequestWrapper {
     private AuthenticatedUser user;
 
-    public AuthenticatedHttpRequest(HttpServletRequest request, @Nonnull AuthenticatedUser user) {
+    public AuthenticatedHttpRequest(HttpServletRequest request, AuthenticatedUser user) {
       super(request);
-      this.user = user;
+      this.user = Objects.requireNonNull(user, "user");
     }
 
     @Override
