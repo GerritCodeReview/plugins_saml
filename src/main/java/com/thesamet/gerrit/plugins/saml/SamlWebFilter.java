@@ -37,10 +37,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.eclipse.jgit.lib.Config;
 import org.pac4j.core.context.J2EContext;
+import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.exception.HttpAction;
 import org.pac4j.core.exception.TechnicalException;
 import org.pac4j.saml.client.SAML2Client;
-import org.pac4j.saml.client.SAML2ClientConfiguration;
+import org.pac4j.saml.config.SAML2Configuration;
 import org.pac4j.saml.credentials.SAML2Credentials;
 import org.pac4j.saml.profile.SAML2Profile;
 import org.pac4j.saml.state.SAML2StateGenerator;
@@ -49,13 +50,13 @@ import org.slf4j.LoggerFactory;
 
 @Singleton
 class SamlWebFilter implements Filter {
-  static final String GERRIT_LOGOUT = "/logout";
-  static final String GERRIT_LOGIN = "/login";
-  static final String SAML_POSTBACK = "/plugins/gerrit-saml-plugin/saml";
+  private static final Logger log = LoggerFactory.getLogger(SamlWebFilter.class);
 
+  private static final String GERRIT_LOGOUT = "/logout";
+  private static final String GERRIT_LOGIN = "/login";
+  private static final String SAML_POSTBACK = "/plugins/gerrit-saml-plugin/saml";
   private static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
 
-  static final Logger log = LoggerFactory.getLogger(SamlWebFilter.class);
   private final SAML2Client saml2Client;
   private final SamlConfig samlConfig;
   private final String httpUserNameHeader;
@@ -73,8 +74,8 @@ class SamlWebFilter implements Filter {
   SamlWebFilter(@GerritServerConfig Config gerritConfig, SamlConfig samlConfig) {
     this.samlConfig = samlConfig;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
-    SAML2ClientConfiguration samlClientConfig =
-        new SAML2ClientConfiguration(
+    SAML2Configuration samlClientConfig =
+        new SAML2Configuration(
             samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
             samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
@@ -112,7 +113,7 @@ class SamlWebFilter implements Filter {
     HttpSession s = request.getSession();
     AuthenticatedUser user = (AuthenticatedUser) s.getAttribute(SESSION_ATTR_USER);
     if (user == null || user.getUsername() == null) return null;
-    else return user;
+    return user;
   }
 
   private void signin(J2EContext context) throws HttpAction, IOException {
@@ -180,9 +181,9 @@ class SamlWebFilter implements Filter {
                 .getRequest()
                 .getRequestURI()
                 .substring(context.getRequest().getContextPath().length()));
-    context
-        .getSessionStore()
-        .set(context, SAML2StateGenerator.SAML_RELAY_STATE_ATTRIBUTE, redirectUri);
+    @SuppressWarnings("unchecked")
+    SessionStore<J2EContext> store = context.getSessionStore();
+    store.set(context, SAML2StateGenerator.SAML_RELAY_STATE_ATTRIBUTE, redirectUri);
     log.debug("Setting redirectUri: {}", redirectUri);
     saml2Client.redirect(context);
   }
@@ -297,9 +298,8 @@ class SamlWebFilter implements Filter {
       String nameUpperCase = name.toUpperCase();
       if (authHeaders.contains(nameUpperCase)) {
         return null;
-      } else {
-        return super.getHeader(name);
       }
+      return super.getHeader(name);
     }
   }
 }
