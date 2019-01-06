@@ -17,15 +17,22 @@ package com.thesamet.gerrit.plugins.saml;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
+import com.google.gerrit.extensions.annotations.PluginData;
 import com.google.gerrit.extensions.restapi.Url;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +73,10 @@ class SamlWebFilter implements Filter {
   }
 
   @Inject
-  SamlWebFilter(@GerritServerConfig Config gerritConfig, SamlConfig samlConfig) {
+  SamlWebFilter(
+      @GerritServerConfig Config gerritConfig,
+      @PluginData Path pluginDataDirectory,
+      SamlConfig samlConfig) {
     this.samlConfig = samlConfig;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     SAML2Configuration samlClientConfig =
@@ -74,6 +84,9 @@ class SamlWebFilter implements Filter {
             samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
             samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
+    samlClientConfig.setServiceProviderMetadataPath(
+        pluginDataDirectory.resolve("sp-metadata.xml").toString());
+
     saml2Client = new SAML2Client(samlClientConfig);
     String callbackUrl =
         gerritConfig.getString("gerrit", null, "canonicalWebUrl")
