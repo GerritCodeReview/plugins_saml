@@ -68,6 +68,23 @@
       "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d95b78_65b88476",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1011417
+      },
+      "writtenOn": "2019-01-09T23:42:13Z",
+      "side": 1,
+      "message": "Can this be installed as a standard gerrit plugin, or does it have to go into lib? If it needs to go into lib (as mentioned in the README lines that were removed here), that should probably be explained as well.",
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
