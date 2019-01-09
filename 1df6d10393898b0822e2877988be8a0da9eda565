@@ -46,6 +46,30 @@
       "revId": "1df6d10393898b0822e2877988be8a0da9eda565",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d14f703f_f7cc9a78",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-09T23:45:17Z",
+      "side": 1,
+      "message": "Yes, this would have the implication on the SAML callback. It has to be changed then.",
+      "parentUuid": "62ec7af1_cef526e8",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "1df6d10393898b0822e2877988be8a0da9eda565",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
