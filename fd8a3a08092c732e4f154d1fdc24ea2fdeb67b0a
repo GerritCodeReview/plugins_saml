@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d776876_d64d5bbe",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-09T23:15:05Z",
+      "side": 1,
+      "message": "This is incorrect but fixed in the next commit. For traceability with the original commit I would keep them separate.",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "fd8a3a08092c732e4f154d1fdc24ea2fdeb67b0a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
