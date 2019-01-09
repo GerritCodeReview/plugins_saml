@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5826b47d_ad65841a",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-09T23:12:26Z",
+      "side": 1,
+      "message": "We need to specify that the unit is seconds.",
+      "revId": "89f3813909a262a13a8d68fbbb724ba6b5c51cc5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}

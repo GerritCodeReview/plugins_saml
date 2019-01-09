@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdead36b_f2b06635",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-09T23:12:26Z",
+      "side": 1,
+      "message": "Can we add the Github-PR as well in the footer? So that we know where this is coming from and follow that part of the review happened in the past.",
+      "revId": "06803c63c4634ada1a9f55f1c3938fb76491ab55",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
