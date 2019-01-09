@@ -22,6 +22,30 @@
       "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2d88f7c_7cc3f5f2",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-01-09T23:45:30Z",
+      "side": 0,
+      "message": "I\u0027m guessing that the previously used class was deprecated.  See also at L38 the import is changed.",
+      "parentUuid": "42384aff_41c543f0",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 28
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
