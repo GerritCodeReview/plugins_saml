@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e101db2f_0376f284",
+        "filename": "BUILD",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-09T23:40:11Z",
+      "side": 1,
+      "message": "This would create issues in the build scripts on the CI :-(\nAll the other plugins have the plugin name \u003d repository name.",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5458104d_42a67cdf",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-09T23:40:11Z",
+      "side": 1,
+      "message": "javamelody? Use @PLUGIN@ instead.",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a48dc988_ed5b02e1",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-01-09T23:40:11Z",
+      "side": 1,
+      "message": "This wouldn\u0027t be correct anymore, if you don\u0027t make the plugin name \u003d repo name.",
+      "range": {
+        "startLine": 27,
+        "startChar": 34,
+        "endLine": 27,
+        "endChar": 42
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
