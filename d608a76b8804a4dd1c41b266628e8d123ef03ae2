@@ -16,6 +16,24 @@
       "revId": "d608a76b8804a4dd1c41b266628e8d123ef03ae2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31c5cd28_6cbd64d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T21:10:54Z",
+      "side": 1,
+      "message": "It was original commit message, but I think it was meant gerrit.",
+      "parentUuid": "3d00bebb_94f408c2",
+      "revId": "d608a76b8804a4dd1c41b266628e8d123ef03ae2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
