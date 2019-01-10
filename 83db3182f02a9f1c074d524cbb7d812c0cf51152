@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c04e79af_39f4af35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97cdc471_fee54612",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e101db2f_0376f284",
         "filename": "BUILD",
         "patchSetId": 3
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "ecb96366_2cc0a4f8",
+        "filename": "BUILD",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "What David Pursehouse said. The plugin name has only implication, what URL the plugin is bound to:\n\n  /plugins/gerrit-saml-plugin/\n\nAnd this callback is used in the SamlWebFilter, in documentation and in current installations. We could change this later.",
+      "parentUuid": "aac6b59f_9d50fe48",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ebde13eb_7b18b84d",
         "filename": "external_plugin_deps.bzl",
         "patchSetId": 3
@@ -83,6 +131,24 @@
       "writtenOn": "2019-01-10T01:08:19Z",
       "side": 1,
       "message": "Any idea why the latest version of the saml artifacts are not published to maven central?  The latest I can see there is 3.3.0.",
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "381fc7b2_737d6c0f",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Nope.",
+      "parentUuid": "ebde13eb_7b18b84d",
       "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
@@ -112,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "744947e8_e05f279f",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58317888_d6a72bef",
+      "range": {
+        "startLine": 14,
+        "startChar": 47,
+        "endLine": 14,
+        "endChar": 52
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2982de8_3ecbfbef",
         "filename": "external_plugin_deps.bzl",
         "patchSetId": 3
@@ -129,6 +219,24 @@
     },
     {
       "key": {
+        "uuid": "07fc5b2c_356919fc",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "This should be removed, because it\u0027s duplicated on line 155 and repository should be removed. Done.",
+      "parentUuid": "b2982de8_3ecbfbef",
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1f9f03d_1387289e",
         "filename": "external_plugin_deps.bzl",
         "patchSetId": 3
@@ -140,6 +248,30 @@
       "writtenOn": "2019-01-10T01:08:19Z",
       "side": 1,
       "message": "Is the version of this explicitly the same as the opensaml versions, or is it coincidence?  In the former case, also replace this with a constant?",
+      "range": {
+        "startLine": 119,
+        "startChar": 41,
+        "endLine": 119,
+        "endChar": 46
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ee69efa_253b487d",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Coincidence. Extracted in its own variable.",
+      "parentUuid": "e1f9f03d_1387289e",
       "range": {
         "startLine": 119,
         "startChar": 41,
@@ -175,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "10de1a52_dfd99407",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fc5df31_62a0cdb2",
+      "range": {
+        "startLine": 125,
+        "startChar": 41,
+        "endLine": 125,
+        "endChar": 46
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed9dd91b_764cab76",
         "filename": "external_plugin_deps.bzl",
         "patchSetId": 3
@@ -198,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "e227346b_a1a6fba8",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed9dd91b_764cab76",
+      "range": {
+        "startLine": 130,
+        "startChar": 16,
+        "endLine": 130,
+        "endChar": 25
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee3e9293_bb405740",
         "filename": "external_plugin_deps.bzl",
         "patchSetId": 3
@@ -218,6 +398,30 @@
       "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaba7ff7_5da71442",
+        "filename": "external_plugin_deps.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee3e9293_bb405740",
+      "range": {
+        "startLine": 137,
+        "startChar": 16,
+        "endLine": 137,
+        "endChar": 25
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -268,6 +472,30 @@
     },
     {
       "key": {
+        "uuid": "220012bd_8ff00c42",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc7a4f06_bd2d1d1d",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a48dc988_ed5b02e1",
         "filename": "src/main/resources/Documentation/build.md",
         "patchSetId": 3
@@ -279,6 +507,30 @@
       "writtenOn": "2019-01-09T23:40:11Z",
       "side": 1,
       "message": "This wouldn\u0027t be correct anymore, if you don\u0027t make the plugin name \u003d repo name.",
+      "range": {
+        "startLine": 27,
+        "startChar": 34,
+        "endLine": 27,
+        "endChar": 42
+      },
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "819bb764_4d504875",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Yes, plugin name \u003d repo name \u003d \"saml\".",
+      "parentUuid": "a48dc988_ed5b02e1",
       "range": {
         "startLine": 27,
         "startChar": 34,
@@ -323,6 +575,24 @@
       "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "102daf6d_b469a494",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T20:32:54Z",
+      "side": 1,
+      "message": "Documented. Done.",
+      "parentUuid": "f8d20ca6_7b63f0e3",
+      "revId": "83db3182f02a9f1c074d524cbb7d812c0cf51152",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
