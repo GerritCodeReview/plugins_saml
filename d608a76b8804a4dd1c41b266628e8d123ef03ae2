@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d00bebb_94f408c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011417
+      },
+      "writtenOn": "2019-01-10T21:09:47Z",
+      "side": 1,
+      "message": "Jenkins?  Or Gerrit",
+      "revId": "d608a76b8804a4dd1c41b266628e8d123ef03ae2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
