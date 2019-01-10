@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4e58c989_1531280c",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T21:06:00Z",
+      "side": 1,
+      "message": "Strange, Javamelody plugin does that. Removed. Done.",
+      "parentUuid": "828e5181_5002afc0",
+      "range": {
+        "startLine": 251,
+        "startChar": 15,
+        "endLine": 251,
+        "endChar": 40
+      },
+      "revId": "b9471f8f63227aefcb85113088ff612c2cad162c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e59e50b6_f6f8de9d",
         "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-09T23:44:36Z",
       "side": 1,
       "message": "Javamelody?",
+      "range": {
+        "startLine": 256,
+        "startChar": 31,
+        "endLine": 256,
+        "endChar": 41
+      },
+      "revId": "b9471f8f63227aefcb85113088ff612c2cad162c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12838537_2cfcf96f",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-10T21:06:00Z",
+      "side": 1,
+      "message": "Not applicable any more.",
+      "parentUuid": "e59e50b6_f6f8de9d",
       "range": {
         "startLine": 256,
         "startChar": 31,
