@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d44e187c_a9d8cde0",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-11T00:08:37Z",
+      "side": 1,
+      "message": "@PluginName doesn\u0027t work for the same reason, as in previous change @PluginData doesn\u0027t work.",
+      "range": {
+        "startLine": 83,
+        "startChar": 6,
+        "endLine": 83,
+        "endChar": 17
+      },
+      "revId": "6e765e74fe92de1125cb4d0e10949d8cb4ba75a6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
