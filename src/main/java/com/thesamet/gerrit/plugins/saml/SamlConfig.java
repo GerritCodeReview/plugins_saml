@@ -34,7 +34,7 @@ public class SamlConfig {
   private final int maxAuthLifetimeDefault = 24 * 60 * 60; // 24h;
 
   @Inject
-  SamlConfig(@GerritServerConfig final Config cfg) {
+  SamlConfig(@GerritServerConfig Config cfg) {
     metadataPath = getString(cfg, "metadataPath");
     keystorePath = getString(cfg, "keystorePath");
     privateKeyPassword = getString(cfg, "privateKeyPassword");
