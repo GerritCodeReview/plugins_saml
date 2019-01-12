@@ -4,7 +4,7 @@ gerrit_plugin(
     name = "saml",
     srcs = glob(["src/main/java/**/*.java"]),
     manifest_entries = [
-        "Gerrit-PluginName: gerrit-saml-plugin",
+        "Gerrit-PluginName: saml",
     ],
     resources = glob(["src/main/resources/**"]),
     deps = [
