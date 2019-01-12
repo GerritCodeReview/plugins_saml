@@ -18,9 +18,9 @@ taken from the NameId field of the SAML assertion.
 
 - Create a new SAML 2.0 application.
 - Set the following parameters:
-  - Single sign on URL: http://gerrit.site.com/plugins/gerrit-saml-plugin/saml
+  - Single sign on URL: http://gerrit.site.com/plugins/saml/callback
   - Check "Use this for Recipient URL and Destination URL".
-  - Audience URI (SP Entity Id): http://gerrit.site.com/plugins/gerrit-saml-plugin/saml
+  - Audience URI (SP Entity Id): http://gerrit.site.com/plugins/saml/callback
   - We need to set up the attributes in the assertion to send the right
     information. Here is how to do it with Okta:
     - Application username: "Okta username prefix"
@@ -36,7 +36,7 @@ taken from the NameId field of the SAML assertion.
 - Obtain your IdP metadata (either URL or a local XML file)
 
 If you are using Active Directory Federation Services (ADFS), follow the below steps to configure Gerrit.
-You can then [go here](doc/Setup_ADFS.md) for more details on howto make gerrit-saml-plugin work with ADFS.
+You can then [go here](doc/Setup_ADFS.md) for more details on howto make saml work with ADFS.
 
 ### Download the plugin
 
