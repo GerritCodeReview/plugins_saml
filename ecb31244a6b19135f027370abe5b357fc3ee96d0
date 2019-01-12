@@ -70,6 +70,30 @@
       "revId": "ecb31244a6b19135f027370abe5b357fc3ee96d0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95ee6498_0acd9f60",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-12T22:34:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "659568eb_19621f63",
+      "range": {
+        "startLine": 238,
+        "startChar": 6,
+        "endLine": 238,
+        "endChar": 50
+      },
+      "revId": "ecb31244a6b19135f027370abe5b357fc3ee96d0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
