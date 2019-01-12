@@ -223,6 +223,12 @@ class SamlWebFilter implements Filter {
   }
 
   private String getDisplayName(SAML2Profile user) {
+    if (samlConfig.isComputedDisplayName()) {
+      return String.format(
+          "%s %s",
+          getAttributeOrElseId(user, samlConfig.getFirstNameAttr()),
+          getAttributeOrElseId(user, samlConfig.getLastNameAttr()));
+    }
     return getAttributeOrElseId(user, samlConfig.getDisplayNameAttr());
   }
 

@@ -120,6 +120,25 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `DisplayName`
 
+**saml.computedDisplayName**: Set to compute display name attribute from first
+and last names.
+
+Default is false.
+
+**saml.firstNameAttr**: Gerrit will look for an attribute with this name in
+the assertion to find the first name of the user. Only used, when `computedDisplayName`
+is set to true. If the attribute is not found, the NameId from the SAML assertion
+is used instead.
+
+Default is `FirstName`
+
+**saml.lastNameAttr**: Gerrit will look for an attribute with this name in
+the assertion to find the last name of the user. Only used, when `computedDisplayName`
+is set to true. If the attribute is not found, the NameId from the SAML assertion
+is used instead.
+
+Default is `LastName`
+
 **saml.emailAddressAttr**: Gerrit will look for an attribute with this name in
 the assertion to find a the email address of the user. If the attribute is not
 found, the NameId from the SAML assertion is used instead.
