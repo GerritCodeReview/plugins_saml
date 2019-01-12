@@ -54,7 +54,8 @@ class SamlWebFilter implements Filter {
 
   private static final String GERRIT_LOGOUT = "/logout";
   private static final String GERRIT_LOGIN = "/login";
-  private static final String SAML_POSTBACK = "/plugins/gerrit-saml-plugin/saml";
+  private static final String SAML = "saml";
+  private static final String SAML_CALLBACK = "plugins/" + SAML + "/callback";
   private static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
 
   private final SAML2Client saml2Client;
@@ -75,9 +76,7 @@ class SamlWebFilter implements Filter {
             samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
     saml2Client = new SAML2Client(samlClientConfig);
-    String callbackUrl =
-        gerritConfig.getString("gerrit", null, "canonicalWebUrl")
-            + "plugins/gerrit-saml-plugin/saml";
+    String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
     httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
     httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
@@ -165,7 +164,7 @@ class SamlWebFilter implements Filter {
               getUserName(user),
               getDisplayName(user),
               getEmailAddress(user),
-              "saml/" + user.getId()));
+              String.format("%s/%s", SAML, user.getId())));
 
       String redirectUri = context.getRequest().getParameter("RelayState");
       if (null == redirectUri || redirectUri.isEmpty()) {
@@ -204,7 +203,7 @@ class SamlWebFilter implements Filter {
 
   private static boolean isSamlPostback(HttpServletRequest request) {
     return "POST".equals(request.getMethod())
-        && request.getRequestURI().indexOf(SAML_POSTBACK) >= 0;
+        && request.getRequestURI().indexOf(SAML_CALLBACK) >= 0;
   }
 
   private static String getAttribute(SAML2Profile user, String attrName) {
