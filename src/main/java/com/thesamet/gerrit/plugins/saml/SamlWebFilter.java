@@ -71,11 +71,6 @@ class SamlWebFilter implements Filter {
   private final String httpExternalIdHeader;
   private final HashSet<String> authHeaders;
 
-  private String getHeaderFromConfig(Config gerritConfig, String name) {
-    String s = gerritConfig.getString("auth", null, name);
-    return s == null ? "" : s.toUpperCase();
-  }
-
   @Inject
   SamlWebFilter(
       @GerritServerConfig Config gerritConfig,
@@ -133,31 +128,6 @@ class SamlWebFilter implements Filter {
     return user;
   }
 
-  private void signin(J2EContext context) throws HttpAction, IOException {
-    SAML2Credentials credentials = saml2Client.getCredentials(context);
-    SAML2Profile user = saml2Client.getUserProfile(credentials, context);
-    if (user != null) {
-      log.debug(
-          "Received SAML callback for userId={} with attributes: {}",
-          getUserName(user),
-          user.getAttributes());
-      HttpSession s = context.getRequest().getSession();
-      s.setAttribute(
-          SESSION_ATTR_USER,
-          new AuthenticatedUser(
-              getUserName(user),
-              getDisplayName(user),
-              getEmailAddress(user),
-              "saml/" + user.getId()));
-
-      String redirectUri = context.getRequest().getParameter("RelayState");
-      if (null == redirectUri || redirectUri.isEmpty()) {
-        redirectUri = "/";
-      }
-      context.getResponse().sendRedirect(context.getRequest().getContextPath() + redirectUri);
-    }
-  }
-
   @Override
   public void doFilter(ServletRequest incomingRequest, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
@@ -197,6 +167,31 @@ class SamlWebFilter implements Filter {
     }
   }
 
+  private void signin(J2EContext context) throws HttpAction, IOException {
+    SAML2Credentials credentials = saml2Client.getCredentials(context);
+    SAML2Profile user = saml2Client.getUserProfile(credentials, context);
+    if (user != null) {
+      log.debug(
+          "Received SAML callback for userId={} with attributes: {}",
+          getUserName(user),
+          user.getAttributes());
+      HttpSession s = context.getRequest().getSession();
+      s.setAttribute(
+          SESSION_ATTR_USER,
+          new AuthenticatedUser(
+              getUserName(user),
+              getDisplayName(user),
+              getEmailAddress(user),
+              "saml/" + user.getId()));
+
+      String redirectUri = context.getRequest().getParameter("RelayState");
+      if (null == redirectUri || redirectUri.isEmpty()) {
+        redirectUri = "/";
+      }
+      context.getResponse().sendRedirect(context.getRequest().getContextPath() + redirectUri);
+    }
+  }
+
   private void redirectToIdentityProvider(J2EContext context) throws HttpAction {
     String redirectUri =
         Url.decode(
@@ -209,6 +204,11 @@ class SamlWebFilter implements Filter {
     store.set(context, SAML2StateGenerator.SAML_RELAY_STATE_ATTRIBUTE, redirectUri);
     log.debug("Setting redirectUri: {}", redirectUri);
     saml2Client.redirect(context);
+  }
+
+  private static String getHeaderFromConfig(Config gerritConfig, String name) {
+    String s = gerritConfig.getString("auth", null, name);
+    return s == null ? "" : s.toUpperCase();
   }
 
   private static boolean isGerritLogin(HttpServletRequest request) {
@@ -224,7 +224,7 @@ class SamlWebFilter implements Filter {
         && request.getRequestURI().indexOf(SAML_POSTBACK) >= 0;
   }
 
-  private String getAttribute(SAML2Profile user, String attrName) {
+  private static String getAttribute(SAML2Profile user, String attrName) {
     List<?> names = (List<?>) user.getAttribute(attrName);
     if (names != null && !names.isEmpty()) {
       return (String) names.get(0);
@@ -232,7 +232,7 @@ class SamlWebFilter implements Filter {
     return null;
   }
 
-  private String getAttributeOrElseId(SAML2Profile user, String attrName) {
+  private static String getAttributeOrElseId(SAML2Profile user, String attrName) {
     String value = getAttribute(user, attrName);
     if (value != null) {
       return value;
@@ -262,7 +262,7 @@ class SamlWebFilter implements Filter {
     return getAttributeOrElseId(user, samlConfig.getUserNameAttr());
   }
 
-  private Path ensureExists(Path dataDir) {
+  private static Path ensureExists(Path dataDir) {
     Path pluginDataDirectory = dataDir.resolve("saml");
     if (!Files.isDirectory(pluginDataDirectory)) {
       try {
