@@ -22,6 +22,7 @@ import org.eclipse.jgit.lib.Config;
 /** SAML 2.0 related settings from {@code gerrit.config}. */
 @Singleton
 public class SamlConfig {
+  private static final String SAML_SECTION = "saml";
 
   private final String metadataPath;
   private final String keystorePath;
@@ -31,6 +32,9 @@ public class SamlConfig {
   private final String userNameAttr;
   private final String emailAddressAttr;
   private final int maxAuthLifetimeAttr;
+  private final boolean computedDisplayName;
+  private final String firstNameAttr;
+  private final String lastNameAttr;
   private final int maxAuthLifetimeDefault = 24 * 60 * 60; // 24h;
 
   @Inject
@@ -43,6 +47,9 @@ public class SamlConfig {
     userNameAttr = getGetStringWithDefault(cfg, "userNameAttr", "UserName");
     emailAddressAttr = getGetStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
     maxAuthLifetimeAttr = cfg.getInt("saml", "maxAuthLifetime", maxAuthLifetimeDefault);
+    computedDisplayName = cfg.getBoolean(SAML_SECTION, "computedDisplayName", false);
+    firstNameAttr = getGetStringWithDefault(cfg, "firstNameAttr", "FirstName");
+    lastNameAttr = getGetStringWithDefault(cfg, "lastNameAttr", "LastName");
   }
 
   public String getMetadataPath() {
@@ -78,7 +85,7 @@ public class SamlConfig {
   }
 
   private static String getString(Config cfg, String name) {
-    return cfg.getString("saml", null, name);
+    return cfg.getString(SAML_SECTION, null, name);
   }
 
   private static String getGetStringWithDefault(Config cfg, String name, String defaultValue) {
@@ -87,5 +94,17 @@ public class SamlConfig {
       return result;
     }
     return defaultValue;
+  }
+
+  public String getFirstNameAttr() {
+    return firstNameAttr;
+  }
+
+  public String getLastNameAttr() {
+    return lastNameAttr;
+  }
+
+  public boolean isComputedDisplayName() {
+    return computedDisplayName;
   }
 }
