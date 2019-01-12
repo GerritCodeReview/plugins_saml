@@ -46,6 +46,30 @@
       "revId": "ecb31244a6b19135f027370abe5b357fc3ee96d0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "659568eb_19621f63",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-12T20:14:48Z",
+      "side": 1,
+      "message": "According to Effective Java 3rd edition, Item 49, Objects.requireNonNull can be used since Java 7 (and in fact it is used in Gerrit core), so that no need to depend here on guava library.",
+      "parentUuid": "2004c23c_8b818a6e",
+      "range": {
+        "startLine": 238,
+        "startChar": 6,
+        "endLine": 238,
+        "endChar": 50
+      },
+      "revId": "ecb31244a6b19135f027370abe5b357fc3ee96d0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
