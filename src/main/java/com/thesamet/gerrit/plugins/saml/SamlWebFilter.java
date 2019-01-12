@@ -186,8 +186,14 @@ class SamlWebFilter implements Filter {
       } else {
         chain.doFilter(httpRequest, httpResponse);
       }
-    } catch (final HttpAction requiresHttpAction) {
-      throw new TechnicalException("Unexpected HTTP action", requiresHttpAction);
+    } catch (final HttpAction httpAction) {
+      // In pac4j v3.4.0 SLO (Single Log Out) throws HttpAction with code 200.
+      // Detect that flow and recover by redirecting to the main gerrit page.
+      if (httpAction.getCode() == 200) {
+        httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
+      }
+
+      throw new TechnicalException("Unexpected HTTP action", httpAction);
     }
   }
 
