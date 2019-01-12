@@ -17,10 +17,10 @@ package com.thesamet.gerrit.plugins.saml;
 public class AuthenticatedUser implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
-  private String username;
-  private String displayName;
-  private String email;
-  private String externalId;
+  private final String username;
+  private final String displayName;
+  private final String email;
+  private final String externalId;
 
   public AuthenticatedUser(String username, String displayName, String email, String externalId) {
     this.username = username;
