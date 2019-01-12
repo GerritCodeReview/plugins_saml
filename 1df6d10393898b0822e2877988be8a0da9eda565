@@ -70,6 +70,30 @@
       "revId": "1df6d10393898b0822e2877988be8a0da9eda565",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68347c70_a02ebf02",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-12T22:11:33Z",
+      "side": 1,
+      "message": "I changed the plugin name from \"gerrit-saml-plugin\" to just \"saml\" in its own change: [1], with all the consequences. Done.\n\n[1] https://gerrit-review.googlesource.com/c/plugins/saml/+/210051",
+      "parentUuid": "d14f703f_f7cc9a78",
+      "range": {
+        "startLine": 7,
+        "startChar": 28,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "1df6d10393898b0822e2877988be8a0da9eda565",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
