@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b96a97f4_eaed7561",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/AuthenticatedUser.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-01-13T10:36:06Z",
+      "side": 1,
+      "message": "This can be refactored to use ToStringHelper (in a follow up change)",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 62,
+        "endChar": 3
+      },
+      "revId": "4e1fab4ddb54bfa8348e6a85fa5fce17dc790c66",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
