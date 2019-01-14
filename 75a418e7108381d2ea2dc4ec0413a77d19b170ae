@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "149b464c_2362f55f",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1069682
+      },
+      "writtenOn": "2019-01-14T12:15:10Z",
+      "side": 1,
+      "message": "I wonder which is the right method to use here. Should it be HTTPServletRequest getContextPath or should it be ServletContext getContextPath()? The java docs [1] for java7 state that ServletContext is the preferred class. I am no java expert though.\n\n [1] https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getContextPath--",
+      "revId": "75a418e7108381d2ea2dc4ec0413a77d19b170ae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
