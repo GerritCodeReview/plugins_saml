@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23ab3f1b_3331a96b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-01-30T21:27:23Z",
+      "side": 1,
+      "message": "Interestingly, this issue was filed for Keycloak IdP to support that feature: [1] and this was even implemented: [2], but this PR was never merged and the issue was rejected. This is strange, because for OIDC protocol, Keycloak does provide oidc-full-name-mapper natively, and it just works:[3].\n\n* [1] https://issues.jboss.org/browse/KEYCLOAK-6764\n* [2] https://github.com/keycloak/keycloak/commit/db58dc78b0295dfdc45dd5b35a840eecd3153c3b\n* [3] https://github.com/keycloak/keycloak/blob/master/services/src/main/java/org/keycloak/protocol/oidc/mappers/FullNameMapper.java",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 7
+      },
+      "revId": "05c1ae931f64201699871c5c22bc679252af77c0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
