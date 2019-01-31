@@ -53,6 +53,7 @@ import org.pac4j.saml.profile.SAML2Profile;
 import org.pac4j.saml.state.SAML2StateGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testcontainers.shaded.com.google.common.base.Strings;
 
 @Singleton
 class SamlWebFilter implements Filter {
@@ -92,7 +93,10 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
     samlClientConfig.setServiceProviderMetadataPath(
         ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
-    samlClientConfig.setServiceProviderEntityId(callbackUrl + "?client_name=SAML2Client");
+    
+    if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
+        samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
+    }
 
     saml2Client = new SAML2Client(samlClientConfig);
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");

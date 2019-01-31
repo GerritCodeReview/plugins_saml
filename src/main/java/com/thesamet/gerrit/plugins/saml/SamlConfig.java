@@ -24,6 +24,7 @@ import org.eclipse.jgit.lib.Config;
 public class SamlConfig {
   private static final String SAML_SECTION = "saml";
 
+  private final String serviceProviderEntityId;
   private final String metadataPath;
   private final String keystorePath;
   private final String privateKeyPassword;
@@ -39,6 +40,7 @@ public class SamlConfig {
 
   @Inject
   SamlConfig(@GerritServerConfig Config cfg) {
+	serviceProviderEntityId = getString(cfg, "serviceProviderEntityId");
     metadataPath = getString(cfg, "metadataPath");
     keystorePath = getString(cfg, "keystorePath");
     privateKeyPassword = getString(cfg, "privateKeyPassword");
@@ -107,4 +109,8 @@ public class SamlConfig {
   public boolean isComputedDisplayName() {
     return computedDisplayName;
   }
+
+public String getServiceProviderEntityId() {
+	return serviceProviderEntityId;
+}
 }
