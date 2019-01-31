@@ -14,6 +14,7 @@
 
 package com.thesamet.gerrit.plugins.saml;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.extensions.restapi.Url;
@@ -81,6 +82,9 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
     samlClientConfig.setServiceProviderMetadataPath(
         ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
+    if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
+      samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
+    }
 
     saml2Client = new SAML2Client(samlClientConfig);
     String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
