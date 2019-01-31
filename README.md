@@ -151,3 +151,6 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `UserName`
 
+**saml.serviceProviderEntityId**: Saml service provider entity id
+
+Default is not set.
