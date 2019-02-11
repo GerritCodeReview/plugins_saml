@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.thesamet.gerrit.plugins.saml;
+package com.googlesource.gerrit.plugins.saml;
 
 public class AuthenticatedUser implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
