@@ -50,7 +50,7 @@ In `$site_path/etc/gerrit.config` file, the `[httpd]` section should contain
 
 ```
 [httpd]
-    filterClass = com.thesamet.gerrit.plugins.saml.SamlWebFilter
+    filterClass = com.googlesource.gerrit.plugins.saml.SamlWebFilter
 ```
 
 ### Configure HTTP authentication for Gerrit:

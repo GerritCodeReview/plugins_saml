@@ -11,7 +11,7 @@ using SAML for Authentication, LDAP for authorization and running gerrit under t
     ...
     [httpd]
         listenUrl = https://gerrit.hc.sct:8443/gerrit/
-        filterClass = com.thesamet.gerrit.plugins.saml.SamlWebFilter
+        filterClass = com.googlesource.gerrit.plugins.saml.SamlWebFilter
     [auth]
         type = HTTP_LDAP
         logoutUrl = https://fs.hc.sct/adfs/ls/?wa=wsignout1.0
