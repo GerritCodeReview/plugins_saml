@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c2e98f3_950c4288",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-11T22:54:20Z",
+      "side": 1,
+      "message": "I don\u0027t actually see any specifics of Gerrit v2.15 here.\nI would allow a v2.14 release anyway on a stable-2.14 branch, so that people that are running that version can benefit from a SAML integration also.\n\nP.S. Bear in mind that in Gerrit we support latest (v2.16) and latest-1 (v2.15), that means no maintenance overhead anyway, but just a courtesy for people that is running an old version.",
+      "range": {
+        "startLine": 9,
+        "startChar": 43,
+        "endLine": 9,
+        "endChar": 61
+      },
+      "revId": "0ebf93a9bba54e37b3a97e6237a1d2bb387be95b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
