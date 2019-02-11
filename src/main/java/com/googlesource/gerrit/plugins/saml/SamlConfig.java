@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.thesamet.gerrit.plugins.saml;
+package com.googlesource.gerrit.plugins.saml;
 
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.inject.Inject;
