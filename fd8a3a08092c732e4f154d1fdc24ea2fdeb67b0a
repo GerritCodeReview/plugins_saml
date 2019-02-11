@@ -22,6 +22,30 @@
       "revId": "fd8a3a08092c732e4f154d1fdc24ea2fdeb67b0a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9a13f29_dc005060",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-11T21:35:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7d776876_d64d5bbe",
+      "range": {
+        "startLine": 50,
+        "startChar": 45,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "fd8a3a08092c732e4f154d1fdc24ea2fdeb67b0a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
