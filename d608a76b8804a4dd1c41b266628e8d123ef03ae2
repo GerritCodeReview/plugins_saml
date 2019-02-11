@@ -52,6 +52,24 @@
       "revId": "d608a76b8804a4dd1c41b266628e8d123ef03ae2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c03d7ae3_2a4d5ecf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-11T16:06:57Z",
+      "side": 1,
+      "message": "I read the PR and the code, this has not so much to do with Jenkins.",
+      "parentUuid": "2ad57676_e0c4feea",
+      "revId": "d608a76b8804a4dd1c41b266628e8d123ef03ae2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
