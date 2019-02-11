@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6e12077e_b6cf415e",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-11T23:11:22Z",
+      "side": 1,
+      "message": "Prefer the use of HTTP status constant rather than numberic values.",
+      "range": {
+        "startLine": 192,
+        "startChar": 34,
+        "endLine": 192,
+        "endChar": 37
+      },
+      "revId": "75a418e7108381d2ea2dc4ec0413a77d19b170ae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "149b464c_2362f55f",
         "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 4
@@ -16,6 +39,24 @@
       "revId": "75a418e7108381d2ea2dc4ec0413a77d19b170ae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b324764_9e031d97",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-11T23:11:22Z",
+      "side": 1,
+      "message": "If this was a Servlet, then yes, the ServletContext would have been best.\nHowever, this is purely a filter, so the only thing you\u0027ve got to be based on is the request you\u0027re getting.\n\nI believe httpRequest.getContextPath() is the right one.",
+      "parentUuid": "149b464c_2362f55f",
+      "revId": "75a418e7108381d2ea2dc4ec0413a77d19b170ae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
