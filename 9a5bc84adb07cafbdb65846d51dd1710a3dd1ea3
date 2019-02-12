@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89c2788c_1ff8bc90",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-12T17:50:26Z",
+      "side": 1,
+      "message": "Would be best to use Files.notExists() rather that checking if it is a directory or not.\nEven though may actually do something very similar, it would be a lot more readable checking if exists or not, rather than checking if it is a directory or a different inode type.",
+      "range": {
+        "startLine": 262,
+        "startChar": 9,
+        "endLine": 262,
+        "endChar": 47
+      },
+      "revId": "9a5bc84adb07cafbdb65846d51dd1710a3dd1ea3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad2551f_2dfb5e09",
+        "filename": "src/main/java/com/thesamet/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-02-12T17:50:26Z",
+      "side": 1,
+      "message": "Why not propagating the exception upstream?",
+      "revId": "9a5bc84adb07cafbdb65846d51dd1710a3dd1ea3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
