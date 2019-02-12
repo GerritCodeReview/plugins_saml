@@ -18,9 +18,12 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.extensions.restapi.Url;
 import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
@@ -67,7 +70,8 @@ class SamlWebFilter implements Filter {
   private final HashSet<String> authHeaders;
 
   @Inject
-  SamlWebFilter(@GerritServerConfig Config gerritConfig, SamlConfig samlConfig) {
+  SamlWebFilter(@GerritServerConfig Config gerritConfig, SitePaths sitePaths, SamlConfig samlConfig)
+      throws IOException {
     this.samlConfig = samlConfig;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     SAML2Configuration samlClientConfig =
@@ -75,6 +79,9 @@ class SamlWebFilter implements Filter {
             samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
             samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
+    samlClientConfig.setServiceProviderMetadataPath(
+        ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
+
     saml2Client = new SAML2Client(samlClientConfig);
     String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
@@ -248,6 +255,14 @@ class SamlWebFilter implements Filter {
 
   private String getUserName(SAML2Profile user) {
     return getAttributeOrElseId(user, samlConfig.getUserNameAttr());
+  }
+
+  private static Path ensureExists(Path dataDir) throws IOException {
+    Path pluginDataDirectory = dataDir.resolve(SAML);
+    if (Files.notExists(pluginDataDirectory)) {
+      Files.createDirectories(pluginDataDirectory);
+    }
+    return pluginDataDirectory;
   }
 
   private class AuthenticatedHttpRequest extends HttpServletRequestWrapper {
