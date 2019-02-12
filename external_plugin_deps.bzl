@@ -4,7 +4,7 @@ SHIBBOLETH = "https://build.shibboleth.net/nexus/content/repositories/releases/"
 
 OPENSAML_VERSION = "3.4.0"
 
-PAC4J_VERSION = "3.4.0"
+PAC4J_VERSION = "3.5.0"
 
 def external_plugin_deps():
     # Transitive dependency of velocity
@@ -127,13 +127,13 @@ def external_plugin_deps():
     maven_jar(
         name = "pac4j-saml",
         artifact = "org.pac4j:pac4j-saml:" + PAC4J_VERSION,
-        sha1 = "5d031bee53298e483ade21dd186f5f1c89c770e3",
+        sha1 = "659fef17e9badc435734d881965782444163ce92",
     )
 
     maven_jar(
         name = "pac4j-core",
         artifact = "org.pac4j:pac4j-core:" + PAC4J_VERSION,
-        sha1 = "22066c85a65803ec249908e38fb3c9f7c42a568a",
+        sha1 = "e914faccc3cc82ed3112cd5b637c190280b6e0b5",
     )
 
     maven_jar(
