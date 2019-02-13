@@ -1,4 +1,5 @@
-# Setting-up gerrit-saml-plugin for Active Directory Federation Services (ADFS)
+# Active Directory Federation Services (ADFS) as Gerrit SAML authentication provider
+
 Note: replace `fs.hc.sct` with the name of your ADFS, replace gerrit.hc.sct with the name of your Gerrit host.
 
 ## Setup on the Gerrit machine
