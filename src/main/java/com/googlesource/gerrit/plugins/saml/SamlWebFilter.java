@@ -74,18 +74,30 @@ class SamlWebFilter implements Filter {
   SamlWebFilter(@GerritServerConfig Config gerritConfig, SitePaths sitePaths, SamlConfig samlConfig)
       throws IOException {
     this.samlConfig = samlConfig;
+    SAML2Configuration samlClientConfig;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
-    SAML2Configuration samlClientConfig =
-        new SAML2Configuration(
-            samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
-            samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
-    samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
-    samlClientConfig.setServiceProviderMetadataPath(
-        ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
-    if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
+
+    if (!Strings.isNullOrEmpty(samlConfig.getIdentityProviderEntityId())) {
+      samlClientConfig =
+          new SAML2Configuration(
+              samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
+              samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
+      samlClientConfig.setIdentityProviderEntityId(samlConfig.getIdentityProviderEntityId());
+    } else {
+      samlClientConfig =
+          new SAML2Configuration(
+              samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
+              samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
       samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
+      samlClientConfig.setServiceProviderMetadataPath(
+          ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
+      if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
+        samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
+      }
     }
 
+
+    samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
     saml2Client = new SAML2Client(samlClientConfig);
     String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");

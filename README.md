@@ -149,6 +149,11 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `UserName`
 
-**saml.serviceProviderEntityId**: Saml service provider entity id
+**saml.serviceProviderEntityId**: Saml service provider entity id.
+
+Default is not set.
+
+**saml.identityProviderEntityId**: Saml identity provider provider entity id.  When
+absent a saml service provider is assumed.
 
 Default is not set.
