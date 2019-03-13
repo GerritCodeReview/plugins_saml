@@ -190,6 +190,22 @@ This value takes precedence over the value in **saml.serviceProviderEntityId**.
 
 Default is not set.
 
+**saml.memberOfAttr**: Gerrit will look for an attribute with this name in the
+assertion to find the groups the user is member of.
+
+The user will receive these groups prefixed with `saml/` in gerrit.  When the
+groups do not exist, they will be created.  When a user its membership is removed
+this group will also be removed from this user on his next login.
+
+As group membership is only updated when a user logs in on the UI, so when a
+user loses membership to a group in SAML, he will still be able to execute his
+rights as if he is part of that group as long as he does not log in to the UI.
+So enabling this feature can be seen as a security risk in certain environments.
+
+When this attribute is not set or empty, SAML membership synchronization is disabled.
+
+Default is not set.
+
 **saml.useNameQualifier**: By SAML specification, the authentication request must not contain a NameQualifier, if the SP entity is in the format nameid-format:entity. However, some IdP require that information to be present. You can force a NameQualifier in the request with the useNameQualifier parameter. For ADFS 3.0 support, set this to `false`.
 
 Default is true.
