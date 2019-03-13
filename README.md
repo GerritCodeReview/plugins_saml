@@ -149,6 +149,15 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `UserName`
 
+**saml.memberOfAttr**: Gerrit will look for an attribute with this name in the
+assertion to find the groups the user is member of.
+The user will receive these groups prefixed with `saml/` in gerrit.  When the
+groups do not exist, they will be created.  When a user its membership is removed
+this group will also be removed from this user on his next login.
+When this attribute is not set or empty, SAML membership synchronization is disabled.
+
+Default is not set.
+
 **saml.serviceProviderEntityId**: Saml service provider entity id
 
 Default is not set.
