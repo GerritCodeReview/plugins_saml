@@ -37,6 +37,7 @@ public class SamlConfig {
   private final String firstNameAttr;
   private final String lastNameAttr;
   private final int maxAuthLifetimeDefault = 24 * 60 * 60; // 24h;
+  private final String memberOfAttr;
 
   @Inject
   SamlConfig(@GerritServerConfig Config cfg) {
@@ -52,6 +53,7 @@ public class SamlConfig {
     computedDisplayName = cfg.getBoolean(SAML_SECTION, "computedDisplayName", false);
     firstNameAttr = getGetStringWithDefault(cfg, "firstNameAttr", "FirstName");
     lastNameAttr = getGetStringWithDefault(cfg, "lastNameAttr", "LastName");
+    memberOfAttr = getString(cfg, "memberOfAttr");
   }
 
   public String getMetadataPath() {
@@ -112,5 +114,9 @@ public class SamlConfig {
 
   public String getServiceProviderEntityId() {
     return serviceProviderEntityId;
+  }
+
+  public String getMemberOfAttr() {
+    return memberOfAttr;
   }
 }
