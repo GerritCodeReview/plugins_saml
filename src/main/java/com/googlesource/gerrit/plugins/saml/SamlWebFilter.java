@@ -69,11 +69,17 @@ class SamlWebFilter implements Filter {
   private final String httpEmailHeader;
   private final String httpExternalIdHeader;
   private final HashSet<String> authHeaders;
+  private final SamlMembership samlMembership;
 
   @Inject
-  SamlWebFilter(@GerritServerConfig Config gerritConfig, SitePaths sitePaths, SamlConfig samlConfig)
+  SamlWebFilter(
+      @GerritServerConfig Config gerritConfig,
+      SitePaths sitePaths,
+      SamlConfig samlConfig,
+      SamlMembership samlMembership)
       throws IOException {
     this.samlConfig = samlConfig;
+    this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     SAML2Configuration samlClientConfig =
         new SAML2Configuration(
@@ -180,13 +186,16 @@ class SamlWebFilter implements Filter {
           getUserName(user),
           user.getAttributes());
       HttpSession s = context.getRequest().getSession();
-      s.setAttribute(
-          SESSION_ATTR_USER,
+      AuthenticatedUser authenticatedUser =
           new AuthenticatedUser(
               getUserName(user),
               getDisplayName(user),
               getEmailAddress(user),
-              String.format("%s/%s", SAML, user.getId())));
+              String.format("%s/%s", SAML, user.getId()));
+      s.setAttribute(SESSION_ATTR_USER, authenticatedUser);
+      if (samlMembership.isEnabled()) {
+        samlMembership.sync(authenticatedUser, user);
+      }
 
       String redirectUri = context.getRequest().getParameter("RelayState");
       if (null == redirectUri || redirectUri.isEmpty()) {
