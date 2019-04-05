@@ -25,6 +25,8 @@ import com.google.inject.Singleton;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
@@ -217,12 +219,28 @@ class SamlWebFilter implements Filter {
         && request.getRequestURI().indexOf(SAML_CALLBACK) >= 0;
   }
 
+  //
+  // TODO: refactor once PR https://github.com/pac4j/pac4j/pull/1659 released
+  //
   private static String getAttribute(SAML2Profile user, String attrName) {
-    List<?> names = (List<?>) user.getAttribute(attrName);
+    List<?> names = (List<?>) extractAttributeValues(user, attrName);
     if (names != null && !names.isEmpty()) {
       return (String) names.get(0);
     }
     return null;
+  }
+
+  private static List<String> extractAttributeValues(SAML2Profile user, String attrName) {
+    final Object value = user.getAttribute(attrName);
+    if (value instanceof String) {
+      return Collections.singletonList((String) value);
+    } else if (value instanceof String[]) {
+      return Arrays.asList((String[]) value);
+    } else if (value instanceof List) {
+      return (List<String>) value;
+    } else {
+      return null;
+    }
   }
 
   private static String getAttributeOrElseId(SAML2Profile user, String attrName) {
