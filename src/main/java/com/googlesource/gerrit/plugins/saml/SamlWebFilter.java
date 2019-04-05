@@ -1,4 +1,5 @@
 // Copyright (C) 2015 The Android Open Source Project
+// Copyright (C) 2019, Oracle and/or its affiliates. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -218,9 +219,9 @@ class SamlWebFilter implements Filter {
   }
 
   private static String getAttribute(SAML2Profile user, String attrName) {
-    List<?> names = (List<?>) user.getAttribute(attrName);
-    if (names != null && !names.isEmpty()) {
-      return (String) names.get(0);
+    String value = String.valueOf(user.getAttribute(attrName));
+    if (value != null) {
+      return value.replace("[", "").replace("]", "");
     }
     return null;
   }
