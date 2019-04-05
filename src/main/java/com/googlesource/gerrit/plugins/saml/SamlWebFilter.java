@@ -218,9 +218,14 @@ class SamlWebFilter implements Filter {
   }
 
   private static String getAttribute(SAML2Profile user, String attrName) {
-    List<?> names = (List<?>) user.getAttribute(attrName);
-    if (names != null && !names.isEmpty()) {
-      return (String) names.get(0);
+    final Object attrVal = user.getAttribute(attrName);
+    if (attrVal instanceof String) {
+      return user.getAttribute(attrName);
+    } else {
+      List<?> names = (List<?>) user.getAttribute(attrName);
+      if (names != null && !names.isEmpty()) {
+        return (String) names.get(0);
+      }
     }
     return null;
   }
