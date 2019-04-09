@@ -1,6 +1,6 @@
-# Gerrit SAML Plugin
+# Gerrit SAML Authentication Filter
 
-This plugin allows you to authenticate to Gerrit using a SAML identity
+This filter allows you to authenticate to Gerrit using a SAML identity
 provider.
 
 ## Installation
@@ -14,34 +14,64 @@ Gerrit looks for 3 attributes (which are configurable) in the AttributeStatement
 If any of these attributes is not found in the assertion, their value is
 taken from the NameId field of the SAML assertion.
 
-### Setting Gerrit in your IdP (Okta, Onelogin, ...)
+### Setting Gerrit in your IdP
 
-- Create a new SAML 2.0 application.
-- Set the following parameters:
-  - Single sign on URL: http://gerrit.site.com/plugins/saml/callback
-  - Check "Use this for Recipient URL and Destination URL".
-  - Audience URI (SP Entity Id): http://gerrit.site.com/plugins/saml/callback
-  - We need to set up the attributes in the assertion to send the right
-    information. Here is how to do it with Okta:
-    - Application username: "Okta username prefix"
-    - Add attribute statement: Name: "DisplayName" with Value
-      "user.displayName"
-    - Add attribute statement: Name: "EmailAddress" with Value
-      "user.email"
-    - **IMPORTANT**: If you are not using Okta, you need to set up an attribute
-      "UserName" with the value of the username (not email, without @). If you
-      do not do so, the name will be taken from the NameId provided by
-      the assertion.  This is why in Okta we set the application username to
-      "Okta username prefix".
-- Obtain your IdP metadata (either URL or a local XML file)
-
-If you are using Active Directory Federation Services (ADFS), follow the below steps to configure Gerrit.
-You can then [go here](doc/Setup_ADFS.md) for more details on how to make the saml plugin work with ADFS.
+- [Okta](okta/README.md)
+- [Keycloak](keycloak/README.md)
+- [ADFS](adfs/README.md)
 
 ### Download the plugin
 
 Download Gerrit SAML plugin for the appropriate version of gerrit from the [Gerrit-CI](https://gerrit-ci.gerritforge.com/search/?q=saml)
 into $gerrit_site/lib/.
+
+### Building the SAML filter
+
+This authentication filter is built with Bazel.
+
+## Build in Gerrit tree
+
+Clone or link this filter to the plugins directory of Gerrit's
+source tree. Put the external dependency Bazel build file into
+the Gerrit /plugins directory, replacing the existing empty one.
+
+```
+  cd gerrit/plugins
+  rm external_plugin_deps.bzl
+  ln -s @PLUGIN@/external_plugin_deps.bzl .
+```
+
+Then issue
+
+```
+  bazel build plugins/@PLUGIN@
+```
+
+The output is created in
+
+```
+  bazel-genfiles/plugins/@PLUGIN@/@PLUGIN@.jar
+```
+
+The @PLUGIN@.jar should be deployed to `gerrit_site/lib` directory:
+
+```
+ cp bazel-genfiles/plugins/@PLUGIN@/@PLUGIN@.jar `$gerrit_site/lib`
+```
+
+__NOTE__: Even though the project is build as a Gerrit plugin, it must be loaded
+as a Servlet filter by Gerrit and thus needs to be located with the libraries and
+cannot be dynamically loaded like other plugins.
+
+This project can be imported into the Eclipse IDE.
+Add the plugin name to the `CUSTOM_PLUGINS` set in
+Gerrit core in `tools/bzl/plugins.bzl`, and execute:
+
+```
+  ./tools/eclipse/project.py
+```
+
+How to build the Gerrit Plugin API is described in the [Gerrit documentation](../../../Documentation/dev-bazel.html#_extension_and_plugin_api_jar_files).
 
 ### Configure Gerrit to use the SAML filter:
 In `$site_path/etc/gerrit.config` file, the `[httpd]` section should contain
