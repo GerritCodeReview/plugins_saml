@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5891acb_de923023",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-10T23:48:16Z",
+      "side": 1,
+      "message": "Maybe just say \"Update dependencies\" as the subject and then list each one in a bullet list in the message body?\n\nOr, optionally, do each update as a separate commit?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "76b816e9e6d344a8fe8b119d1d4249ac8c404c2d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
