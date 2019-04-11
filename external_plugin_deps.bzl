@@ -145,8 +145,8 @@ def external_plugin_deps():
 
     maven_jar(
         name = "spring-core",
-        artifact = "org.springframework:spring-core:5.0.2.RELEASE",
-        sha1 = "45b2958ab3fb022dd29f8b1c553ebf1c75a144aa",
+        artifact = "org.springframework:spring-core:5.1.5.RELEASE",
+        sha1 = "aacc4555108f3da913a58114b2aebc819f58cce4",
     )
 
     maven_jar(
