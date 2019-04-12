@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df1a8f34_17284c44",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-04-12T15:38:04Z",
+      "side": 1,
+      "message": "This is dangerous, because a user could be removed from a group in the company. However, until he logs in again with SAML Gerrit will still grant permissions to him as he were in that group.\n\nExamples:\n- User using an existing Gerrit session cookie\n- User connecting via SSH and thus not using SAML for authentication",
+      "range": {
+        "startLine": 156,
+        "startChar": 47,
+        "endLine": 156,
+        "endChar": 64
+      },
+      "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
