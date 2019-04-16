@@ -22,6 +22,7 @@ import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.saml.ldap.LdapHelper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -69,10 +70,16 @@ class SamlWebFilter implements Filter {
   private final String httpEmailHeader;
   private final String httpExternalIdHeader;
   private final HashSet<String> authHeaders;
+  private final LdapHelper ldapHelper;
 
   @Inject
-  SamlWebFilter(@GerritServerConfig Config gerritConfig, SitePaths sitePaths, SamlConfig samlConfig)
+  SamlWebFilter(
+      @GerritServerConfig Config gerritConfig,
+      SitePaths sitePaths,
+      SamlConfig samlConfig,
+      LdapHelper ldapHelper)
       throws IOException {
+    this.ldapHelper = ldapHelper;
     this.samlConfig = samlConfig;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     SAML2Configuration samlClientConfig =
@@ -164,15 +171,22 @@ class SamlWebFilter implements Filter {
     SAML2Credentials credentials = saml2Client.getCredentials(context);
     SAML2Profile user = saml2Client.getUserProfile(credentials, context);
     if (user != null) {
+      String userName = getUserName(user);
+
+      // Lookup the actual user name in LDAP?
+      if (samlConfig.getUserNameLdapQuery() != null) {
+        userName = ldapHelper.lookupUserNameForId(userName);
+      }
+
       log.debug(
           "Received SAML callback for userId={} with attributes: {}",
-          getUserName(user),
+          userName,
           user.getAttributes());
       HttpSession s = context.getRequest().getSession();
       s.setAttribute(
           SESSION_ATTR_USER,
           new AuthenticatedUser(
-              getUserName(user),
+              userName,
               getDisplayName(user),
               getEmailAddress(user),
               String.format("%s/%s", SAML, user.getId())));

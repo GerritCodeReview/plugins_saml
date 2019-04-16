@@ -36,6 +36,7 @@ public class SamlConfig {
   private final boolean computedDisplayName;
   private final String firstNameAttr;
   private final String lastNameAttr;
+  private final String userNameLdapQuery;
   private final int maxAuthLifetimeDefault = 24 * 60 * 60; // 24h;
 
   @Inject
@@ -52,6 +53,7 @@ public class SamlConfig {
     computedDisplayName = cfg.getBoolean(SAML_SECTION, "computedDisplayName", false);
     firstNameAttr = getGetStringWithDefault(cfg, "firstNameAttr", "FirstName");
     lastNameAttr = getGetStringWithDefault(cfg, "lastNameAttr", "LastName");
+    userNameLdapQuery = getString(cfg, "userNameLdapQuery");
   }
 
   public String getMetadataPath() {
@@ -112,5 +114,9 @@ public class SamlConfig {
 
   public String getServiceProviderEntityId() {
     return serviceProviderEntityId;
+  }
+
+  public String getUserNameLdapQuery() {
+    return userNameLdapQuery;
   }
 }
