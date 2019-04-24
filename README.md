@@ -179,7 +179,14 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `UserName`
 
-**saml.serviceProviderEntityId**: Saml service provider entity id
+**saml.serviceProviderEntityId**: SAML service provider entity id.
+
+Default is not set.
+
+**saml.identityProviderEntityId**: SAML identity provider entity id.  When present
+a `IDPSSODescriptor` is expected in the SAML metadata document.  When absent a
+saml service provider with its `SPSSODescriptor` is assumed.
+This value takes precedence over the value in **saml.serviceProviderEntityId**.
 
 Default is not set.
 
