@@ -22,6 +22,30 @@
       "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43d3ef56_5a2d3ff5",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2019-04-24T06:03:45Z",
+      "side": 1,
+      "message": "Luca, as far as I can see this is no different from any other attribute of the gerrit saml plugin.\n\nFor example if a user is disabled at the saml provider side, its ssh credentials keep being valid in gerrit.\n\nI do not see how the memberOfAttr extension makes this worse or better.  But I am probably missing something?",
+      "parentUuid": "df1a8f34_17284c44",
+      "range": {
+        "startLine": 156,
+        "startChar": 47,
+        "endLine": 156,
+        "endChar": 64
+      },
+      "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
