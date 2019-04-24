@@ -46,6 +46,30 @@
       "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37bb0f46_8e5e1441",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-04-24T06:37:04Z",
+      "side": 1,
+      "message": "\u003e Luca, as far as I can see this is no different from any other attribute of the gerrit saml plugin.\n\u003e \n\u003e For example if a user is disabled at the saml provider side, its ssh credentials keep being valid in gerrit.\n\nHere we are talking about something else: authorization.\nIf we consider the group membership *only* at login time, a user with a 1-week long session cannot have his authorization changed unless we force him to logout and login again.\n\n\u003e I do not see how the memberOfAttr extension makes this worse or better.  But I am probably missing something?\n\nSee above.",
+      "parentUuid": "43d3ef56_5a2d3ff5",
+      "range": {
+        "startLine": 156,
+        "startChar": 47,
+        "endLine": 156,
+        "endChar": 64
+      },
+      "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
