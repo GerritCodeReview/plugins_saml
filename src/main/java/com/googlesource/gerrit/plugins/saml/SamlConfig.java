@@ -23,7 +23,7 @@ import org.eclipse.jgit.lib.Config;
 @Singleton
 public class SamlConfig {
   private static final String SAML_SECTION = "saml";
-
+  private final String identityProviderEntityId;
   private final String serviceProviderEntityId;
   private final String metadataPath;
   private final String keystorePath;
@@ -42,6 +42,7 @@ public class SamlConfig {
   @Inject
   SamlConfig(@GerritServerConfig Config cfg) {
     serviceProviderEntityId = getString(cfg, "serviceProviderEntityId");
+    identityProviderEntityId = getString(cfg, "identityProviderEntityId");
     metadataPath = getString(cfg, "metadataPath");
     keystorePath = getString(cfg, "keystorePath");
     privateKeyPassword = getString(cfg, "privateKeyPassword");
@@ -118,5 +119,9 @@ public class SamlConfig {
 
   public boolean useNameQualifier() {
     return useNameQualifier;
+  }
+
+  public String getIdentityProviderEntityId() {
+    return identityProviderEntityId;
   }
 }
