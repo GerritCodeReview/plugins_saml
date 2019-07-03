@@ -94,6 +94,30 @@
       "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03d77600_7161e19f",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-07-03T11:36:00Z",
+      "side": 1,
+      "message": "\u003e Hi Luca, for me this problem is an inherent problem of the SAML plugin.\n\u003e I do not think this patch changes this behaviour in any way.\n\nYes, you are right: it\u0027s just the way SAML works. It is quite usual for people using SAML to logout, clear cookies, login again and *only after that* see the permissions updated.\n\n\u003e I do not see the difference, between a user which is manually added/authorized for a group and a user authorized using the memberOf attribute.\n\nThe difference is that if you add (or remove) a user to a group in Gerrit, it will affect also the current sessions. If you do the same with SAML, it will require to re-authenticate from scratch so invalidate the current session and create a new token with a new memberOf.\n\nHowever, I see your previous point: that\u0027s the way SAML works, we can\u0027t do anything about it.\n\n\u003e In both cases, if the user is disabled at the saml provider side, she can still (ab)use her access rights until the next time she logs in onto the ui.\n\nYes, with the difference that if you do without SAML \"memberOf\" there is no abuse possible.\n\n\u003e The only solution I see around this problem is adding a time-out/refresh attribute.  So if an old user comes in over ssh he is forced to login on the ui before continuing.\n\nNobody raised it at the moment, we just need to properly document the limitations and security restrictions.\n\n\u003e I think this is rather similar on how this site, gerrit-review.googlesource.com, does it for the connection to your google account.\n\nDon\u0027t think so, as I believe they plug the Google Groups into Gerrit using an API.",
+      "parentUuid": "0a574ce5_dd94fabe",
+      "range": {
+        "startLine": 156,
+        "startChar": 47,
+        "endLine": 156,
+        "endChar": 64
+      },
+      "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
