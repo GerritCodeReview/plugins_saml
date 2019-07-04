@@ -142,6 +142,30 @@
       "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fc71598_10db75d3",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2019-07-04T06:33:26Z",
+      "side": 1,
+      "message": "\u003e Luca,\n\u003e \n\u003e if I document this more clearly in this README.  So add enough disclaimers bot on the generic behaviour as on this specific behaviour.\n\u003e \n\u003e Would you then be willing to take in this patch?\n\nYes, AFAIK we can\u0027t do anything about the involved risks: we document them so that people are aware and can make an educated choice.\n\nThanks for contributing to the plugin :-) and looking forward to getting this change merged.",
+      "parentUuid": "70f15799_8ba0108a",
+      "range": {
+        "startLine": 156,
+        "startChar": 47,
+        "endLine": 156,
+        "endChar": 64
+      },
+      "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
