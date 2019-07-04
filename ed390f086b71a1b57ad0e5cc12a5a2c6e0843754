@@ -118,6 +118,30 @@
       "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70f15799_8ba0108a",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2019-07-04T05:45:29Z",
+      "side": 1,
+      "message": "Luca,\n\nif I document this more clearly in this README.  So add enough disclaimers bot on the generic behaviour as on this specific behaviour.\n\nWould you then be willing to take in this patch?",
+      "parentUuid": "03d77600_7161e19f",
+      "range": {
+        "startLine": 156,
+        "startChar": 47,
+        "endLine": 156,
+        "endChar": 64
+      },
+      "revId": "ed390f086b71a1b57ad0e5cc12a5a2c6e0843754",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
