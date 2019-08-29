@@ -86,6 +86,8 @@ class SamlWebFilter implements Filter {
       samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
     }
 
+    samlClientConfig.setUseNameQualifier(false);
+
     saml2Client = new SAML2Client(samlClientConfig);
     String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");

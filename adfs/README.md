@@ -55,7 +55,7 @@ Monitoring: unmodified
 
 ![][screen01]
 
-Identifiers: The relying party identifier is: `https://gerrit.hc.sct/gerrit/plugins/gerrit-saml-plugin/saml`
+Identifiers: The relying party identifier is: `https://gerrit.hc.sct/gerrit/plugins/saml/callback`
 
 ![][screen02]
 
@@ -75,7 +75,7 @@ Organization: unmodified
 
 ![][screen06]
 
-Endpoints: URL is `https://gerrit.hc.sct/gerrit/plugins/gerrit-saml-plugin/saml`, binding POST
+Endpoints: URL is `https://gerrit.hc.sct/gerrit/plugins/saml/callback`, binding POST
 
 ![][screen07]
 
@@ -125,12 +125,3 @@ Delegation Authorization Rules: unmodified
 [screen14]: images/13.png   "screen 14"
 [screen15]: images/14.png   "screen 15"
 [screen16]: images/15.png   "screen 16"
-
-
-
-
-
-
-
-
-
