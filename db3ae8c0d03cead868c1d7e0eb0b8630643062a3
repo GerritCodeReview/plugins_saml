@@ -22,6 +22,23 @@
       "revId": "db3ae8c0d03cead868c1d7e0eb0b8630643062a3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47a05a37_5e955d67",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-09-18T12:07:23Z",
+      "side": 1,
+      "message": "Do we really want to set it unconditionally to false? Should we rather add a new config option to this plugin and set it to true per default, like it was before this change?",
+      "revId": "db3ae8c0d03cead868c1d7e0eb0b8630643062a3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
