@@ -39,6 +39,48 @@
       "revId": "db3ae8c0d03cead868c1d7e0eb0b8630643062a3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a340b409_98c808e0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1088278
+      },
+      "writtenOn": "2019-09-20T11:57:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47a05a37_5e955d67",
+      "revId": "db3ae8c0d03cead868c1d7e0eb0b8630643062a3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87f2e616_d4e532f8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1088278
+      },
+      "writtenOn": "2019-09-20T11:57:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90793cb4_d71069e0",
+      "range": {
+        "startLine": 89,
+        "startChar": 41,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "db3ae8c0d03cead868c1d7e0eb0b8630643062a3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
