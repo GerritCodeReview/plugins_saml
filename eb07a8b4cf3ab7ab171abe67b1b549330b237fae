@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14651f11_8ff36373",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-10-02T12:15:16Z",
+      "side": 1,
+      "message": "We usually don\u0027t change the license header in this project. Can you revert that change?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 73
+      },
+      "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c73ae3c_19729a59",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-10-02T12:15:16Z",
+      "side": 1,
+      "message": "This looks lieke a hack to me. What is the canonical way to do it with Pac4j library? May be suggest a proposal to the pac4j library, to improve the situation here: [1]?\n\n* [1] https://github.com/pac4j/pac4j/blob/master/pac4j-core/src/main/java/org/pac4j/core/profile/BasicUserProfile.java#L243-L252",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 225,
+        "endChar": 5
+      },
+      "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
