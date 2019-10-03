@@ -45,6 +45,30 @@
       "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c3c421a_4d6f3b14",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-10-03T10:49:09Z",
+      "side": 1,
+      "message": "Something what AbstractJwtProfile is doing seems like a better alternative: [1].\n\n  final Object audience \u003d getAttribute(JwtClaims.AUDIENCE);\n        if (audience instanceof String) {\n            return Collections.singletonList((String) audience);\n        } else if (audience instanceof String[]) {\n            return Arrays.asList((String[]) audience);\n        } else if (audience instanceof List) {\n            return (List\u003cString\u003e) audience;\n        } else {\n            return null;\n        }\n\nAnyway I wrote this issue upstream: [2].\n\n* [1] https://github.com/pac4j/pac4j/blob/3e54e2207c28aae78281d8f87b2cf5c2ded26926/pac4j-core/src/main/java/org/pac4j/core/profile/jwt/AbstractJwtProfile.java#L28-L39\n[2] https://github.com/pac4j/pac4j/issues/1406",
+      "parentUuid": "9c73ae3c_19729a59",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 225,
+        "endChar": 5
+      },
+      "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
