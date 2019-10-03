@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "de07b135_68ca44e6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1089090
+      },
+      "writtenOn": "2019-10-03T21:17:50Z",
+      "side": 1,
+      "message": "As a general rule I may not drop the copyright notice. This notice does not change the license. May I add this in a separate document only, e.g. AUTHORS?\n\ne.g. https://github.com/eventum/eventum/blob/master/AUTHORS",
+      "parentUuid": "14651f11_8ff36373",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 73
+      },
+      "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c73ae3c_19729a59",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 1
