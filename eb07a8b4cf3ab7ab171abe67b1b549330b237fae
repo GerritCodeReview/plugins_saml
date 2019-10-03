@@ -69,6 +69,30 @@
       "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8519d44c_948c08e7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1089090
+      },
+      "writtenOn": "2019-10-03T15:43:29Z",
+      "side": 1,
+      "message": "Thank you for submitting the issue. Let\u0027s see what they respond.\n\npac4j might return various types, List\u0027able or not. SAML attributes might have multiple values.\n\nWould it be better? Here I keep the old code and return canonical\nString.valueOf() on non-castable-to-List values?\n\nif (user.getAttribute(attrName) is instance of List) {\n // old code returns the very first item with get(0)\n ..\n} else {\n return String.valueOf(user.getAttribute(attrName));\n}",
+      "parentUuid": "2c3c421a_4d6f3b14",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 225,
+        "endChar": 5
+      },
+      "revId": "eb07a8b4cf3ab7ab171abe67b1b549330b237fae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
