@@ -4,7 +4,7 @@ SHIBBOLETH = "https://build.shibboleth.net/nexus/content/repositories/releases/"
 
 OPENSAML_VERSION = "3.4.3"
 
-PAC4J_VERSION = "3.8.0"
+PAC4J_VERSION = "3.8.3"
 
 def external_plugin_deps():
     maven_jar(
@@ -121,13 +121,13 @@ def external_plugin_deps():
     maven_jar(
         name = "pac4j-saml",
         artifact = "org.pac4j:pac4j-saml:" + PAC4J_VERSION,
-        sha1 = "6897faedf4131f71954963945e4dbc13788d8d22",
+        sha1 = "c112c180703e600815c949bdd4c9646b6d70238e",
     )
 
     maven_jar(
         name = "pac4j-core",
         artifact = "org.pac4j:pac4j-core:" + PAC4J_VERSION,
-        sha1 = "e5a82ad0a4a0e246edc8950d1e2c632a36732715",
+        sha1 = "ce2d5c63d9f034f5631d3b3ebec46f916b7064f2",
     )
 
     maven_jar(
