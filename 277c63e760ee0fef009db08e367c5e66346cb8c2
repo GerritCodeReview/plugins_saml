@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22ce1d30_d458a99e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-05-25T07:01:32Z",
+      "side": 1,
+      "message": "Why ServiceProviderEntityId is now only set, if IdentityProviderEntityId wasn\u0027t provided? Shouldn\u0027t this be reflected in the documentation? We can even reject both configuration option set with mutual exclusive error message if both options are provided and reject plugin loading.",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 90,
+        "endChar": 7
+      },
+      "revId": "277c63e760ee0fef009db08e367c5e66346cb8c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
