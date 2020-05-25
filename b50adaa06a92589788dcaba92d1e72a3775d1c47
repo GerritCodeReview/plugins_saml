@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63f8188d_502242b5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-05-25T20:49:45Z",
+      "side": 1,
+      "message": "May be warn users that ServiceProviderEntityId is ignored? So something like:\n\n  if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {\n    log.warn(\"Provided ServiceProviderEntityId value is ignored.\");\n  };",
+      "revId": "b50adaa06a92589788dcaba92d1e72a3775d1c47",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
