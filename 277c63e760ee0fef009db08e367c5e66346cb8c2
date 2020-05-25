@@ -22,6 +22,30 @@
       "revId": "277c63e760ee0fef009db08e367c5e66346cb8c2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c89fdc00_3c26192e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-05-25T10:55:50Z",
+      "side": 1,
+      "message": "Because the SAML system entity is either an identity prodiver or a service provider.  As far as I know it cannot be both.\n\nWill update the README that `identityProviderEntityId` takes precendence over serviceProviderEntityId is that ok for you?\n\nOr do you prefer the exclusivity check in the code?",
+      "parentUuid": "22ce1d30_d458a99e",
+      "range": {
+        "startLine": 88,
+        "startChar": 6,
+        "endLine": 90,
+        "endChar": 7
+      },
+      "revId": "277c63e760ee0fef009db08e367c5e66346cb8c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
