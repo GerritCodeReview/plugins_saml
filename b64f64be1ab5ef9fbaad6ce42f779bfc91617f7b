@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8888b4f6_b784bdc5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-05-27T23:21:03Z",
+      "side": 1,
+      "message": "Current master works in both gerrit v2 and v3 (verified just now), but with all the package renames in gerrit, this will break as it only works in gerrit v3. \n\nI think it makes sense to stick with the original (yet rebased) patch to support gerrit v2, then craete a gerrit 3 tag set for this.",
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
