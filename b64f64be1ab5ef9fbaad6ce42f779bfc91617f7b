@@ -34,6 +34,47 @@
       "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0612661e_327b355e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-06-01T17:52:28Z",
+      "side": 1,
+      "message": "Sorry, yes, that\u0027s what I was getting at but my comment was not terribly clear. \n\nIf you think there is enough interest in this feature for both gerrit v2 and v3, then it probably should be split into a patch for each if the effort isn\u0027t too great.\n\nAlthough I don\u0027t know the interest in maintaining anything for gerrit v2 at this point, and we use gerrit v3, so please don\u0027t make the decision just on my account.",
+      "parentUuid": "70740b4d_37d26be7",
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "633cc593_bd6e4d3c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-06-01T17:52:28Z",
+      "side": 1,
+      "message": "I had to change this to GroupUUID to get it to build",
+      "range": {
+        "startLine": 114,
+        "startChar": 31,
+        "endLine": 114,
+        "endChar": 40
+      },
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
