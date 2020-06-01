@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "91b58356_8c8d1851",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1036512
+      },
+      "writtenOn": "2020-06-01T17:55:19Z",
+      "side": 1,
+      "message": "Personally, I would probably ignore gerrit v2 bits. 2.16 is last supported 2.x version and it\u0027s scheduled for EOL as soon as 3.2 which happened this morning.",
+      "parentUuid": "0612661e_327b355e",
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "633cc593_bd6e4d3c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 4
