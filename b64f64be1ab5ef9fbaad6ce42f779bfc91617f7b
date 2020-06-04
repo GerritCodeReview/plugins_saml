@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "7f2b4f2b_232aa122",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-06-04T23:49:59Z",
+      "side": 1,
+      "message": "Well, that resolves it then. Looks like we just need the UUID method fixed up and this is ready for voting.",
+      "parentUuid": "91b58356_8c8d1851",
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "633cc593_bd6e4d3c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 4
