@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "51d8d84f_0c415ea5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-05T11:12:33Z",
+      "side": 1,
+      "message": "Add license header.",
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8888b4f6_b784bdc5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 4
@@ -131,6 +148,53 @@
         "startChar": 31,
         "endLine": 114,
         "endChar": 40
+      },
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c1a2215_d17954cb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-05T11:12:33Z",
+      "side": 1,
+      "message": "\u003e In  https://gerrit-review.googlesource.com/c/gerrit/+/213035 GroupUUID was renamed to GroupUUID.\n\nYou mean GroupUUID was renamed to GroupUuid.",
+      "parentUuid": "e5016a8c_bb63b982",
+      "range": {
+        "startLine": 114,
+        "startChar": 31,
+        "endLine": 114,
+        "endChar": 40
+      },
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfef47e4_7d18dbe8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-05T11:12:33Z",
+      "side": 1,
+      "message": "Can we make that experimental feature optional and not enabled per default?",
+      "range": {
+        "startLine": 183,
+        "startChar": 6,
+        "endLine": 183,
+        "endChar": 51
       },
       "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
