@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b855fd72_5b8e204c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-06-05T22:00:32Z",
+      "side": 1,
+      "message": "Is there a reason for this method? We tested and found Gerrit will take pretty much any character in a group name. Also, we specifically use hyphens, which of course are converted to underscores (how we caught it).",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 76
+      },
+      "revId": "d4f110676286b98815836d428ca550f3f216ae33",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
