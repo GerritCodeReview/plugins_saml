@@ -111,6 +111,30 @@
       "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5016a8c_bb63b982",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-05T10:58:25Z",
+      "side": 1,
+      "message": "Are you sure you build against master?\n\nIn  https://gerrit-review.googlesource.com/c/gerrit/+/213035 GroupUUID was renamed to GroupUUID.\n\nIt is also present in branch stable-3.2 but not in stable-3.1 .",
+      "parentUuid": "633cc593_bd6e4d3c",
+      "range": {
+        "startLine": 114,
+        "startChar": 31,
+        "endLine": 114,
+        "endChar": 40
+      },
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
