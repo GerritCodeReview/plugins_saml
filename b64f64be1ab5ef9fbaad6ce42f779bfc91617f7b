@@ -221,6 +221,30 @@
     },
     {
       "key": {
+        "uuid": "9c43af09_468a07cf",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-06-05T16:39:59Z",
+      "side": 1,
+      "message": "My mistake, I was building against 3.1.4, sorry!",
+      "parentUuid": "9f930035_0083fcac",
+      "range": {
+        "startLine": 114,
+        "startChar": 31,
+        "endLine": 114,
+        "endChar": 40
+      },
+      "revId": "b64f64be1ab5ef9fbaad6ce42f779bfc91617f7b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfef47e4_7d18dbe8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 4
