@@ -22,6 +22,30 @@
       "revId": "d4f110676286b98815836d428ca550f3f216ae33",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daa3daad_8b00608a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-08T06:35:41Z",
+      "side": 1,
+      "message": "If I see it correctly this only became possible after https://gerrit-review.googlesource.com/c/gerrit/+/221245 was merged.\nThe original version of this patch stems before this.\n\nIf I remember well we had problems with / or @.\nI do not mind to remove it, did some tests and it seems to work.\n\nNice catch.",
+      "parentUuid": "b855fd72_5b8e204c",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 76
+      },
+      "revId": "d4f110676286b98815836d428ca550f3f216ae33",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
