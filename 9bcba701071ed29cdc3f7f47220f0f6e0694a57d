@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "96f58a85_48e1253d",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1036512
+      },
+      "writtenOn": "2020-06-09T14:43:18Z",
+      "side": 1,
+      "message": "I know this isn\u0027t the official spec for markdown but this[0] is an interesting gist and I wonder if the markdown parser for Gerrit can handle this?\n\nIn particular the comment at [1] about the \u0027\\\u0027 character since it makes it very visible what you\u0027re trying to do.\n\nI\u0027m really only bringing this up because of the following:\n\n1) it looks messy when doing reviews\n2) while I haven\u0027t done any editing here, there are people like me that have their code editors configured to trim space, so it could be a problem later.\n\nIn any case, do what you will, I\u0027m just pointing out something that looks messy.\n\n[0] https://gist.github.com/shaunlebron/746476e6e7a4d698b373\n[1] https://gist.github.com/shaunlebron/746476e6e7a4d698b373#gistcomment-2271765",
+      "parentUuid": "7cc50473_35ee3b98",
+      "range": {
+        "startLine": 194,
+        "startChar": 51,
+        "endLine": 194,
+        "endChar": 53
+      },
+      "revId": "9bcba701071ed29cdc3f7f47220f0f6e0694a57d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ac16ad5_9eaa62e6",
         "filename": "README.md",
         "patchSetId": 6
