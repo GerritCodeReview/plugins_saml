@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7cc50473_35ee3b98",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-09T06:31:31Z",
+      "side": 1,
+      "message": "Hi Andrew, this is on purpose to generate a markdown line return[1]. \nSo going to a new line without starting a new paragraph.\nLet me know if you do not like it, then I will adapt.\n\n[1]: https://markdown-guide.readthedocs.io/en/latest/basics.html#line-return",
+      "parentUuid": "23583d47_2e73a8e7",
+      "range": {
+        "startLine": 194,
+        "startChar": 51,
+        "endLine": 194,
+        "endChar": 53
+      },
+      "revId": "9bcba701071ed29cdc3f7f47220f0f6e0694a57d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ac16ad5_9eaa62e6",
         "filename": "README.md",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "52f66c05_4c3924ae",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-09T06:31:31Z",
+      "side": 1,
+      "message": "Same",
+      "parentUuid": "6ac16ad5_9eaa62e6",
+      "range": {
+        "startLine": 197,
+        "startChar": 65,
+        "endLine": 197,
+        "endChar": 67
+      },
+      "revId": "9bcba701071ed29cdc3f7f47220f0f6e0694a57d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3be543c4_0f9f991c",
         "filename": "README.md",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2020-06-08T16:47:47Z",
       "side": 1,
       "message": "Dangling white space",
+      "range": {
+        "startLine": 201,
+        "startChar": 21,
+        "endLine": 201,
+        "endChar": 23
+      },
+      "revId": "9bcba701071ed29cdc3f7f47220f0f6e0694a57d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18075568_34e68253",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-09T06:31:31Z",
+      "side": 1,
+      "message": "Same",
+      "parentUuid": "3be543c4_0f9f991c",
       "range": {
         "startLine": 201,
         "startChar": 21,
