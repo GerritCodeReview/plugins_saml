@@ -82,7 +82,8 @@ class SamlWebFilter implements Filter {
 
     if (!Strings.isNullOrEmpty(samlConfig.getIdentityProviderEntityId())) {
       if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
-        log.warn("Both identityProviderEntityId as serviceProviderEntityId are set, ignoring serviceProviderEntityId.");
+        log.warn(
+            "Both identityProviderEntityId as serviceProviderEntityId are set, ignoring serviceProviderEntityId.");
       }
       samlClientConfig.setIdentityProviderEntityId(samlConfig.getIdentityProviderEntityId());
     } else {
