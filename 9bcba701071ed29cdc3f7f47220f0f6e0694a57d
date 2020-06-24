@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "479925f0_97f864e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1036512
+      },
+      "writtenOn": "2020-06-24T17:05:28Z",
+      "side": 1,
+      "message": "Just poking this. We\u0027re not 100% blocked from moving forward with a switch from LDAP to SAML (yet) but right now our Gerrit infra is the only one we don\u0027t have a complete solution for. Is there something that we (dwt2 and I) can help with to get this all the way to a merged and built state?",
+      "revId": "9bcba701071ed29cdc3f7f47220f0f6e0694a57d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23583d47_2e73a8e7",
         "filename": "README.md",
         "patchSetId": 6
