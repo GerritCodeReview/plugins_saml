@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "b033ea50_7abcf2ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2020-06-26T03:30:41Z",
+      "side": 1,
+      "message": "General comment: please format the code with google-java-formatter.\n",
+      "revId": "9bcba701071ed29cdc3f7f47220f0f6e0694a57d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23583d47_2e73a8e7",
         "filename": "README.md",
         "patchSetId": 6
