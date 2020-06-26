@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "d752f8f9_70bac72d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-26T15:47:12Z",
+      "side": 1,
+      "message": "Ate you aware of that change: [1]. It is trying to solve a different problem. See detailed description in this GH project [2]\n\n* [1] https://gerrit-review.googlesource.com/c/plugins/saml/+/221295\n* [2] https://github.com/davido/gerrit-ldap-to-sso-saml-migration#discrepancy-between-user-names-in-ldap-vs-idp",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df3ccf6d_3bbcfad8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-26T15:47:12Z",
+      "side": 1,
+      "message": "Can you roughly describe a Test Fall? How would this change help existing sites using LDAP auth scheme migrate to SAML IdP? See for inspiration this project: [3], with open source IdP Keycloak.\n\n[3] https://github.com/davido/gerrit-ldap-to-sso-saml-migration",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a927dda1_4e728325",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 8
@@ -162,6 +196,29 @@
       "writtenOn": "2020-06-26T13:17:55Z",
       "side": 1,
       "message": "Javadoc missing",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e397fd5_9b045f0d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-26T15:47:12Z",
+      "side": 1,
+      "message": "What SAML provider are you using? Is this provides exposing a list of group names? I was facing a different problem with some propriate SAML providers, that only included Group id and not group names. So may be it worth mentioning the feasibility of this solution: If SAML provider only able to return group id, but not group name in response, it wouldn\u0027t work, right?",
+      "range": {
+        "startLine": 162,
+        "startChar": 2,
+        "endLine": 167,
+        "endChar": 3
+      },
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
