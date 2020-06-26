@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a927dda1_4e728325",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Thanks for the contribution, it would definitely be helpful automating the import from SAML groups.",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0cc99026_d102e587",
+        "filename": "README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Nit: trailing spaces and wrap longer lines",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 23
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6df0b376_f04c280b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Nit: wrap longer lines.",
+      "range": {
+        "startLine": 45,
+        "startChar": 80,
+        "endLine": 45,
+        "endChar": 100
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd3d05aa_7c766b44",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Javadoc missing",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4347ad7b_d7560cc6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Why not simply: .anyMatch(g -\u003e g.getName().startsWith(GROUP_PREFIX)) ?",
+      "range": {
+        "startLine": 93,
+        "startChar": 24,
+        "endLine": 94,
+        "endChar": 36
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7de6f7d7_ead1bec8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Info? That looks too much and may overload the error_log.",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 23
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5ae8b15_5db0b56d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "This computation can be done once and then reused as a variable.",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 90
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b701fde_310bb604",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2020-06-26T13:17:55Z",
+      "side": 1,
+      "message": "Javadoc missing",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
