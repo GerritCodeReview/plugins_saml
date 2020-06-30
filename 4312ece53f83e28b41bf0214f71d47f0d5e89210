@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "72a5ac05_3f2dedd7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "No I was not.  If I interpret it correctly, it is mostly focussed on user names, and not on groups.\n\nIt might be possible that when these changes come together, similar functionality might be useful for group names.   But I have the feeling it belongs then in a separate patch.",
+      "parentUuid": "d752f8f9_70bac72d",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df3ccf6d_3bbcfad8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2020-06-26T15:47:12Z",
       "side": 1,
       "message": "Can you roughly describe a Test Fall? How would this change help existing sites using LDAP auth scheme migrate to SAML IdP? See for inspiration this project: [3], with open source IdP Keycloak.\n\n[3] https://github.com/davido/gerrit-ldap-to-sso-saml-migration",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8027927f_24f1e3aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "It is not clear what you mean with \"Test Fall\", can you elaborate?\n\nThis change is mostly targeted to new installs.\n\nIf you want to migrate from an other authentication method, I guess it is possible, but new groups will be created.  As they are all prefixed with a unique id.\n\nSo you have to remap the old groups to the new groups somehow.  Maybe add them first next to the old groups in the access configuration.\nThen update the authentication method.\nAnd then remove the old groups (if necessary)",
+      "parentUuid": "df3ccf6d_3bbcfad8",
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
@@ -76,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "cf371859_aa5fbc61",
+        "filename": "README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cc99026_d102e587",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 23
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6df0b376_f04c280b",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 8
@@ -96,6 +156,30 @@
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0889206_82095721",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6df0b376_f04c280b",
+      "range": {
+        "startLine": 45,
+        "startChar": 80,
+        "endLine": 45,
+        "endChar": 100
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -139,6 +223,30 @@
     },
     {
       "key": {
+        "uuid": "4d34e543_faaafb04",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4347ad7b_d7560cc6",
+      "range": {
+        "startLine": 93,
+        "startChar": 24,
+        "endLine": 94,
+        "endChar": 36
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7de6f7d7_ead1bec8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 8
@@ -159,6 +267,30 @@
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00aac722_fe4e9943",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7de6f7d7_ead1bec8",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 23
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -185,6 +317,30 @@
     },
     {
       "key": {
+        "uuid": "8233addb_5e773f4d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5ae8b15_5db0b56d",
+      "range": {
+        "startLine": 110,
+        "startChar": 44,
+        "endLine": 110,
+        "endChar": 90
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b701fde_310bb604",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 8
@@ -202,6 +358,24 @@
     },
     {
       "key": {
+        "uuid": "cc4bb8f5_d1c8ea2c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b701fde_310bb604",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e397fd5_9b045f0d",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 8
@@ -213,6 +387,30 @@
       "writtenOn": "2020-06-26T15:47:12Z",
       "side": 1,
       "message": "What SAML provider are you using? Is this provides exposing a list of group names? I was facing a different problem with some propriate SAML providers, that only included Group id and not group names. So may be it worth mentioning the feasibility of this solution: If SAML provider only able to return group id, but not group name in response, it wouldn\u0027t work, right?",
+      "range": {
+        "startLine": 162,
+        "startChar": 2,
+        "endLine": 167,
+        "endChar": 3
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f7c6067_c47cf659",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:28:17Z",
+      "side": 1,
+      "message": "We use okta.\nIf the provider uses group id I guess it will not work.\nIf this happens, we can maybe use the id as groupname, but this is not so user friendly.",
+      "parentUuid": "7e397fd5_9b045f0d",
       "range": {
         "startLine": 162,
         "startChar": 2,
