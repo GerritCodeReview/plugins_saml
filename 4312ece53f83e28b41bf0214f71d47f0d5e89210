@@ -183,6 +183,30 @@
     },
     {
       "key": {
+        "uuid": "a530c58f_6839260d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:29:34Z",
+      "side": 1,
+      "message": "I did this, but then the java formatter re-formatted it like this.",
+      "parentUuid": "d0889206_82095721",
+      "range": {
+        "startLine": 45,
+        "startChar": 80,
+        "endLine": 45,
+        "endChar": 100
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd3d05aa_7c766b44",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
         "patchSetId": 8
@@ -197,6 +221,24 @@
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a618eda0_da434254",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-06-30T09:29:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd3d05aa_7c766b44",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
