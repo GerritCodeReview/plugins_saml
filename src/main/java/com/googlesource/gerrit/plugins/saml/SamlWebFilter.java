@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -69,6 +70,7 @@ class SamlWebFilter implements Filter {
   private final String httpEmailHeader;
   private final String httpExternalIdHeader;
   private final HashSet<String> authHeaders;
+  private final boolean userNameToLowerCase;
 
   @Inject
   SamlWebFilter(@GerritServerConfig Config gerritConfig, SitePaths sitePaths, SamlConfig samlConfig)
@@ -106,6 +108,7 @@ class SamlWebFilter implements Filter {
               + "httpDisplaynameHeader, httpEmailHeader and httpExternalIdHeader "
               + "are required.");
     }
+    userNameToLowerCase = gerritConfig.getBoolean("auth", "userNameToLowerCase", false);
 
     saml2Client.setCallbackUrl(callbackUrl);
   }
@@ -260,7 +263,8 @@ class SamlWebFilter implements Filter {
   }
 
   private String getUserName(SAML2Profile user) {
-    return getAttributeOrElseId(user, samlConfig.getUserNameAttr());
+    String username = getAttributeOrElseId(user, samlConfig.getUserNameAttr());
+    return userNameToLowerCase ? username.toLowerCase(Locale.US) : username;
   }
 
   private static Path ensureExists(Path dataDir) throws IOException {
