@@ -31,6 +31,7 @@ public class SamlConfig {
   private final String keystorePassword;
   private final String displayNameAttr;
   private final String userNameAttr;
+  private final boolean userNameToLowerCase;
   private final String emailAddressAttr;
   private final int maxAuthLifetimeAttr;
   private final boolean computedDisplayName;
@@ -48,6 +49,7 @@ public class SamlConfig {
     keystorePassword = getString(cfg, "keystorePassword");
     displayNameAttr = getGetStringWithDefault(cfg, "displayNameAttr", "DisplayName");
     userNameAttr = getGetStringWithDefault(cfg, "userNameAttr", "UserName");
+    userNameToLowerCase = cfg.getBoolean(SAML_SECTION, "userNameToLowerCase", false);
     emailAddressAttr = getGetStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
     maxAuthLifetimeAttr = cfg.getInt("saml", "maxAuthLifetime", maxAuthLifetimeDefault);
     computedDisplayName = cfg.getBoolean(SAML_SECTION, "computedDisplayName", false);
@@ -78,6 +80,10 @@ public class SamlConfig {
 
   public String getUserNameAttr() {
     return userNameAttr;
+  }
+
+  public boolean convertUserNameToLowerCase() {
+    return userNameToLowerCase;
   }
 
   public String getEmailAddressAttr() {

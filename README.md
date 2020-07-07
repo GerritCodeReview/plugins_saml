@@ -179,6 +179,11 @@ found, the NameId from the SAML assertion is used instead.
 
 Default is `UserName`
 
+**saml.userNameToLowerCase**: If true, all usernames retrieved from saml will be
+converted to use only lowercase letters.
+
+Default is false
+
 **saml.serviceProviderEntityId**: Saml service provider entity id
 
 Default is not set.

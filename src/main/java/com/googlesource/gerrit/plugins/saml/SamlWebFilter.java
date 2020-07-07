@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -260,7 +261,8 @@ class SamlWebFilter implements Filter {
   }
 
   private String getUserName(SAML2Profile user) {
-    return getAttributeOrElseId(user, samlConfig.getUserNameAttr());
+    String username = getAttributeOrElseId(user, samlConfig.getUserNameAttr());
+    return samlConfig.convertUserNameToLowerCase() ? username.toLowerCase(Locale.US) : username;
   }
 
   private static Path ensureExists(Path dataDir) throws IOException {
