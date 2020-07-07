@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5f8e55c_c0bb5a97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-07T14:45:12Z",
+      "side": 1,
+      "message": "Respect existing auth.userNameToLowerCase option?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a8b4a3c_8ba951a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-07T14:45:12Z",
+      "side": 1,
+      "message": "Unrelated here, but are you aware of issue 13076, that was recently reported? It was linked to saml pluginm but it seems to be a gerrit core issue?",
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d18b66d_644b86ff",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-07T14:45:12Z",
+      "side": 1,
+      "message": "We don\u0027t we respect already existing setting in \"auth\" section, instead of adding a new setting in \"saml\" section:\n\n  userNameToLowerCase \u003d cfg.getBoolean(\"auth\", \"userNameToLowerCase\", false);\n\nIt is used in many different places:\n\n  java/com/google/gerrit/server/config/AuthConfig.java:    userNameToLowerCase \u003d cfg.getBoolean(\"auth\", \"userNameToLowerCase\", false);\n  java/com/google/gerrit/httpd/ContainerAuthFilter.java:    if (config.getBoolean(\"auth\", \"userNameToLowerCase\", false))\n  java/com/google/gerrit/httpd/ProjectOAuthFilter.java:    this.userNameToLowerCase \u003d gerritConfig.getBoolean(\"auth\", null, \"userNameToLowerCase\", false);\n  [...]",
+      "range": {
+        "startLine": 52,
+        "startChar": 41,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
