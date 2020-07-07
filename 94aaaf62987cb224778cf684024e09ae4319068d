@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4b226ec2_b36245b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T14:51:18Z",
+      "side": 1,
+      "message": "We should definitely do that. Should have thought of that myself :-(. Let me do that.",
+      "parentUuid": "d5f8e55c_c0bb5a97",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3a8b4a3c_8ba951a0",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2020-07-07T14:45:12Z",
       "side": 1,
       "message": "Unrelated here, but are you aware of issue 13076, that was recently reported? It was linked to saml pluginm but it seems to be a gerrit core issue?",
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9456abd8_1a4aa43a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T14:51:18Z",
+      "side": 1,
+      "message": "No I wasn\u0027t aware. I looked at this plugin for the first time today, since we are evaluating it at the moment. Also we are still using 2.16. I wil lcheck, if I see something similar.",
+      "parentUuid": "3a8b4a3c_8ba951a0",
       "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
