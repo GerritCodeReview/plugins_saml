@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fbab43f5_a863489f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T15:09:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b226ec2_b36245b1",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a8b4a3c_8ba951a0",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -104,6 +128,30 @@
       "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "193aa532_d3cbe036",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T15:09:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d18b66d_644b86ff",
+      "range": {
+        "startLine": 52,
+        "startChar": 41,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "94aaaf62987cb224778cf684024e09ae4319068d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
