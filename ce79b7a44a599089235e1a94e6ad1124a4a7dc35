@@ -34,6 +34,41 @@
       "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1be36af6_26962d2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T14:45:36Z",
+      "side": 1,
+      "message": "Sorry, I missed that comment. Fixing this in the upstream makes sense. I saw that the issue was closed in the upstream. Could you work on that?\n\nThere is definitely a need for tests. Not only in this plugin.\n\n@Vlad: Are you still interested in this change and would continue to work on it?",
+      "parentUuid": "98d96984_6be969a6",
+      "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfbc5869_54df0b45",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T14:45:36Z",
+      "side": 1,
+      "message": "The return value has to be cast to String. Currently, the build fails.",
+      "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
