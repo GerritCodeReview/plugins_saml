@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffe47f9b_0a29779d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-07T14:20:56Z",
+      "side": 1,
+      "message": "bump.\n\nI was just about to push the same change for stable-2.16. Can we get this one in instead, since this was created earlier?",
+      "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
