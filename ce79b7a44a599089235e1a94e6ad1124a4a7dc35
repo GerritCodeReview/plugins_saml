@@ -16,6 +16,24 @@
       "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98d96984_6be969a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-07T14:27:19Z",
+      "side": 1,
+      "message": "Have you noticed my previous comments and discussion in the upstream issue that I created: [1]? As explained in my previous comments, I would prefer to see this addressed upstream, and only put an intermediate fix in this repository untill the upstream fix is released and this plugin switched to the consume the new pac4j version.\n\nAlso it would be great to start writing tests for this plugin. Would this issue be  a candidate for it?\n\n[1] https://github.com/pac4j/pac4j/issues/1406",
+      "parentUuid": "ffe47f9b_0a29779d",
+      "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
