@@ -87,6 +87,24 @@
       "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15c4ba74_84b8d348",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-07-28T13:30:04Z",
+      "side": 1,
+      "message": "Thanks for your reply.\nYour updated change has a different Change ID. I guess the Change ID got lost in the process and the hook created a new one. Thus, Gerrit thought it was a new change.\n\nI saw that the issue got closed. Their (strange) process demands that an issue is first raised on the mailing list. Let me raise that issue there as well.",
+      "parentUuid": "a8950049_f036ca9b",
+      "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
