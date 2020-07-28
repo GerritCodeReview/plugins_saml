@@ -69,6 +69,24 @@
       "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8950049_f036ca9b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1089090
+      },
+      "writtenOn": "2020-07-28T12:51:55Z",
+      "side": 1,
+      "message": "Hi Thomas, I have submitted the fix yet it went to another RR somehow - https://gerrit-review.googlesource.com/c/plugins/saml/+/277054/1\n\nNot sure how to change this patchset though I did as recommended:\n\ngit add . \u0026\u0026 git commit --amend --no-edit\ngit push origin HEAD:refs/for/master\n\n@Thomas: Feel free to submit your patch and I hope it will be accepted eventualy. It has been almost a year since the patch reviewed and my passion fades out. Fixing this in the upstream makes sense but not for me. pac4j is a separate project.\n\nhttps://github.com/pac4j/pac4j/issues/1406 is Closed. How to fix a project which is not willing to have a fix?",
+      "parentUuid": "dfbc5869_54df0b45",
+      "revId": "ce79b7a44a599089235e1a94e6ad1124a4a7dc35",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
