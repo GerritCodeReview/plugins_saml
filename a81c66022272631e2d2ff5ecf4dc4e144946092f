@@ -16,6 +16,92 @@
       "revId": "a81c66022272631e2d2ff5ecf4dc4e144946092f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84a4afa1_a577588f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-31T16:58:15Z",
+      "side": 1,
+      "message": "LGTM. Only some nits left.",
+      "revId": "a81c66022272631e2d2ff5ecf4dc4e144946092f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0969a2df_1369aa99",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-31T16:58:15Z",
+      "side": 1,
+      "message": "We usually add username, e.g.:\n\n  TODO(davido): Replace with the invocation from upstream method.\n\nNit: I prefer to have single line comment:\n\n  // comment",
+      "range": {
+        "startLine": 223,
+        "startChar": 5,
+        "endLine": 223,
+        "endChar": 9
+      },
+      "revId": "a81c66022272631e2d2ff5ecf4dc4e144946092f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bad9b3d_e3b8fd85",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-31T16:58:15Z",
+      "side": 1,
+      "message": "This should be put on method extractAttributeValues below.",
+      "range": {
+        "startLine": 222,
+        "startChar": 2,
+        "endLine": 224,
+        "endChar": 4
+      },
+      "revId": "a81c66022272631e2d2ff5ecf4dc4e144946092f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93abbb9e_9b947900",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-31T16:58:15Z",
+      "side": 1,
+      "message": "Why this cast is needed, if the extractAttributeValues already returns List\u003cString\u003e? Just use:\n\n  List\u003cString\u003e names \u003d extractAttributeValues(user, attrName);",
+      "range": {
+        "startLine": 226,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 30
+      },
+      "revId": "a81c66022272631e2d2ff5ecf4dc4e144946092f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
