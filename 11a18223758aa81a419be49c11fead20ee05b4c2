@@ -33,6 +33,29 @@
       "revId": "11a18223758aa81a419be49c11fead20ee05b4c2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "627216f9_783761f2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-07-31T12:09:30Z",
+      "side": 1,
+      "message": "Now, that my PR https://github.com/pac4j/pac4j/pull/1659 was merged ustream, we can gi ahead, and this method here, locally with the TODO to replace it when new release is conducted:\n\n    /**\n     * Return the attribute values with name.\n     *\n     * @param name attribute name\n     * @return the attribute values as List of strings.\n     */\n    public List\u003cString\u003e extractAttributeValues(String name) {\n        final Object value \u003d getAttribute(name);\n        if (value instanceof String) {\n            return Collections.singletonList((String) value);\n        } else if (value instanceof String[]) {\n            return Arrays.asList((String[]) value);\n        } else if (value instanceof List) {\n            return (List\u003cString\u003e) value;\n        } else {\n            return null;\n        }\n    }",
+      "range": {
+        "startLine": 220,
+        "startChar": 2,
+        "endLine": 231,
+        "endChar": 3
+      },
+      "revId": "11a18223758aa81a419be49c11fead20ee05b4c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
