@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c651077d_b7142a38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1089090
+      },
+      "writtenOn": "2020-07-31T16:41:25Z",
+      "side": 1,
+      "message": "Hi @davido, the new patchset implements the suggested approach. ",
+      "revId": "a81c66022272631e2d2ff5ecf4dc4e144946092f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}

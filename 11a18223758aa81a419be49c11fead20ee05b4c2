@@ -56,6 +56,30 @@
       "revId": "11a18223758aa81a419be49c11fead20ee05b4c2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90606b4b_3b6821a5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1089090
+      },
+      "writtenOn": "2020-07-31T16:41:25Z",
+      "side": 1,
+      "message": "Hi @davido, thank you for the sample provided. The new patchset has been uploaded.",
+      "parentUuid": "627216f9_783761f2",
+      "range": {
+        "startLine": 220,
+        "startChar": 2,
+        "endLine": 231,
+        "endChar": 3
+      },
+      "revId": "11a18223758aa81a419be49c11fead20ee05b4c2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
