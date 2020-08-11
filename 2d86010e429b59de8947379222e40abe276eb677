@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c854fbb_66ea5fa5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-08-11T19:01:21Z",
+      "side": 1,
+      "message": "FYI I\u0027ve implemented patchset #6 with a production gerrit/auth0 setup. Subsequent patchsets break functionality for some reason; users do not get properly imported, and/or groups fail to get created/updated. If I can, I will try determine why, but I want to get this preliminary comment up in case the outstanding issues get resolved and the patch gets positioned for merge.",
+      "revId": "2d86010e429b59de8947379222e40abe276eb677",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
