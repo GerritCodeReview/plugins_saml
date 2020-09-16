@@ -46,6 +46,30 @@
       "revId": "965d4beeafd0a24d592237c5c81b3f2eee403f87",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92ef30f7_c64668a4",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-09-16T13:56:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49b2833a_4ba8cba1",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 49
+      },
+      "revId": "965d4beeafd0a24d592237c5c81b3f2eee403f87",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
