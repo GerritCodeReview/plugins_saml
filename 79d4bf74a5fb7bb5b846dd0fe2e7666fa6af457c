@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6ec4c8c_36625797",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1102520
+      },
+      "writtenOn": "2020-09-16T14:11:13Z",
+      "side": 1,
+      "message": "LGTM\n\nBuilt against v3.2.3 and tested against Auth0 under various conditions like adding/removing groups, lower and mixed-case usernames. All performs as to be expected. Thanks Steve, I hope we can get this merged!",
+      "revId": "79d4bf74a5fb7bb5b846dd0fe2e7666fa6af457c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
