@@ -51,6 +51,24 @@
       "revId": "11305cb5202e8f475582227bd0c887a9d54e1d6e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebbd2f0e_c84190bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2020-09-17T10:58:19Z",
+      "side": 1,
+      "message": "I hope so. Unfortunately, I am not a maintainer of the plugin and can\u0027t give CR+2.\n\n@davido or @Luca, can you give CR+2?",
+      "parentUuid": "8473a287_3b93e8e5",
+      "revId": "11305cb5202e8f475582227bd0c887a9d54e1d6e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
