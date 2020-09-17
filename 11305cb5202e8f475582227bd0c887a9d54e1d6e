@@ -33,6 +33,24 @@
       "revId": "11305cb5202e8f475582227bd0c887a9d54e1d6e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8473a287_3b93e8e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1089090
+      },
+      "writtenOn": "2020-09-17T10:29:01Z",
+      "side": 1,
+      "message": "Thomas, shall I expect this patchset to be ever merged?",
+      "parentUuid": "d9682c64_c934f9cf",
+      "revId": "11305cb5202e8f475582227bd0c887a9d54e1d6e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
