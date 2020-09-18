@@ -16,6 +16,24 @@
       "revId": "f1148dd96198146b7a76f2571865e3ce5df676e7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c70633e_9b00eb4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-09-18T05:10:02Z",
+      "side": 1,
+      "message": "Went over all open comments, and I think they are all done.\n\nIt was a pleasure working with you.",
+      "parentUuid": "5fb2cb32_f7bcefa6",
+      "revId": "f1148dd96198146b7a76f2571865e3ce5df676e7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

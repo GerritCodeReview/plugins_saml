@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3f727f0f_9c126b4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-09-18T05:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72a5ac05_3f2dedd7",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df3ccf6d_3bbcfad8",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -159,6 +177,24 @@
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41957c4f_5993626c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-09-18T05:10:02Z",
+      "side": 1,
+      "message": "@davido marking this thread as resolved.\nAs there are not unit tests for the rest of the plugin.\n\nOpen it if you think it is still relevant.",
+      "parentUuid": "63ca0b17_371ba241",
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -552,6 +588,30 @@
       "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b71da1a2_ec705b79",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1005133
+      },
+      "writtenOn": "2020-09-18T05:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f7c6067_c47cf659",
+      "range": {
+        "startLine": 162,
+        "startChar": 2,
+        "endLine": 167,
+        "endChar": 3
+      },
+      "revId": "4312ece53f83e28b41bf0214f71d47f0d5e89210",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
