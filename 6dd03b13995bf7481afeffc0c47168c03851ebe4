@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c56fb0e6_3f730057",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087826
+      },
+      "writtenOn": "2021-03-30T22:14:39Z",
+      "side": 1,
+      "message": "The test failure looks like an internal Gerrit API change?\n",
+      "revId": "6dd03b13995bf7481afeffc0c47168c03851ebe4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
