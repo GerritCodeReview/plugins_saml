@@ -33,6 +33,23 @@
       "message": "Direct link to build: https://ci.gerritcodereview.com/t/gerrit/build/21c814953d99470a802f7c66fe6c168e",
       "revId": "6dd03b13995bf7481afeffc0c47168c03851ebe4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "823a6d99_2fb31b3f",
+        "filename": "okta/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-03-31T06:12:55Z",
+      "side": 1,
+      "message": "Nit: Unrelated white space change?",
+      "revId": "6dd03b13995bf7481afeffc0c47168c03851ebe4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
