@@ -52,6 +52,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "678a1624_e347ae60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-05T12:55:05Z",
+      "side": 1,
+      "message": "\u003e SAML is broken on master\n\nDone in 302166.\n\nNevertheless we should move this change to stable-3.1 branch.",
+      "parentUuid": "5a391b5b_27be2c4e",
+      "revId": "6dd03b13995bf7481afeffc0c47168c03851ebe4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "823a6d99_2fb31b3f",
