@@ -85,6 +85,24 @@
       "message": "Nit: Unrelated white space change?",
       "revId": "6dd03b13995bf7481afeffc0c47168c03851ebe4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20ae5aea_8ae48e03",
+        "filename": "okta/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-05T12:56:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "823a6d99_2fb31b3f",
+      "revId": "6dd03b13995bf7481afeffc0c47168c03851ebe4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
