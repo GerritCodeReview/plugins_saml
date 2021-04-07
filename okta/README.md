@@ -2,7 +2,7 @@
 
 - Create a new SAML 2.0 application.
 - Set the following parameters:
-  - Single sign on URL: http://gerrit.site.com/plugins/saml/callback
+  - Single sign on URL: http://gerrit.site.com/plugins/saml/callback?client_name=SAML2Client
   - Check "Use this for Recipient URL and Destination URL".
   - Audience URI (SP Entity Id): http://gerrit.site.com/plugins/saml/callback
   - We need to set up the attributes in the assertion to send the right
