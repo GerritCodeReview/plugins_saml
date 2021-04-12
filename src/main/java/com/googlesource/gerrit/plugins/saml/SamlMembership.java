@@ -56,6 +56,7 @@ public class SamlMembership {
   private final IdentifiedUser.GenericFactory userFactory;
   private final Provider<GroupsUpdate> groupsUpdateProvider;
   private final Sequences sequences;
+  private final AuthRequest.Factory authRequestFactory;
 
   @Inject
   SamlMembership(
@@ -65,7 +66,8 @@ public class SamlMembership {
       GroupCache groupCache,
       IdentifiedUser.GenericFactory userFactory,
       @ServerInitiated Provider<GroupsUpdate> groupsUpdateProvider,
-      Sequences sequences) {
+      Sequences sequences,
+      AuthRequest.Factory authRequestFactory) {
     this.memberAttr = samlConfig.getMemberOfAttr();
     this.serverIdent = serverIdent;
     this.accountManager = accountManager;
@@ -73,6 +75,7 @@ public class SamlMembership {
     this.userFactory = userFactory;
     this.groupsUpdateProvider = groupsUpdateProvider;
     this.sequences = sequences;
+    this.authRequestFactory = authRequestFactory;
   }
 
   /**
@@ -174,7 +177,7 @@ public class SamlMembership {
   }
 
   private Account.Id getOrCreateAccountId(AuthenticatedUser user) throws IOException {
-    AuthRequest authRequest = AuthRequest.forUser(user.getUsername());
+    AuthRequest authRequest = authRequestFactory.createForUser(user.getUsername());
     authRequest.setUserName(user.getUsername());
     authRequest.setEmailAddress(user.getEmail());
     authRequest.setDisplayName(user.getDisplayName());
