@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d899d2b_ad7bbd4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2021-04-12T08:20:16Z",
+      "side": 1,
+      "message": "Wait for the changes in core",
+      "revId": "40a3bcdd50bf8fc0d73398f6dbe743f0aaf56533",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
