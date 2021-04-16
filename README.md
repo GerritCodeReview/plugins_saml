@@ -19,6 +19,7 @@ taken from the NameId field of the SAML assertion.
 - [Okta](okta/README.md)
 - [Keycloak](keycloak/README.md)
 - [ADFS](adfs/README.md)
+- [SimpleSamlPHP](simplesamlphp/README.md)
 
 ### Download the plugin
 
