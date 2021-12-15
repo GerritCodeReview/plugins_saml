@@ -24,9 +24,9 @@ import com.google.gerrit.server.GerritPersonIdent;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.ServerInitiated;
 import com.google.gerrit.server.account.*;
+import com.google.gerrit.server.group.db.GroupDelta;
 import com.google.gerrit.server.group.db.GroupsUpdate;
 import com.google.gerrit.server.group.db.InternalGroupCreation;
-import com.google.gerrit.server.group.db.InternalGroupUpdate;
 import com.google.gerrit.server.notedb.Sequences;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -87,7 +87,8 @@ public class SamlMembership {
   public void sync(AuthenticatedUser user, SAML2Profile profile) throws IOException {
     Set<AccountGroup.UUID> samlMembership =
         Optional.ofNullable((List<?>) profile.getAttribute(memberAttr, List.class))
-            .orElse(Collections.emptyList()).stream()
+            .orElse(Collections.emptyList())
+            .stream()
             .map(m -> getOrCreateGroup(m.toString()))
             .filter(Optional::isPresent)
             .map(Optional::get)
@@ -133,9 +134,8 @@ public class SamlMembership {
   }
 
   private void updateMembers(
-      AccountGroup.UUID group, InternalGroupUpdate.MemberModification memberModification) {
-    InternalGroupUpdate update =
-        InternalGroupUpdate.builder().setMemberModification(memberModification).build();
+      AccountGroup.UUID group, GroupDelta.MemberModification memberModification) {
+    GroupDelta update = GroupDelta.builder().setMemberModification(memberModification).build();
     try {
       groupsUpdateProvider.get().updateGroup(group, update);
     } catch (Exception e) {
@@ -159,8 +159,8 @@ public class SamlMembership {
               .setNameKey(name)
               .setId(groupId)
               .build();
-      InternalGroupUpdate.Builder groupUpdateBuilder =
-          InternalGroupUpdate.builder()
+      GroupDelta.Builder groupUpdateBuilder =
+          GroupDelta.builder()
               .setVisibleToAll(false)
               .setDescription(samlGroup + " (imported by the SAML plugin)");
       return groupsUpdateProvider.get().createGroup(groupCreation, groupUpdateBuilder.build());
