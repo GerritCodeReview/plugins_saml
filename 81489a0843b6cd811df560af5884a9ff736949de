@@ -16,6 +16,24 @@
       "message": "Please format the code with google-java-formatter. (This import should be in L27)",
       "revId": "81489a0843b6cd811df560af5884a9ff736949de",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "477029af_1c26d8e2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1143686
+      },
+      "writtenOn": "2021-12-16T12:11:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d06219e_0f8079b2",
+      "revId": "81489a0843b6cd811df560af5884a9ff736949de",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
