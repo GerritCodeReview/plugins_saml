@@ -24,9 +24,9 @@ import com.google.gerrit.server.GerritPersonIdent;
 import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.ServerInitiated;
 import com.google.gerrit.server.account.*;
+import com.google.gerrit.server.group.db.GroupDelta;
 import com.google.gerrit.server.group.db.GroupsUpdate;
 import com.google.gerrit.server.group.db.InternalGroupCreation;
-import com.google.gerrit.server.group.db.InternalGroupUpdate;
 import com.google.gerrit.server.notedb.Sequences;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -52,6 +52,7 @@ public class SamlMembership {
   private final String memberAttr;
   private final PersonIdent serverIdent;
   private final AccountManager accountManager;
+  private final AuthRequest.Factory authRequestFactory;
   private final GroupCache groupCache;
   private final IdentifiedUser.GenericFactory userFactory;
   private final Provider<GroupsUpdate> groupsUpdateProvider;
@@ -62,6 +63,7 @@ public class SamlMembership {
       SamlConfig samlConfig,
       @GerritPersonIdent PersonIdent serverIdent,
       AccountManager accountManager,
+      AuthRequest.Factory authRequestFactory,
       GroupCache groupCache,
       IdentifiedUser.GenericFactory userFactory,
       @ServerInitiated Provider<GroupsUpdate> groupsUpdateProvider,
@@ -69,6 +71,7 @@ public class SamlMembership {
     this.memberAttr = samlConfig.getMemberOfAttr();
     this.serverIdent = serverIdent;
     this.accountManager = accountManager;
+    this.authRequestFactory = authRequestFactory;
     this.groupCache = groupCache;
     this.userFactory = userFactory;
     this.groupsUpdateProvider = groupsUpdateProvider;
@@ -130,9 +133,9 @@ public class SamlMembership {
   }
 
   private void updateMembers(
-      AccountGroup.UUID group, InternalGroupUpdate.MemberModification memberModification) {
-    InternalGroupUpdate update =
-        InternalGroupUpdate.builder().setMemberModification(memberModification).build();
+      AccountGroup.UUID group, GroupDelta.MemberModification memberModification) {
+    GroupDelta update =
+        GroupDelta.builder().setMemberModification(memberModification).build();
     try {
       groupsUpdateProvider.get().updateGroup(group, update);
     } catch (Exception e) {
@@ -156,8 +159,8 @@ public class SamlMembership {
               .setNameKey(name)
               .setId(groupId)
               .build();
-      InternalGroupUpdate.Builder groupUpdateBuilder =
-          InternalGroupUpdate.builder()
+      GroupDelta.Builder groupUpdateBuilder =
+          GroupDelta.builder()
               .setVisibleToAll(false)
               .setDescription(samlGroup + " (imported by the SAML plugin)");
       return groupsUpdateProvider.get().createGroup(groupCreation, groupUpdateBuilder.build());
@@ -174,7 +177,7 @@ public class SamlMembership {
   }
 
   private Account.Id getOrCreateAccountId(AuthenticatedUser user) throws IOException {
-    AuthRequest authRequest = AuthRequest.forUser(user.getUsername());
+    AuthRequest authRequest = authRequestFactory.createForUser(user.getUsername());
     authRequest.setUserName(user.getUsername());
     authRequest.setEmailAddress(user.getEmail());
     authRequest.setDisplayName(user.getDisplayName());
