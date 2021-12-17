@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43ef20a_d1162b7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1077393
+      },
+      "writtenOn": "2021-12-17T12:58:20Z",
+      "side": 1,
+      "message": "I think this should be targetted for stable-3.5 branch but that needs to be first created",
+      "revId": "437e3e0095ceeb856c5620551e15a469670370d6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
