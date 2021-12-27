@@ -16,6 +16,23 @@
       "message": "I added this one on top of yours:\nhttps://gerrit-review.googlesource.com/c/plugins/saml/+/326618\n\nIt handles the class renames. Both together could be submitted and the plugin should start working again for gerrit \u003e3.5 (for which it is currently broken).",
       "revId": "036b952b91d6e03acb1fc83014be9e92bf9d2a63",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a183365_247b0c84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-12-27T07:12:51Z",
+      "side": 1,
+      "message": "Mention issue 15444?",
+      "revId": "036b952b91d6e03acb1fc83014be9e92bf9d2a63",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
