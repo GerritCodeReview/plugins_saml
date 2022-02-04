@@ -14,13 +14,16 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -77,6 +80,7 @@ class SamlWebFilter implements Filter {
 
   @Inject
   SamlWebFilter(
+      @CanonicalWebUrl Provider<String> urlProvider,
       @GerritServerConfig Config gerritConfig,
       SitePaths sitePaths,
       SamlConfig samlConfig,
@@ -108,7 +112,8 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
 
     saml2Client = new SAML2Client(samlClientConfig);
-    String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
+    String callbackUrl =
+        CharMatcher.is('/').trimTrailingFrom(urlProvider.get()) + "/" + SAML_CALLBACK;
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
     httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
     httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
