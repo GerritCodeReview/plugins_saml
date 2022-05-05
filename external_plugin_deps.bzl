@@ -15,6 +15,12 @@ def external_plugin_deps():
     )
 
     maven_jar(
+        name = "commons-lang",
+        artifact = "commons-lang:commons-lang:2.6",
+        sha1 = "0ce1edb914c94ebc388f086c6827e8bdeec71ac2",
+    )
+
+    maven_jar(
         name = "cryptacular",
         artifact = "org.cryptacular:cryptacular:1.2.1",
         sha1 = "c470bac7309ac04b0b9529bd7dcb1e0b75954f11",

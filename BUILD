@@ -9,6 +9,7 @@ gerrit_plugin(
     resources = glob(["src/main/resources/**"]),
     deps = [
         "@commons-collections//jar",
+        "@commons-lang//jar",
         "@cryptacular//jar",
         "@joda-time//jar",
         "@opensaml-core//jar",
