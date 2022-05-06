@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "901a06bf_b1caf13a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1077393
+      },
+      "writtenOn": "2022-05-06T05:18:51Z",
+      "side": 1,
+      "message": "The error from zool is\n\n  2022-05-05 12:28:30.215200 | testnode | ERROR\n  2022-05-05 12:28:30.215563 | testnode | {\n  2022-05-05 12:28:30.215614 | testnode |   \"msg\": \"The ipwrap filter requires python\u0027s netaddr be installed on the ansible controller\"\n  2022-05-05 12:28:30.215653 | testnode | }\n\n\nI guess that is not about this change but something about the testnode itself",
+      "revId": "09d7a72dfadd1df340ac7a3bdf473a4ebbabe033",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
