@@ -14,6 +14,13 @@ def external_plugin_deps():
         sha1 = "8ad72fe39fa8c91eaaf12aadb21e0c3661fe26d5",
     )
 
+    # Transitive dependency of velocity
+    maven_jar(
+        name = "commons-lang",
+        artifact = "commons-lang:commons-lang:2.4",
+        sha1 = "16313e02a793435009f1e458fa4af5d879f6fb11",
+    )
+
     maven_jar(
         name = "cryptacular",
         artifact = "org.cryptacular:cryptacular:1.2.1",
