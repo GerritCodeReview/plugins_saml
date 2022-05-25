@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90f9a2a_be25205c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-05-25T07:17:17Z",
+      "side": 1,
+      "message": "Is the whole stack trace as a part of commit message really needed? Remove it?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 74
+      },
+      "revId": "09d7a72dfadd1df340ac7a3bdf473a4ebbabe033",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e13e542e_599945df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-05-25T07:17:17Z",
+      "side": 1,
+      "message": "Rephrase with something like: Starting from Gerrit release 3.6 dependency to commons-lang was upgraded to commons-lang3 in change 319919. Given that third party dependency still depends on commons-lang we re-add commons-lang in this plugin.\n\nOf course we should kindly ask (GitHub issue?) pac4j-saml project to upgrade from commons-lang to commons-lang3.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 9
+      },
+      "revId": "09d7a72dfadd1df340ac7a3bdf473a4ebbabe033",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "901a06bf_b1caf13a",
