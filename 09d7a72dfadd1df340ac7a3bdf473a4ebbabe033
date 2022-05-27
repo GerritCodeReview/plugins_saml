@@ -121,6 +121,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "816bddd3_6a95f18e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-05-27T09:09:27Z",
+      "side": 1,
+      "message": "Thanks. I will look into the upgrade of pac4j-saml and transitive dependencies.",
+      "parentUuid": "7a470cf7_76fd9549",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 9
+      },
+      "revId": "09d7a72dfadd1df340ac7a3bdf473a4ebbabe033",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "901a06bf_b1caf13a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
