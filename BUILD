@@ -7,6 +7,7 @@ load(
 load("@rules_java//java:defs.bzl", "java_binary")
 
 SAML_DEPS = [
+    "@saml_plugin_deps//:org_opensaml_opensaml_saml_api",
     "@saml_plugin_deps//:org_pac4j_pac4j_core",
     "@saml_plugin_deps//:org_pac4j_pac4j_saml",
 ]
