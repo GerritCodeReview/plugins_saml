@@ -24,6 +24,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import java.nio.file.Path;
+import org.opensaml.saml.common.xml.SAMLConstants;
 import org.pac4j.saml.client.SAML2Client;
 import org.pac4j.saml.config.SAML2Configuration;
 import org.slf4j.Logger;
@@ -57,7 +58,8 @@ public class SamlClientProvider implements Provider<SAML2Client> {
     if (!Strings.isNullOrEmpty(samlConfig.getIdentityProviderEntityId())) {
       if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
         log.warn(
-            "Both identityProviderEntityId as serviceProviderEntityId are set, ignoring serviceProviderEntityId.");
+            "Both identityProviderEntityId as serviceProviderEntityId are set, ignoring"
+                + " serviceProviderEntityId.");
       }
       samlClientConfig.setIdentityProviderEntityId(samlConfig.getIdentityProviderEntityId());
     } else {
@@ -71,6 +73,22 @@ public class SamlClientProvider implements Provider<SAML2Client> {
 
     samlClientConfig.setUseNameQualifier(samlConfig.useNameQualifier());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
+
+    if (samlConfig.getLogoutType().isSlo()) {
+      log.debug("Setting up Single Logout (SLO) for " + samlConfig.getLogoutType());
+      samlClientConfig.setSpLogoutRequestSigned(samlConfig.signSLORequest());
+
+      if (!Strings.isNullOrEmpty(samlConfig.getPostLogoutURL())) {
+        samlClientConfig.setPostLogoutURL(samlConfig.getPostLogoutURL());
+      }
+
+      // Can be set or rely on the default in pac4j
+      if (samlConfig.getLogoutType() == SamlConfig.LogoutType.SLO_REDIRECT) {
+        samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+      } else if (samlConfig.getLogoutType() == SamlConfig.LogoutType.SLO_POST) {
+        samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_POST_BINDING_URI);
+      }
+    }
 
     SAML2Client saml2Client = new SAML2Client(samlClientConfig);
 

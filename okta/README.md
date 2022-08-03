@@ -17,4 +17,9 @@
       do not do so, the name will be taken from the NameId provided by
       the assertion.  This is why in Okta we set the application username to
       "Okta username prefix".
+  - If using Single Logout - In the "SAML Settings" section click the "Show Advanced Features"
+    - Enable Single Logout - check "Allow application to initiate Single Logout"
+    - Single Logout URL: http://gerrit.site.com/plugins/saml/callback?client_name=SAML2Client&logoutendpoint=true
+    - SP Issuer: http://gerrit.site.com/plugins/saml/callback
+    - Signature Certificate: Use the public key from the keystore defined at saml.keystorePath
 - Obtain your IdP metadata (either URL or a local XML file)
