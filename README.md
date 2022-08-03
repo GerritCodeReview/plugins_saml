@@ -103,6 +103,8 @@ The header names are used internally between the SAML plugin and Gerrit to
 communicate the user's identity.  You can use other names (as long as it will
 not conflict with any other HTTP header Gerrit might expect).
 
+`logoutUrl` is not required when using Single Logout (SLO) (see `saml.logoutType` below)
+
 ### Create a local keystore
 
 In `$gerrit_site/etc` create a local keystore:
@@ -207,6 +209,31 @@ When this attribute is not set or empty, SAML membership synchronization is disa
 
 Default is not set.
 
-**saml.useNameQualifier**: By SAML specification, the authentication request must not contain a NameQualifier, if the SP entity is in the format nameid-format:entity. However, some IdP require that information to be present. You can force a NameQualifier in the request with the useNameQualifier parameter. For ADFS 3.0 support, set this to `false`.
+**saml.useNameQualifier**: By SAML specification, the authentication request must not contain a NameQualifier,
+if the SP entity is in the format nameid-format:entity. However, some IdP require that information to be present.
+You can force a NameQualifier in the request with the useNameQualifier parameter. For ADFS 3.0 support,
+set this to `false`.
 
 Default is true.
+
+**saml.logoutType**: Set the desired logout behavior, can be one of:
+
+- `redirect` - perform a standard redirect based on the value from `auth.logoutUrl`
+
+- `slo-default` - perform a SLO using the SAML identity provider default
+
+- `slo-post` - perform a SLO using the POST method
+
+- `slo-redirect` - perform a SLO using a redirect
+
+Default is redirect.
+
+**saml.signSLORequest**: Determines if the SLO request is signed when `saml.logoutType`
+is set to one of the SLO values.
+
+Default is true.
+
+**saml.postLogoutURL**: The URL to redirect to once the SLO flow completes.  Only used
+when `saml.logoutType` is set to one of the SLO values.
+
+Default is not set.

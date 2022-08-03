@@ -2,9 +2,9 @@
 
 - Create a new SAML 2.0 application.
 - Set the following parameters:
-  - Single sign on URL: http://gerrit.site.com/plugins/saml/callback?client_name=SAML2Client
+  - Single sign on URL: http://gerrit.example.com/plugins/saml/callback?client_name=SAML2Client
   - Check "Use this for Recipient URL and Destination URL".
-  - Audience URI (SP Entity Id): http://gerrit.site.com/plugins/saml/callback
+  - Audience URI (SP Entity Id): http://gerrit.example.com/plugins/saml/callback
   - We need to set up the attributes in the assertion to send the right
     information. Here is how to do it with Okta:
     - Application username: "Okta username prefix"
@@ -17,4 +17,9 @@
       do not do so, the name will be taken from the NameId provided by
       the assertion.  This is why in Okta we set the application username to
       "Okta username prefix".
+  - If using Single Logout - In the "SAML Settings" section click the "Show Advanced Features"
+    - Enable Single Logout - check "Allow application to initiate Single Logout"
+    - Single Logout URL: http://gerrit.example.com/plugins/saml/callback?client_name=SAML2Client&logoutendpoint=true
+    - SP Issuer: http://gerrit.example.com/plugins/saml/callback
+    - Signature Certificate: Use the public key from the keystore defined at saml.keystorePath
 - Obtain your IdP metadata (either URL or a local XML file)
