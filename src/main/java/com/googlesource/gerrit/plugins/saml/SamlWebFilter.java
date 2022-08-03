@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.saml;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterators;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.api.GerritApi;
@@ -41,6 +42,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
@@ -49,6 +51,7 @@ import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.exception.HttpAction;
 import org.pac4j.core.exception.TechnicalException;
+import org.pac4j.core.redirect.RedirectAction;
 import org.pac4j.saml.client.SAML2Client;
 import org.pac4j.saml.credentials.SAML2Credentials;
 import org.pac4j.saml.profile.SAML2Profile;
@@ -65,7 +68,8 @@ class SamlWebFilter implements Filter {
   public static final String SAML = "saml";
   public static final String SAML_CALLBACK = "plugins/" + SAML + "/callback";
   @VisibleForTesting static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
-
+  private static final ImmutableList<String> REMOVE_COOKIE_KEYS =
+      ImmutableList.of("JSESSIONID", "GerritAccount");
   private final SAML2Client saml2Client;
   private final SamlConfig samlConfig;
   private final AuthConfig auth;
@@ -139,19 +143,56 @@ class SamlWebFilter implements Filter {
           }
         }
       } else if (isGerritLogout(httpRequest)) {
-        httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
-        chain.doFilter(httpRequest, httpResponse);
+        AuthenticatedUser user = userFromRequest(httpRequest);
+        // No session data - could be in a broken state
+        if (user == null) {
+          // Clear any session cookies in case they are left around
+          clearCookies(httpRequest, httpResponse);
+          chain.doFilter(httpRequest, httpResponse);
+        } else {
+          SAML2Profile samuser = user.getProfile();
+          httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
+          clearCookies(httpRequest, httpResponse);
+
+          // There could be no profile when SLO is first enabled
+          // Let this flow through
+          if (samuser == null) {
+            chain.doFilter(httpRequest, httpResponse);
+          } else {
+            // Start the SLO flow
+            if (samlConfig.getLogoutType().startsWith("slo")) {
+              J2EContext context = new J2EContext(httpRequest, httpResponse);
+              RedirectAction logoutAction = saml2Client.getLogoutAction(context, samuser, null);
+
+              if (samlConfig.getLogoutType().equalsIgnoreCase("slo-post")) {
+                log.debug("GerritLogout: logout post data: " + logoutAction.getContent());
+              }
+
+              log.debug("GerritLogout: performing SLO");
+              logoutAction.perform(context);
+            } else {
+              // Keep going when not SLO
+              chain.doFilter(httpRequest, httpResponse);
+            }
+          }
+        }
       } else {
         chain.doFilter(httpRequest, httpResponse);
       }
     } catch (HttpAction httpAction) {
-      // In pac4j v3.4.0 SLO (Single Log Out) throws HttpAction with code 200.
-      // Detect that flow and recover by redirecting to the main gerrit page.
-      if (httpAction.getCode() != 200) {
+      // In pac4j v3.x SLO (Single Log Out) throws HttpAction with code 200 or 302.
+      // Detect that flow and recover by redirecting to the main gerrit page or
+      // allowing the redirect
+      if (httpAction.getCode() == 302) {
+        // Redirect action
+        log.debug("HttpAction: redirect response");
+      } else if (httpAction.getCode() == 200) {
+        // Redirect to Gerrit main page
+        log.debug("HttpAction: ok response");
+        httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
+      } else {
         throw new TechnicalException("Unexpected HTTP action", httpAction);
       }
-
-      httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
     }
   }
 
@@ -169,7 +210,8 @@ class SamlWebFilter implements Filter {
               getUserName(user),
               getDisplayName(user),
               getEmailAddress(user),
-              String.format("%s/%s", SAML, user.getId()));
+              String.format("%s/%s", SAML, user.getId()),
+              user);
       s.setAttribute(SESSION_ATTR_USER, authenticatedUser);
       if (samlMembership.isEnabled()) {
         samlMembership.sync(authenticatedUser, user);
@@ -329,6 +371,20 @@ class SamlWebFilter implements Filter {
         return null;
       }
       return super.getHeader(name);
+    }
+  }
+
+  private void clearCookies(HttpServletRequest request, HttpServletResponse response) {
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+        if (REMOVE_COOKIE_KEYS.contains(cookie.getName())) {
+          cookie.setValue("");
+          cookie.setPath("/");
+          cookie.setMaxAge(0);
+          response.addCookie(cookie);
+        }
+      }
     }
   }
 }

@@ -40,6 +40,9 @@ public class SamlConfig {
   private final int maxAuthLifetimeDefault = 24 * 60 * 60; // 24h;
   private final boolean useNameQualifier;
   private final String memberOfAttr;
+  private String logoutType;
+  private final boolean signSLORequest;
+  private final String postLogoutURL;
 
   @Inject
   public SamlConfig(@GerritServerConfig Config cfg, SitePaths sitePaths) {
@@ -59,6 +62,9 @@ public class SamlConfig {
     lastNameAttr = getStringWithDefault(cfg, "lastNameAttr", "LastName");
     useNameQualifier = cfg.getBoolean(SAML_SECTION, "useNameQualifier", true);
     memberOfAttr = getString(cfg, "memberOfAttr");
+    logoutType = getStringWithDefault(cfg, "logoutType", "redirect").toLowerCase();
+    signSLORequest = cfg.getBoolean(SAML_SECTION, "signSLORequest", true);
+    postLogoutURL = getString(cfg, "postLogoutURL");
   }
 
   public String getMetadataPath() {
@@ -131,5 +137,21 @@ public class SamlConfig {
 
   public String getMemberOfAttr() {
     return memberOfAttr;
+  }
+
+  public void setLogoutType(final String logoutType) {
+    this.logoutType = logoutType;
+  }
+
+  public String getLogoutType() {
+    return logoutType;
+  }
+
+  public boolean signSLORequest() {
+    return signSLORequest;
+  }
+
+  public String getPostLogoutURL() {
+    return postLogoutURL;
   }
 }

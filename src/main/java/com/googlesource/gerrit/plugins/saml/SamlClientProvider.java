@@ -18,12 +18,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.googlesource.gerrit.plugins.saml.SamlWebFilter.SAML_CALLBACK;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
 import com.google.gerrit.common.Nullable;
 import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import java.nio.file.Path;
+import org.opensaml.saml.common.xml.SAMLConstants;
 import org.pac4j.saml.client.SAML2Client;
 import org.pac4j.saml.config.SAML2Configuration;
 import org.slf4j.Logger;
@@ -36,6 +38,9 @@ public class SamlClientProvider implements Provider<SAML2Client> {
   private final SamlConfig samlConfig;
   private final String canonicalUrl;
   private final Path libModuleDataDir;
+
+  private static final ImmutableList<String> LOGOUT_TYPE_VALID_VALUES =
+    ImmutableList.of("redirect", "slo-default", "slo-post", "slo-redirect");
 
   @Inject
   public SamlClientProvider(
@@ -69,6 +74,27 @@ public class SamlClientProvider implements Provider<SAML2Client> {
 
     samlClientConfig.setUseNameQualifier(samlConfig.useNameQualifier());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
+
+    if (!LOGOUT_TYPE_VALID_VALUES.contains(samlConfig.getLogoutType())) {
+      log.warn(
+          "logoutType is not one of the expected values ("
+              + String.join(",", LOGOUT_TYPE_VALID_VALUES)
+              + "), set to redirect");
+      samlConfig.setLogoutType("redirect");
+    }
+    if (samlConfig.getLogoutType().startsWith("slo")) {
+      log.debug("Setting up Single Logout (SLO) for " + samlConfig.getLogoutType());
+      samlClientConfig.setSpLogoutRequestSigned(samlConfig.signSLORequest());
+      if (!Strings.isNullOrEmpty(samlConfig.getPostLogoutURL())) {
+        samlClientConfig.setPostLogoutURL(samlConfig.getPostLogoutURL());
+      }
+      // Can be set or rely on the default in pac4j
+      if (samlConfig.getLogoutType().equalsIgnoreCase("slo-redirect")) {
+        samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+      } else if (samlConfig.getLogoutType().equalsIgnoreCase("slo-post")) {
+        samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_POST_BINDING_URI);
+      }
+    }
 
     SAML2Client saml2Client = new SAML2Client(samlClientConfig);
 
