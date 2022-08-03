@@ -14,6 +14,8 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
+import org.pac4j.saml.profile.SAML2Profile;
+
 public class AuthenticatedUser implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -21,12 +23,15 @@ public class AuthenticatedUser implements java.io.Serializable {
   private final String displayName;
   private final String email;
   private final String externalId;
+  private final SAML2Profile profile;
 
-  public AuthenticatedUser(String username, String displayName, String email, String externalId) {
+  public AuthenticatedUser(
+      String username, String displayName, String email, String externalId, SAML2Profile profile) {
     this.username = username;
     this.displayName = displayName;
     this.email = email;
     this.externalId = externalId;
+    this.profile = profile;
   }
 
   public String getUsername() {
@@ -45,6 +50,10 @@ public class AuthenticatedUser implements java.io.Serializable {
     return externalId;
   }
 
+  public SAML2Profile getProfile() {
+    return profile;
+  }
+
   @Override
   public String toString() {
     return "AuthenticatedUser{"
@@ -59,6 +68,9 @@ public class AuthenticatedUser implements java.io.Serializable {
         + '\''
         + ", externalId='"
         + externalId
+        + '\''
+        + ", profile='"
+        + profile.toString()
         + '\''
         + '}';
   }
