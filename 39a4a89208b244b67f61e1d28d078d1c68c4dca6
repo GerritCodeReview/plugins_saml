@@ -22,6 +22,30 @@
       },
       "revId": "39a4a89208b244b67f61e1d28d078d1c68c4dca6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56df1a9b_075ea4cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2022-12-15T22:46:23Z",
+      "side": 1,
+      "message": "We typically do not say `into master. See I0d01a04fb6c2.",
+      "parentUuid": "a73883d6_c60d7234",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "39a4a89208b244b67f61e1d28d078d1c68c4dca6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
