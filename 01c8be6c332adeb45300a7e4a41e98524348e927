@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66dc7a8b_104f9b98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1083454
+      },
+      "writtenOn": "2022-12-15T22:32:23Z",
+      "side": 1,
+      "message": "I can give +2 because change looks like low impact but we should add some tests",
+      "revId": "01c8be6c332adeb45300a7e4a41e98524348e927",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
