@@ -145,13 +145,13 @@ class SamlWebFilter implements Filter {
     */
     HttpServletRequest httpRequest = new AnonymousHttpRequest((HttpServletRequest) incomingRequest);
     HttpServletResponse httpResponse = (HttpServletResponse) response;
-    AuthenticatedUser user = userFromRequest(httpRequest);
 
     try {
       if (isSamlPostback(httpRequest)) {
         J2EContext context = new J2EContext(httpRequest, httpResponse);
         signin(context);
       } else if (isGerritLogin(httpRequest)) {
+        AuthenticatedUser user = userFromRequest(httpRequest);
         if (user == null) {
           J2EContext context = new J2EContext(httpRequest, httpResponse);
           redirectToIdentityProvider(context);
