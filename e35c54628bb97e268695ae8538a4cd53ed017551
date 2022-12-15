@@ -16,6 +16,92 @@
       "message": "Ready for review when you have time.  Thanks!",
       "revId": "e35c54628bb97e268695ae8538a4cd53ed017551",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b0e7ef_762ab9f7",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2022-12-15T23:20:53Z",
+      "side": 1,
+      "message": "Suggestion: should this be a note?\n\nExample:\n```\n\u003e `logoutUrl` is not required ...\n```",
+      "revId": "e35c54628bb97e268695ae8538a4cd53ed017551",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce42ea1c_48e02f42",
+        "filename": "okta/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2022-12-15T23:20:53Z",
+      "side": 1,
+      "message": "Out of curiosity: why not keeping `gerrit.site.com`?",
+      "range": {
+        "startLine": 5,
+        "startChar": 31,
+        "endLine": 5,
+        "endChar": 49
+      },
+      "revId": "e35c54628bb97e268695ae8538a4cd53ed017551",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cdeeb41_10d4b782",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2022-12-15T23:20:53Z",
+      "side": 1,
+      "message": "Why not getting a Java Enum instead?",
+      "range": {
+        "startLine": 63,
+        "startChar": 17,
+        "endLine": 63,
+        "endChar": 40
+      },
+      "revId": "e35c54628bb97e268695ae8538a4cd53ed017551",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e4b611_f0cfda3e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2022-12-15T23:20:53Z",
+      "side": 1,
+      "message": "Consider using a Java Enum instead.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 8
+      },
+      "revId": "e35c54628bb97e268695ae8538a4cd53ed017551",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
