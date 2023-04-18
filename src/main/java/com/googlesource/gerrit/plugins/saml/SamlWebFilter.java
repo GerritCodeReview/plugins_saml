@@ -14,6 +14,9 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
@@ -330,7 +333,27 @@ class SamlWebFilter implements Filter {
       if (httpUserNameHeader.equals(nameUpperCase)) {
         return user.getUsername();
       } else if (httpDisplaynameHeader.equals(nameUpperCase)) {
-        return user.getDisplayName();
+    	/*
+    	 * A combination of things forces us to decode the display name as ISO 8859.1.
+    	 *
+    	 * According to rfc 7230 all HTTP headers should be assumed to be encoded as ISO 8859.1: 
+    	 * https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4.
+    	 * 
+    	 * Gerrit core assumes that the HTTP display name header needs to be decoded from
+    	 * ISO 8859.1 to UTF-8, see:
+    	 * https://gerrit-review.googlesource.com/c/gerrit/+/94918.
+    	 * All other headers are assumed not to contain characters outside the ASCII character
+    	 * range which makes the encoding the same for UTF-8 and ISO 8859.1 so they aren't decoded.
+    	 * 
+    	 * The correct way would be to encode all these headers to ISO 8859.1 but since it would
+    	 * be unnecessary work without any result for all other headers we opt to only decode the
+    	 * display name header.
+    	 * 
+    	 * This is done for the same reasons as the core Gerrit change referenced above. If we don't
+    	 * encode the display name header names with characters outside of ASCII range (such as
+    	 * Nordic charachters åäæöø) would be garbled.
+    	 */
+        return new String(user.getDisplayName().getBytes(UTF_8), ISO_8859_1);
       } else if (httpEmailHeader.equals(nameUpperCase)) {
         return user.getEmail();
       } else if (httpExternalIdHeader.equals(nameUpperCase)) {
