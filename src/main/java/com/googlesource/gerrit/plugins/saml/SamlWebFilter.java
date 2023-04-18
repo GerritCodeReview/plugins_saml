@@ -14,6 +14,9 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
@@ -306,6 +309,10 @@ class SamlWebFilter implements Filter {
     return Files.createDirectories(dataDir.resolve(SAML));
   }
 
+  private static String toSafeHttpHeaderEncoding(String value) {
+    return new String(value.getBytes(UTF_8), ISO_8859_1);
+  }
+
   private class AuthenticatedHttpRequest extends HttpServletRequestWrapper {
     private AuthenticatedUser user;
 
@@ -328,13 +335,13 @@ class SamlWebFilter implements Filter {
     public String getHeader(String name) {
       String nameUpperCase = name.toUpperCase();
       if (httpUserNameHeader.equals(nameUpperCase)) {
-        return user.getUsername();
+        return toSafeHttpHeaderEncoding(user.getUsername());
       } else if (httpDisplaynameHeader.equals(nameUpperCase)) {
-        return user.getDisplayName();
+        return toSafeHttpHeaderEncoding(user.getDisplayName());
       } else if (httpEmailHeader.equals(nameUpperCase)) {
-        return user.getEmail();
+        return toSafeHttpHeaderEncoding(user.getEmail());
       } else if (httpExternalIdHeader.equals(nameUpperCase)) {
-        return user.getExternalId();
+        return toSafeHttpHeaderEncoding(user.getExternalId());
       } else {
         return super.getHeader(name);
       }
