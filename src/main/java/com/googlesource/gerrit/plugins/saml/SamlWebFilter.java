@@ -329,8 +329,6 @@ class SamlWebFilter implements Filter {
       String nameUpperCase = name.toUpperCase();
       if (httpUserNameHeader.equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (httpDisplaynameHeader.equals(nameUpperCase)) {
-        return user.getDisplayName();
       } else if (httpEmailHeader.equals(nameUpperCase)) {
         return user.getEmail();
       } else if (httpExternalIdHeader.equals(nameUpperCase)) {
