@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bede4f8_1d5a4ade",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1077393
+      },
+      "writtenOn": "2023-04-18T18:12:52Z",
+      "side": 1,
+      "message": "Tested the patch with out staging environment and non-ascii characters are preserved when doing logout \u0026 login",
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
