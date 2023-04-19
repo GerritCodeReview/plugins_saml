@@ -236,6 +236,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8094db1_e1f8b79b",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-19T12:57:34Z",
+      "side": 1,
+      "message": "\u003e I had a second look and I do understand now why we do need this __hack__ to make it work on the display name.\n\nAre you suggesting that I revert back to encoding the display-name header to ISO 8859.1?\n\n\u003e \n\u003e We do the reverse encoding to make sure that the overall result of this +  I8b674550e3 is a noop.\n\u003e \n\u003e A couple of thing though:\n\u003e - This fix needs to be at least on stable-2.16 (if not earlier than that)\n\nI don\u0027t agree, we should fix it for active versions, so 3.5, 3.6 and 3.7 which all seem to be compatible with master in this plugin.\n\n\u003e - I8b674550e3 is only for the display name and our __hack__ (or workaround) need to focus on that only.",
+      "parentUuid": "da1206ed_6966a4df",
+      "range": {
+        "startLine": 340,
+        "startChar": 15,
+        "endLine": 340,
+        "endChar": 62
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75fcfbc2_b687878c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 3
