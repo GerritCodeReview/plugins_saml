@@ -21,8 +21,8 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.common.Nullable;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.CanonicalWebUrl;
-import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -46,7 +46,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.eclipse.jgit.lib.Config;
 import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.exception.HttpAction;
@@ -71,22 +70,19 @@ class SamlWebFilter implements Filter {
 
   private final SAML2Client saml2Client;
   private final SamlConfig samlConfig;
-  private final String httpUserNameHeader;
-  private final String httpDisplaynameHeader;
-  private final String httpEmailHeader;
-  private final String httpExternalIdHeader;
+  private final AuthConfig auth;
   private final HashSet<String> authHeaders;
-  private final boolean userNameToLowerCase;
   private final SamlMembership samlMembership;
 
   @Inject
   SamlWebFilter(
-      @GerritServerConfig Config gerritConfig,
+      AuthConfig auth,
       @CanonicalWebUrl @Nullable String canonicalUrl,
       SitePaths sitePaths,
       SamlConfig samlConfig,
       SamlMembership samlMembership)
       throws IOException {
+    this.auth = auth;
     this.samlConfig = samlConfig;
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
@@ -113,13 +109,12 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
 
     saml2Client = new SAML2Client(samlClientConfig);
-    httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
-    httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
-    httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
-    httpExternalIdHeader = getHeaderFromConfig(gerritConfig, "httpExternalIdHeader");
     authHeaders =
         Sets.newHashSet(
-            httpUserNameHeader, httpDisplaynameHeader, httpEmailHeader, httpExternalIdHeader);
+            auth.getLoginHttpHeader(),
+            auth.getHttpDisplaynameHeader(),
+            auth.getHttpEmailHeader(),
+            auth.getHttpExternalIdHeader());
     if (authHeaders.contains("") || authHeaders.contains(null)) {
       throw new RuntimeException("All authentication headers must be set.");
     }
@@ -129,7 +124,6 @@ class SamlWebFilter implements Filter {
               + "httpDisplaynameHeader, httpEmailHeader and httpExternalIdHeader "
               + "are required.");
     }
-    userNameToLowerCase = gerritConfig.getBoolean("auth", "userNameToLowerCase", false);
     checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
     saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
   }
@@ -228,11 +222,6 @@ class SamlWebFilter implements Filter {
     saml2Client.redirect(context);
   }
 
-  private static String getHeaderFromConfig(Config gerritConfig, String name) {
-    String s = gerritConfig.getString("auth", null, name);
-    return s == null ? "" : s.toUpperCase();
-  }
-
   private static boolean isGerritLogin(HttpServletRequest request) {
     return request.getRequestURI().indexOf(GERRIT_LOGIN) >= 0;
   }
@@ -303,7 +292,7 @@ class SamlWebFilter implements Filter {
 
   private String getUserName(SAML2Profile user) {
     String username = getAttributeOrElseId(user, samlConfig.getUserNameAttr());
-    return userNameToLowerCase ? username.toLowerCase(Locale.US) : username;
+    return auth.isUserNameToLowerCase() ? username.toLowerCase(Locale.US) : username;
   }
 
   private static Path ensureExists(Path dataDir) throws IOException {
@@ -331,13 +320,13 @@ class SamlWebFilter implements Filter {
     @Override
     public String getHeader(String name) {
       String nameUpperCase = name.toUpperCase();
-      if (httpUserNameHeader.equals(nameUpperCase)) {
+      if (auth.getLoginHttpHeader().equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (httpDisplaynameHeader.equals(nameUpperCase)) {
+      } else if (auth.getHttpDisplaynameHeader().equals(nameUpperCase)) {
         return user.getDisplayName();
-      } else if (httpEmailHeader.equals(nameUpperCase)) {
+      } else if (auth.getHttpEmailHeader().equals(nameUpperCase)) {
         return user.getEmail();
-      } else if (httpExternalIdHeader.equals(nameUpperCase)) {
+      } else if (auth.getHttpExternalIdHeader().equals(nameUpperCase)) {
         return user.getExternalId();
       } else {
         return super.getHeader(name);
