@@ -75,6 +75,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a160d645_69a0a491",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-19T12:37:26Z",
+      "side": 1,
+      "message": "The saml plugin is providing HTTP headers and Gerrit, when reading these headers, are assuming that they are encoded with ISO 8859-1. So doing the exact opposite to what core Gerrit does when reading the header is what makes sense IMO.\nAm I missing something?",
+      "parentUuid": "0cbc7808_f6c98f50",
+      "range": {
+        "startLine": 312,
+        "startChar": 24,
+        "endLine": 312,
+        "endChar": 48
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f97c12b_7d9bc0d6",
@@ -88,6 +112,30 @@
       "writtenOn": "2023-04-19T11:22:41Z",
       "side": 1,
       "message": "We don\u0027t have an issue with the username, which cannot contain special chars anyway.",
+      "range": {
+        "startLine": 338,
+        "startChar": 15,
+        "endLine": 338,
+        "endChar": 59
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1a938a_473d6389",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-19T12:37:26Z",
+      "side": 1,
+      "message": "It\u0027s still a HTTP header and it makes sense to me to treat them all the same.\nNot encoding the headers that we \"know\" only contains ASCII characters seems hacky to me.",
+      "parentUuid": "2f97c12b_7d9bc0d6",
       "range": {
         "startLine": 338,
         "startChar": 15,
@@ -121,6 +169,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e95e7331_d42d9e3e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-19T12:37:26Z",
+      "side": 1,
+      "message": "\u003e My understanding is that `user.getDisplayName()` is not a safe way to obtain the display header because of the encoding applied by Gerrit.\n\nuser.getDisplayName() is unicode and Gerrit expects the HTTP-headers to be encoded in ISO 8859.1. So you need to encode the HTTP-headers in ISO 8859.1. (Gerrit core is expecting that all other headers does not to outside of the ASCII character range so they are assumed safe not to encode).\n\n\u003e \n\u003e Why don\u0027t we just get the value from the HTTP header directly instead?\n\u003e \n\u003e As it stands now, the result of applying this change + I8b674550e3 is:\n\u003e `toSafeHttpHeaderEncoding(new String(raw.getBytes(ISO_8859_1), UTF_8))`\n\u003e \n\u003e which expands to:\n\u003e [e1] `new String(new String(raw.getBytes(ISO_8859_1), UTF_8).getBytes(UTF_8), ISO_8859_1)`\n\u003e \n\u003e then `new String(bytes, UTF_8).getBytes(UTF_8)` is equal to `bytes`\n\u003e and `bytes \u003d raw.getBytes(ISO_8859_1)`\n\u003e that makes the initial expression [e1] becomes:\n\u003e [e2] `new String (raw.getBytes(ISO_8859_1), ISO_8859_1)`\n\u003e \n\u003e [e2] is then equivalent to `raw`\n\nI\u0027m sorry I can\u0027t find a `raw` variable in this context.\n\n\u003e \n\u003e I believe the problem was assuming that `user.getDisplayName()` was a safe way to get the user display name, which is not true because of the encoding.\n\u003e \n\u003e Instead of applying the inverse of the encoding, then just do not apply any encoding at all and just fallback to L346.\n\nAre you saying that this entire Override of the `getHeader` method is unnecessary?\nI don\u0027t have the context knowledge to validate such a big change since we don\u0027t use the saml plugin.",
+      "parentUuid": "9729ff90_3eb9e3ac",
+      "range": {
+        "startLine": 340,
+        "startChar": 15,
+        "endLine": 340,
+        "endChar": 62
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75fcfbc2_b687878c",
@@ -144,6 +216,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a44dbfe_3e403039",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-19T12:37:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "75fcfbc2_b687878c",
+      "range": {
+        "startLine": 342,
+        "startChar": 15,
+        "endLine": 342,
+        "endChar": 56
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "531302c7_938b4209",
@@ -157,6 +253,30 @@
       "writtenOn": "2023-04-19T11:22:41Z",
       "side": 1,
       "message": "We don\u0027t have an issue with the external-id, which cannot contain special chars anyway.",
+      "range": {
+        "startLine": 344,
+        "startChar": 15,
+        "endLine": 344,
+        "endChar": 61
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d5772a9_11b4f6c3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-19T12:37:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "531302c7_938b4209",
       "range": {
         "startLine": 344,
         "startChar": 15,
