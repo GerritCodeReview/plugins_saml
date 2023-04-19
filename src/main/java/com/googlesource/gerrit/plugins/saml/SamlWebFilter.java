@@ -21,8 +21,8 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.common.Nullable;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.CanonicalWebUrl;
-import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -46,7 +46,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.eclipse.jgit.lib.Config;
 import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.exception.HttpAction;
@@ -71,22 +70,19 @@ class SamlWebFilter implements Filter {
 
   private final SAML2Client saml2Client;
   private final SamlConfig samlConfig;
-  private final String httpUserNameHeader;
-  private final String httpDisplaynameHeader;
-  private final String httpEmailHeader;
-  private final String httpExternalIdHeader;
+  private final AuthConfig auth;
   private final HashSet<String> authHeaders;
-  private final boolean userNameToLowerCase;
   private final SamlMembership samlMembership;
 
   @Inject
   SamlWebFilter(
-      @GerritServerConfig Config gerritConfig,
+      AuthConfig auth,
       @CanonicalWebUrl @Nullable String canonicalUrl,
       SitePaths sitePaths,
       SamlConfig samlConfig,
       SamlMembership samlMembership)
       throws IOException {
+    this.auth = auth;
     this.samlConfig = samlConfig;
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
@@ -113,13 +109,12 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
 
     saml2Client = new SAML2Client(samlClientConfig);
-    httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
-    httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
-    httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
-    httpExternalIdHeader = getHeaderFromConfig(gerritConfig, "httpExternalIdHeader");
     authHeaders =
         Sets.newHashSet(
-            httpUserNameHeader, httpDisplaynameHeader, httpEmailHeader, httpExternalIdHeader);
+            auth.getLoginHttpHeader(),
+            auth.getHttpDisplaynameHeader(),
+            auth.getHttpEmailHeader(),
+            auth.getHttpExternalIdHeader());
     if (authHeaders.contains("") || authHeaders.contains(null)) {
       throw new RuntimeException("All authentication headers must be set.");
     }
@@ -129,7 +124,6 @@ class SamlWebFilter implements Filter {
               + "httpDisplaynameHeader, httpEmailHeader and httpExternalIdHeader "
               + "are required.");
     }
-    userNameToLowerCase = gerritConfig.getBoolean("auth", "userNameToLowerCase", false);
     checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
     saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
   }
@@ -228,11 +222,6 @@ class SamlWebFilter implements Filter {
     saml2Client.redirect(context);
   }
 
-  private static String getHeaderFromConfig(Config gerritConfig, String name) {
-    String s = gerritConfig.getString("auth", null, name);
-    return s == null ? "" : s.toUpperCase();
-  }
-
   private static boolean isGerritLogin(HttpServletRequest request) {
     return request.getRequestURI().indexOf(GERRIT_LOGIN) >= 0;
   }
@@ -303,7 +292,7 @@ class SamlWebFilter implements Filter {
 
   private String getUserName(SAML2Profile user) {
     String username = getAttributeOrElseId(user, samlConfig.getUserNameAttr());
-    return userNameToLowerCase ? username.toLowerCase(Locale.US) : username;
+    return auth.isUserNameToLowerCase() ? username.toLowerCase(Locale.US) : username;
   }
 
   private static Path ensureExists(Path dataDir) throws IOException {
@@ -331,13 +320,39 @@ class SamlWebFilter implements Filter {
     @Override
     public String getHeader(String name) {
       String nameUpperCase = name.toUpperCase();
-      if (httpUserNameHeader.equals(nameUpperCase)) {
+      if (auth.getLoginHttpHeader().equals(nameUpperCase)) {
         return user.getUsername();
+<<<<<<< PATCH SET (616d86 Inject AuthConfig instead of reading gerrit.config)
+      } else if (auth.getHttpDisplaynameHeader().equals(nameUpperCase)) {
+    	/*
+    	 * A combination of things forces us to decode the display name as ISO 8859.1.
+    	 *
+    	 * According to rfc 7230 all HTTP headers should be assumed to be encoded as ISO 8859.1: 
+    	 * https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.4.
+    	 *
+    	 * Gerrit core assumes that the HTTP display name header needs to be decoded from
+    	 * ISO 8859.1 to UTF-8, see:
+    	 * https://gerrit-review.googlesource.com/c/gerrit/+/94918.
+    	 * All other headers are assumed not to contain characters outside the ASCII character
+    	 * range which makes the encoding the same for UTF-8 and ISO 8859.1 so they aren't decoded.
+    	 *
+    	 * The correct way would be to encode all these headers to ISO 8859.1 but since it would
+    	 * be unnecessary work without any result for all other headers we opt to only decode the
+    	 * display name header.
+    	 *
+    	 * This is done for the same reasons as the core Gerrit change referenced above. If we don't
+    	 * encode the display name header names with characters outside of ASCII range (such as
+    	 * Nordic charachters åäæöø) would be garbled.
+    	 */
+        return new String(user.getDisplayName().getBytes(UTF_8), ISO_8859_1);
+      } else if (auth.getHttpEmailHeader().equals(nameUpperCase)) {
+=======
       } else if (httpDisplaynameHeader.equals(nameUpperCase)) {
         return user.getDisplayName();
       } else if (httpEmailHeader.equals(nameUpperCase)) {
+>>>>>>> BASE      (58c57f Inject @CanonicalWebUrl instead of reading from config)
         return user.getEmail();
-      } else if (httpExternalIdHeader.equals(nameUpperCase)) {
+      } else if (auth.getHttpExternalIdHeader().equals(nameUpperCase)) {
         return user.getExternalId();
       } else {
         return super.getHeader(name);
