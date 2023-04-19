@@ -284,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2a5066d_0578cc73",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T13:06:29Z",
+      "side": 1,
+      "message": "Exactly, it won\u0027t work because the overall issue is that the SAML plugin relies on Gerrit to update the external-ids based on headers, which happens *after* this filter anyway and therefore if you don\u0027t do the reverse encoding you\u0027ll face the issue.\n\nUntil we discuss and (possible) change that mechanism in Gerrit, we have to __hack__ and do the reverse encoding in this filter to effectively produce a NOOP.\n\nThis need to be properly explained as it was not obvious from the code.",
+      "parentUuid": "415f8e8f_93dddfa4",
+      "range": {
+        "startLine": 340,
+        "startChar": 15,
+        "endLine": 340,
+        "endChar": 62
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75fcfbc2_b687878c",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 3
