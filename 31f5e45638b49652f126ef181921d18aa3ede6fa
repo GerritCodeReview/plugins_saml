@@ -16,6 +16,138 @@
       "message": "Tested the patch with out staging environment and non-ascii characters are preserved when doing logout \u0026 login",
       "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53428284_d45cad5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T11:22:41Z",
+      "side": 1,
+      "message": "Whilst this works, I don\u0027t believe it is the right way to fix it.\nAlso, there are no tests.\n\nThanks for providing this, let me see if I can find a different way to resolve it with less noops.",
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cbc7808_f6c98f50",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T11:22:41Z",
+      "side": 1,
+      "message": "The name doesn\u0027t tell the truth to me: we are doing exactly the opposite, applying the inverse of what Gerrit does to make it safe to obtain the original raw value.",
+      "range": {
+        "startLine": 312,
+        "startChar": 24,
+        "endLine": 312,
+        "endChar": 48
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f97c12b_7d9bc0d6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T11:22:41Z",
+      "side": 1,
+      "message": "We don\u0027t have an issue with the username, which cannot contain special chars anyway.",
+      "range": {
+        "startLine": 338,
+        "startChar": 15,
+        "endLine": 338,
+        "endChar": 59
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9729ff90_3eb9e3ac",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T11:22:41Z",
+      "side": 1,
+      "message": "My understanding is that `user.getDisplayName()` is not a safe way to obtain the display header because of the encoding applied by Gerrit.\n\nWhy don\u0027t we just get the value from the HTTP header directly instead?\n\nAs it stands now, the result of applying this change + I8b674550e3 is:\n`toSafeHttpHeaderEncoding(new String(raw.getBytes(ISO_8859_1), UTF_8))`\n\nwhich expands to:\n[e1] `new String(new String(raw.getBytes(ISO_8859_1), UTF_8).getBytes(UTF_8), ISO_8859_1)`\n\nthen `new String(bytes, UTF_8).getBytes(UTF_8)` is equal to `bytes`\nand `bytes \u003d raw.getBytes(ISO_8859_1)`\nthat makes the initial expression [e1] becomes:\n[e2] `new String (raw.getBytes(ISO_8859_1), ISO_8859_1)`\n\n[e2] is then equivalent to `raw`\n\nI believe the problem was assuming that `user.getDisplayName()` was a safe way to get the user display name, which is not true because of the encoding.\n\nInstead of applying the inverse of the encoding, then just do not apply any encoding at all and just fallback to L346.",
+      "range": {
+        "startLine": 340,
+        "startChar": 15,
+        "endLine": 340,
+        "endChar": 62
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75fcfbc2_b687878c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T11:22:41Z",
+      "side": 1,
+      "message": "We don\u0027t have an issue with the email, which cannot contain special chars anyway.",
+      "range": {
+        "startLine": 342,
+        "startChar": 15,
+        "endLine": 342,
+        "endChar": 56
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531302c7_938b4209",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-19T11:22:41Z",
+      "side": 1,
+      "message": "We don\u0027t have an issue with the external-id, which cannot contain special chars anyway.",
+      "range": {
+        "startLine": 344,
+        "startChar": 15,
+        "endLine": 344,
+        "endChar": 61
+      },
+      "revId": "31f5e45638b49652f126ef181921d18aa3ede6fa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
