@@ -16,11 +16,14 @@ package com.googlesource.gerrit.plugins.saml;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
+import com.google.gerrit.common.Nullable;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
@@ -81,6 +84,7 @@ class SamlWebFilter implements Filter {
   @Inject
   SamlWebFilter(
       @GerritServerConfig Config gerritConfig,
+      @CanonicalWebUrl @Nullable String canonicalUrl,
       SitePaths sitePaths,
       SamlConfig samlConfig,
       SamlMembership samlMembership)
@@ -111,7 +115,6 @@ class SamlWebFilter implements Filter {
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
 
     saml2Client = new SAML2Client(samlClientConfig);
-    String callbackUrl = gerritConfig.getString("gerrit", null, "canonicalWebUrl") + SAML_CALLBACK;
     httpUserNameHeader = getHeaderFromConfig(gerritConfig, "httpHeader");
     httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
     httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
@@ -129,8 +132,8 @@ class SamlWebFilter implements Filter {
               + "are required.");
     }
     userNameToLowerCase = gerritConfig.getBoolean("auth", "userNameToLowerCase", false);
-
-    saml2Client.setCallbackUrl(callbackUrl);
+    checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
+    saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
   }
 
   @Override
