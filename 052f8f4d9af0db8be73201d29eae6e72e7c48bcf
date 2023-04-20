@@ -16,6 +16,24 @@
       "message": "Like I said in the issue 13076 (I created), this actually results in a broken string. If you split this line in statements, this is what is being done (I think the comment does not fully explain this as at least I got the feeling that the string is correctly encoded in ISO-8859-1 which is not true):\n\n```\n// This value comes from SAML response (as far as I can tell); follow\n// the function calls from https://gerrit.googlesource.com/plugins/saml/+/052f8f4d9af0db8be73201d29eae6e72e7c48bcf/src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java#279\n// So at this point the string is correct\nString displayName \u003d user.getDisplayName();\n\n// This string is UTF-8 representation of the display name\nString displayNameAsUtf8EncodedBytes \u003d displayName.getBytes(UTF_8);\n\n// this tells to interpret UTF8 encoded string as ISO-8859-1 string, i.e. create string that is broken\n// See https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html#%3Cinit%3E(byte%5B%5D,java.lang.String)\nString result \u003d new String(displayNameAsUtf8EncodedBytes, ISO_8859_1);\n\nreturn result;\n```\n\nAnd this needs to be done because on Gerrit\u0027s side, the implementation (https://gerrit-review.googlesource.com/c/gerrit/+/94918/5/gerrit-httpd/src/main/java/com/google/gerrit/httpd/auth/container/HttpAuthFilter.java#149) assumes that remote display reader is encoded in UTF-8 but it was already decoded using ISO-8859-1.\n\n\nAnd now this commit\u0027s message states:\n\n\u003e Encode the display name to ISO 8859.1 so that display name isn\u0027t\ngarbled for names that contains characters outside the ASCII\ncharacter range\n\nThis is not true; what is actually done is that UTF-8 encoded string is decoded assuming the byte array is a string encoded in ISO-8859-1 which results in an incorrect string when the UTF-8 representation contains characters that do not have the same encoding in ISO-8859-1.\n\n\nI also think that the commit message in (https://gerrit-review.googlesource.com/c/gerrit/+/94918) is a bit misleading. I think what actually happened for the author was that the headers were encoded in UTF-8 but Gerrit\u0027s mechanism decoded that value assuming the headers were in ISO-8859-1 (the thing this hack is actually doing for the display name coming from SAML response). And the fix was to encode a broken string (that was decoded from UTF-8 bytes assuming ISO-8859-1) into ISO-8859-1 (resulting in valid UTF-8 string) and then constructing string by decoding that UTF-8 byte array.",
       "revId": "052f8f4d9af0db8be73201d29eae6e72e7c48bcf",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5f4136f_dc3808e0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1077393
+      },
+      "writtenOn": "2023-04-20T11:37:46Z",
+      "side": 1,
+      "message": "Now that I got started about thinking the change https://gerrit-review.googlesource.com/c/gerrit/+/94918 on Gerrit\u0027s side, applying this change here could break non-ascii characters for the author of that change...\n\nIf you assume that they are also using SAML plugin which would be a pretty sane assumption as the commit message states:\n\n\u003e Our SSO solution (Shibboleth/SAML with eduid.cz) appears to work with UTF-8.\n\nSo what if the SAML message they got was encoded with UTF-8 but the XML header states ISO-8859-1 so they end up in incorrect string that was decoded using ISO-8859-1 but the bytes were, in fact, UTF-8. So the hack on Gerrit\u0027s side then encodes the broken string with ISO-8859-1 and then interprets that string as UTF-8 to form a fixed string.\n\nNaturally, the reason for interpreting UTF-8 encoded string with ISO-8859-1 could be result of some other thing (like missing explicit encoding in the SAML document or the code parsing the SAML XML document assuming something).",
+      "parentUuid": "5db5d18f_eaefd184",
+      "revId": "052f8f4d9af0db8be73201d29eae6e72e7c48bcf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
