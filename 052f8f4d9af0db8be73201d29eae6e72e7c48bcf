@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "551d6226_8e699927",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-04-22T11:23:25Z",
+      "side": 1,
+      "message": "I believe the *proper* solution would be:\n- NOT using the Gerrit\u0027s display name attribute\n- Fetch the display name directly from the SAML provider (using API or the SAML-provided HTTP header)\n- Call the Gerrit\u0027s API to set the display name",
+      "parentUuid": "2da3a9f3_1f3c9af3",
+      "revId": "052f8f4d9af0db8be73201d29eae6e72e7c48bcf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5db5d18f_eaefd184",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 7
