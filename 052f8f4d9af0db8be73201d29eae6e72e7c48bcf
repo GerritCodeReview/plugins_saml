@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f03487c_dc0d9bfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2023-04-24T07:52:39Z",
+      "side": 1,
+      "message": "I think Janne is right, we should revert the previous hack and solve that problem in a correct way instead.\n\nhttps://gerrit-review.googlesource.com/c/gerrit/+/370535",
+      "parentUuid": "551d6226_8e699927",
+      "revId": "052f8f4d9af0db8be73201d29eae6e72e7c48bcf",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5db5d18f_eaefd184",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 7
