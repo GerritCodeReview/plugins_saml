@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39309d37_b14562f2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1141766
+      },
+      "writtenOn": "2023-05-06T05:48:44Z",
+      "side": 0,
+      "message": "This is missing in the new version.\n\nIn combination with `getHeader` function doing `toUpperCase` on the incoming request headers they don\u0027t match unless you\u0027ve set the headers in all-caps in the config file.",
+      "range": {
+        "startLine": 233,
+        "startChar": 28,
+        "endLine": 233,
+        "endChar": 44
+      },
+      "revId": "58c57f8a3bf6f0f6ca8bc7d975f92e3672bd3655",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
