@@ -111,10 +111,10 @@ class SamlWebFilter implements Filter {
     saml2Client = new SAML2Client(samlClientConfig);
     authHeaders =
         Sets.newHashSet(
-            auth.getLoginHttpHeader(),
-            auth.getHttpDisplaynameHeader(),
-            auth.getHttpEmailHeader(),
-            auth.getHttpExternalIdHeader());
+            auth.getLoginHttpHeader().toUpperCase(),
+            auth.getHttpDisplaynameHeader().toUpperCase(),
+            auth.getHttpEmailHeader().toUpperCase(),
+            auth.getHttpExternalIdHeader().toUpperCase());
     if (authHeaders.contains("") || authHeaders.contains(null)) {
       throw new RuntimeException("All authentication headers must be set.");
     }
@@ -320,13 +320,13 @@ class SamlWebFilter implements Filter {
     @Override
     public String getHeader(String name) {
       String nameUpperCase = name.toUpperCase();
-      if (auth.getLoginHttpHeader().equals(nameUpperCase)) {
+      if (auth.getLoginHttpHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (auth.getHttpDisplaynameHeader().equals(nameUpperCase)) {
+      } else if (auth.getHttpDisplaynameHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getDisplayName();
-      } else if (auth.getHttpEmailHeader().equals(nameUpperCase)) {
+      } else if (auth.getHttpEmailHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getEmail();
-      } else if (auth.getHttpExternalIdHeader().equals(nameUpperCase)) {
+      } else if (auth.getHttpExternalIdHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getExternalId();
       } else {
         return super.getHeader(name);
