@@ -320,13 +320,13 @@ class SamlWebFilter implements Filter {
     @Override
     public String getHeader(String name) {
       String nameUpperCase = name.toUpperCase();
-      if (auth.getLoginHttpHeader().equals(nameUpperCase)) {
+      if (auth.getLoginHttpHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (auth.getHttpDisplaynameHeader().equals(nameUpperCase)) {
+      } else if (auth.getHttpDisplaynameHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getDisplayName();
-      } else if (auth.getHttpEmailHeader().equals(nameUpperCase)) {
+      } else if (auth.getHttpEmailHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getEmail();
-      } else if (auth.getHttpExternalIdHeader().equals(nameUpperCase)) {
+      } else if (auth.getHttpExternalIdHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getExternalId();
       } else {
         return super.getHeader(name);
