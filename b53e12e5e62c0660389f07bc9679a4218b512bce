@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2758c3_527658c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-04T15:19:46Z",
+      "side": 1,
+      "message": "This is true for this plugin/application interaction, however SamlMembership still uses uses a header to pass the display name. According to the comments this is done for LDAP syncing. I don\u0027t know if this is an issue, but should we need to address it, it can be done in a separate change.\n\nAny concerns?",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1f5b016_ff3e39e8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-04T15:19:46Z",
+      "side": 1,
+      "message": "The test passes without setting the request context, but when running the app it\u0027s required. I suppose this is because we inject the same admin GerritApi instance. Anyway, this call isn\u0027t covered by regression.",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
