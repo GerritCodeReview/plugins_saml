@@ -36,7 +36,6 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
             + "[auth]\n"
             + "    type = HTTP\n"
             + "    httpHeader = X-SAML-UserName\n"
-            + "    httpDisplaynameHeader = X-SAML-DisplayName\n"
             + "    httpEmailHeader = X-SAML-EmailHeader\n"
             + "    httpExternalIdHeader = X-SAML-ExternalId");
     return cfg;
