@@ -52,6 +52,41 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "580e3b78_3d4f6a0d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-04T20:58:07Z",
+      "side": 1,
+      "message": "Re: `doFilter`, this call has to happen after said method because before it our user won\u0027t have an account, so the GerritApi call will fail.\n\nWith respect to your other points:\n1. I think this is the case, yes. However in the next change in this chain we don\u0027t set the header anymore, so this call would then set it for the first time. FWIW in both cases this all happens before the page is rendered, so it should be transparent to the user.\n2. Yes, that\u0027s correct. We could check what the name is first, and only do the update if it differs. WDYT?",
+      "parentUuid": "9426ce59_4630bc7e",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c78c82_abf303a3",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-04T20:58:07Z",
+      "side": 1,
+      "message": "Is there a terser way to get `Account.Id`?",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3764531e_9b5670c5",
