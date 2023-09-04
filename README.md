@@ -94,7 +94,6 @@ the following lines:
 	type = HTTP
     logoutUrl = https://mysso.example.com/logout
     httpHeader = X-SAML-UserName
-    httpDisplaynameHeader = X-SAML-DisplayName
     httpEmailHeader = X-SAML-EmailHeader
     httpExternalIdHeader = X-SAML-ExternalId
 ```

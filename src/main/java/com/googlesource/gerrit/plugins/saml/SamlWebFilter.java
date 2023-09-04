@@ -125,17 +125,15 @@ class SamlWebFilter implements Filter {
     authHeaders =
         Sets.newHashSet(
             auth.getLoginHttpHeader().toUpperCase(),
-            auth.getHttpDisplaynameHeader().toUpperCase(),
             auth.getHttpEmailHeader().toUpperCase(),
             auth.getHttpExternalIdHeader().toUpperCase());
     if (authHeaders.contains("") || authHeaders.contains(null)) {
       throw new RuntimeException("All authentication headers must be set.");
     }
-    if (authHeaders.size() != 4) {
+    if (authHeaders.size() != 3) {
       throw new RuntimeException(
           "Unique values for httpUserNameHeader, "
-              + "httpDisplaynameHeader, httpEmailHeader and httpExternalIdHeader "
-              + "are required.");
+              + "httpEmailHeader and httpExternalIdHeader are required.");
     }
     checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
     saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
@@ -346,8 +344,6 @@ class SamlWebFilter implements Filter {
       String nameUpperCase = name.toUpperCase();
       if (auth.getLoginHttpHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (auth.getHttpDisplaynameHeader().toUpperCase().equals(nameUpperCase)) {
-        return user.getDisplayName();
       } else if (auth.getHttpEmailHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getEmail();
       } else if (auth.getHttpExternalIdHeader().toUpperCase().equals(nameUpperCase)) {
