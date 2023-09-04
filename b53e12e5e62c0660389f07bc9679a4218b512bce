@@ -35,6 +35,23 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9426ce59_4630bc7e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2023-09-04T16:13:37Z",
+      "side": 1,
+      "message": "Can you maybe add a comment explaining why we need to make this call after the `doFilter`?\n\nJust to double check this means that:\n1. we will create the user with the wrong display name and then correct it\n2. every time the user will login, we will do this call\n\nRegarding 2: is the All-Users modified everytime or if display name is unchanged this translates in a noop?\n\nIn any case, I think it might not be a big deal since you don\u0027t normally logout when using SAML.",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3764531e_9b5670c5",
