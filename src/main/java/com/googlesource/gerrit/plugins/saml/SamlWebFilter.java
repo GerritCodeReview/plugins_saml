@@ -126,17 +126,14 @@ class SamlWebFilter implements Filter {
     httpDisplaynameHeader = getHeaderFromConfig(gerritConfig, "httpDisplaynameHeader");
     httpEmailHeader = getHeaderFromConfig(gerritConfig, "httpEmailHeader");
     httpExternalIdHeader = getHeaderFromConfig(gerritConfig, "httpExternalIdHeader");
-    authHeaders =
-        Sets.newHashSet(
-            httpUserNameHeader, httpDisplaynameHeader, httpEmailHeader, httpExternalIdHeader);
+    authHeaders = Sets.newHashSet(httpUserNameHeader, httpEmailHeader, httpExternalIdHeader);
     if (authHeaders.contains("") || authHeaders.contains(null)) {
       throw new RuntimeException("All authentication headers must be set.");
     }
-    if (authHeaders.size() != 4) {
+    if (authHeaders.size() != 3) {
       throw new RuntimeException(
           "Unique values for httpUserNameHeader, "
-              + "httpDisplaynameHeader, httpEmailHeader and httpExternalIdHeader "
-              + "are required.");
+              + "httpEmailHeader and httpExternalIdHeader are required.");
     }
     userNameToLowerCase = gerritConfig.getBoolean("auth", "userNameToLowerCase", false);
 
@@ -353,8 +350,6 @@ class SamlWebFilter implements Filter {
       String nameUpperCase = name.toUpperCase();
       if (httpUserNameHeader.equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (httpDisplaynameHeader.equals(nameUpperCase)) {
-        return user.getDisplayName();
       } else if (httpEmailHeader.equals(nameUpperCase)) {
         return user.getEmail();
       } else if (httpExternalIdHeader.equals(nameUpperCase)) {
