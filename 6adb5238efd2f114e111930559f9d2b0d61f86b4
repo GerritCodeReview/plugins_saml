@@ -16,6 +16,24 @@
       "message": "As for the base change, it is worth moving it to 3.2",
       "revId": "6adb5238efd2f114e111930559f9d2b0d61f86b4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4abfba85_34d39f22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-05T10:26:47Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "860b5571_92a6352b",
+      "revId": "6adb5238efd2f114e111930559f9d2b0d61f86b4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
