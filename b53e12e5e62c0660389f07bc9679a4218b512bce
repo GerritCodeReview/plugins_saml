@@ -119,6 +119,29 @@
       "message": "This call has to happen _after_ `doFilter`. This is because if we do it before, the user won\u0027t have been authenticated and their account will not be available.\n\nI originally had this in another branch, but that made it difficult to find the condition to trigger this call. Doing it here means it\u0027s done once after a successful login.",
       "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d1eaa5e_12eb3e78",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-09-05T07:40:21Z",
+      "side": 1,
+      "message": "Can we set some special characters as display name?\nThe issue was precisely about the inability to store them to the account full name safely without losses, so we can make sure that happens here.",
+      "range": {
+        "startLine": 49,
+        "startChar": 29,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
