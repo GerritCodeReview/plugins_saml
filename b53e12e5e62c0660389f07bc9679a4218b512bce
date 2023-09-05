@@ -91,6 +91,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "177e96d2_087fe55f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-05T09:21:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1657039f_7446ca02",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b1f5b016_ff3e39e8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 2
