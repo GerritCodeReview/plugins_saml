@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d1b0c3d4_a401c63b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-09-05T07:38:10Z",
+      "side": 1,
+      "message": "I believe we should move this to stable-3.2, even if the version is EOL, otherwise users won\u0027t be able to use the SAML integration properly for 7 versions versions between v3.2 and v3.9",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b1f5b016_ff3e39e8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 2
