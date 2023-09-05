@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "841155db_1a21fd30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-05T08:50:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ca2758c3_527658c5",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d1b0c3d4_a401c63b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2023-09-05T08:50:27Z",
       "side": 1,
       "message": "+1",
+      "parentUuid": "d1b0c3d4_a401c63b",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1657039f_7446ca02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-05T08:50:35Z",
+      "side": 1,
+      "message": "Sure, will do.",
       "parentUuid": "d1b0c3d4_a401c63b",
       "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
@@ -105,6 +141,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c25f68f_8387f44a",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-05T08:50:35Z",
+      "side": 1,
+      "message": "Tested this, and it looks like Gerrit is clever enough to only update if the name changes, so we don\u0027t need to #2.",
+      "parentUuid": "580e3b78_3d4f6a0d",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07c78c82_abf303a3",
@@ -135,6 +189,24 @@
       "writtenOn": "2023-09-05T08:50:27Z",
       "side": 1,
       "message": "The way you did it is ok",
+      "parentUuid": "07c78c82_abf303a3",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a151ea5c_fbb4981d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-05T08:50:35Z",
+      "side": 1,
+      "message": "Acknowledged",
       "parentUuid": "07c78c82_abf303a3",
       "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
