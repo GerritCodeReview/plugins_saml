@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "139c7352_902dc21f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2023-09-05T08:50:27Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "d1b0c3d4_a401c63b",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b1f5b016_ff3e39e8",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 2
@@ -106,6 +124,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d901c933_e4e53267",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2023-09-05T08:50:27Z",
+      "side": 1,
+      "message": "The way you did it is ok",
+      "parentUuid": "07c78c82_abf303a3",
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3764531e_9b5670c5",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 2
@@ -134,6 +170,30 @@
       "writtenOn": "2023-09-05T07:40:21Z",
       "side": 1,
       "message": "Can we set some special characters as display name?\nThe issue was precisely about the inability to store them to the account full name safely without losses, so we can make sure that happens here.",
+      "range": {
+        "startLine": 49,
+        "startChar": 29,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "b53e12e5e62c0660389f07bc9679a4218b512bce",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b807073_9a084c53",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2023-09-05T08:50:27Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "5d1eaa5e_12eb3e78",
       "range": {
         "startLine": 49,
         "startChar": 29,
