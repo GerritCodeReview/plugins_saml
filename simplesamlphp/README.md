@@ -43,7 +43,6 @@ docker run -it --rm --name=testsamlidp_idp \
 	type = HTTP
 	logoutUrl = http://localhost:8080/simplesaml/saml2/idp/SingleLogoutService.php?ReturnTo=http://localhost:8081
 	httpHeader = X-SAML-UserName
-	httpDisplaynameHeader = X-SAML-DisplayName
 	httpEmailHeader = X-SAML-EmailHeader
 	httpExternalIdHeader = X-SAML-ExternalId
 	autoUpdateAccountActiveStatus = true
