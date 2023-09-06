@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ece0fa5d_977d9590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063024
+      },
+      "writtenOn": "2023-09-06T08:50:50Z",
+      "side": 1,
+      "message": "Latest stable-3.2 has moved, I\u0027d like to add the new commit to this change.",
+      "revId": "c71f4b809dde962ecc595438dcc2d62c666d13d9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
