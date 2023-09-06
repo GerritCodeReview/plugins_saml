@@ -16,14 +16,21 @@ package com.googlesource.gerrit.plugins.saml;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.google.gerrit.common.Nullable;
+import com.google.gerrit.entities.Account;
+import com.google.gerrit.extensions.api.GerritApi;
+import com.google.gerrit.extensions.api.accounts.Accounts;
+import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.Url;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.config.SitePaths;
+import com.google.gerrit.server.util.ManualRequestContext;
+import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.io.IOException;
@@ -63,16 +70,19 @@ class SamlWebFilter implements Filter {
   private static final Logger log = LoggerFactory.getLogger(SamlWebFilter.class);
 
   private static final String GERRIT_LOGOUT = "/logout";
-  private static final String GERRIT_LOGIN = "/login";
+  @VisibleForTesting static final String GERRIT_LOGIN = "/login";
   private static final String SAML = "saml";
   private static final String SAML_CALLBACK = "plugins/" + SAML + "/callback";
-  private static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
+  @VisibleForTesting static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
 
   private final SAML2Client saml2Client;
   private final SamlConfig samlConfig;
   private final AuthConfig auth;
   private final HashSet<String> authHeaders;
   private final SamlMembership samlMembership;
+  private final GerritApi gApi;
+  private final Accounts accounts;
+  private final OneOffRequestContext oneOffRequestContext;
 
   @Inject
   SamlWebFilter(
@@ -80,7 +90,10 @@ class SamlWebFilter implements Filter {
       @CanonicalWebUrl @Nullable String canonicalUrl,
       SitePaths sitePaths,
       SamlConfig samlConfig,
-      SamlMembership samlMembership)
+      SamlMembership samlMembership,
+      GerritApi gApi,
+      Accounts accounts,
+      OneOffRequestContext oneOffRequestContext)
       throws IOException {
     this.auth = auth;
     this.samlConfig = samlConfig;
@@ -112,20 +125,22 @@ class SamlWebFilter implements Filter {
     authHeaders =
         Sets.newHashSet(
             auth.getLoginHttpHeader().toUpperCase(),
-            auth.getHttpDisplaynameHeader().toUpperCase(),
             auth.getHttpEmailHeader().toUpperCase(),
             auth.getHttpExternalIdHeader().toUpperCase());
     if (authHeaders.contains("") || authHeaders.contains(null)) {
       throw new RuntimeException("All authentication headers must be set.");
     }
-    if (authHeaders.size() != 4) {
+    if (authHeaders.size() != 3) {
       throw new RuntimeException(
           "Unique values for httpUserNameHeader, "
-              + "httpDisplaynameHeader, httpEmailHeader and httpExternalIdHeader "
-              + "are required.");
+              + "httpEmailHeader and httpExternalIdHeader are required.");
     }
     checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
     saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
+
+    this.gApi = gApi;
+    this.accounts = accounts;
+    this.oneOffRequestContext = oneOffRequestContext;
   }
 
   @Override
@@ -162,6 +177,13 @@ class SamlWebFilter implements Filter {
         } else {
           HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
           chain.doFilter(req, response);
+          try (ManualRequestContext ignored =
+              oneOffRequestContext.openAs(
+                  Account.id(accounts.id(user.getUsername()).get()._accountId))) {
+            gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
+          } catch (RestApiException e) {
+            log.error("Saml plugin could not set account name", e);
+          }
         }
       } else if (isGerritLogout(httpRequest)) {
         httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
@@ -322,8 +344,6 @@ class SamlWebFilter implements Filter {
       String nameUpperCase = name.toUpperCase();
       if (auth.getLoginHttpHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getUsername();
-      } else if (auth.getHttpDisplaynameHeader().toUpperCase().equals(nameUpperCase)) {
-        return user.getDisplayName();
       } else if (auth.getHttpEmailHeader().toUpperCase().equals(nameUpperCase)) {
         return user.getEmail();
       } else if (auth.getHttpExternalIdHeader().toUpperCase().equals(nameUpperCase)) {
