@@ -17,7 +17,6 @@ using SAML for Authentication, LDAP for authorization and running gerrit under t
         type = HTTP_LDAP
         logoutUrl = https://fs.hc.sct/adfs/ls/?wa=wsignout1.0
         httpHeader = X-SAML-UserName
-        httpDisplaynameHeader = X-SAML-DisplayName
         httpEmailHeader = X-SAML-EmailHeader
         httpExternalIdHeader = X-SAML-ExternalId
     [saml]
