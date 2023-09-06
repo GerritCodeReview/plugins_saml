@@ -38,7 +38,6 @@ the Gerrit client [keycloak json file](keycloak-gerrit-client-export.json).
     type = HTTP
     logoutUrl = http://localhost:8080/auth/realms/master/protocol/openid-connect/logout
     httpHeader = X-SAML-UserName
-    httpDisplaynameHeader = X-SAML-DisplayName
     httpEmailHeader = X-SAML-EmailHeader
     httpExternalIdHeader = X-SAML-ExternalId
 

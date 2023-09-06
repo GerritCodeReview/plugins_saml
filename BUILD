@@ -1,4 +1,5 @@
-load("//tools/bzl:plugin.bzl", "gerrit_plugin")
+load("//tools/bzl:plugin.bzl", "PLUGIN_TEST_DEPS", "gerrit_plugin")
+load("//tools/bzl:junit.bzl", "junit_tests")
 
 gerrit_plugin(
     name = "saml",
@@ -35,5 +36,15 @@ gerrit_plugin(
         "@stax2-api//jar",
         "@velocity//jar",
         "@woodstox-core//jar",
+    ],
+)
+
+junit_tests(
+    name = "saml_tests",
+    srcs = glob(["src/test/java/**/*.java"]),
+    tags = ["saml"],
+    deps = PLUGIN_TEST_DEPS + [
+        ":saml__plugin",
+        "//javatests/com/google/gerrit/util/http/testutil",
     ],
 )
