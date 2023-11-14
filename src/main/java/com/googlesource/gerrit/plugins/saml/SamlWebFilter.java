@@ -32,6 +32,7 @@ import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
+import com.google.inject.ProvisionException;
 import com.google.inject.Singleton;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -96,6 +97,11 @@ class SamlWebFilter implements Filter {
       OneOffRequestContext oneOffRequestContext)
       throws IOException {
     this.auth = auth;
+    if (auth.getHttpDisplaynameHeader() != null) {
+      throw new ProvisionException(
+          "auth.httpdisplaynameheader is not compatible with SAML: remove the config and restart");
+    }
+
     this.samlConfig = samlConfig;
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
