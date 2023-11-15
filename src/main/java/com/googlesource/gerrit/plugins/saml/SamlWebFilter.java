@@ -183,6 +183,8 @@ class SamlWebFilter implements Filter {
             gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
           } catch (RestApiException e) {
             log.error("Saml plugin could not set account name", e);
+            httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
           }
         }
       } else if (isGerritLogout(httpRequest)) {
