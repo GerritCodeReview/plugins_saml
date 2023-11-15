@@ -21,11 +21,17 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 import com.google.gerrit.acceptance.AbstractDaemonTest;
+import com.google.gerrit.acceptance.config.GerritConfig;
 import com.google.gerrit.extensions.common.AccountDetailInfo;
 import com.google.gerrit.extensions.restapi.RestApiException;
+import com.google.gerrit.server.ServerInitiated;
+import com.google.gerrit.server.account.AccountsUpdate;
+import com.google.gerrit.server.account.externalids.ExternalId;
 import com.google.gerrit.testing.ConfigSuite;
 import com.google.gerrit.util.http.testutil.FakeHttpServletRequest;
 import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -36,6 +42,8 @@ import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 
 public class SamlWebFilterIT extends AbstractDaemonTest {
+
+  @Inject @ServerInitiated private Provider<AccountsUpdate> accountsUpdateProvider;
 
   @ConfigSuite.Default
   public static Config setupSaml() throws ConfigInvalidException {
@@ -56,7 +64,8 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
   }
 
   @Test
-  public void supportAccountNamesWithNonIso88591Characters() throws IOException, ServletException, RestApiException {
+  public void supportAccountNamesWithNonIso88591Characters()
+      throws IOException, ServletException, RestApiException {
     SamlWebFilter samlWebFilter = server.getTestInjector().getInstance(SamlWebFilter.class);
 
     String samlDisplayName = nullToEmpty(user.displayName()) + " Saml Test 合覺那加情力心";
@@ -76,6 +85,38 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
 
     AccountDetailInfo account = gApi.accounts().id(user.username()).detail();
     assertThat(account.name).isEqualTo(samlDisplayName);
+  }
+
+  @Test
+  @GerritConfig(name = "auth.type", value = "HTTP_LDAP")
+  public void shouldSucceedAndNotSetFullNameWhenNotAllowedByRealm() throws Exception {
+    SamlWebFilter samlWebFilter = server.getTestInjector().getInstance(SamlWebFilter.class);
+
+    String samlDisplayName = "Test display name";
+
+    HttpSession httpSession = mock(HttpSession.class);
+    AuthenticatedUser authenticatedUser =
+        new AuthenticatedUser(user.username(), samlDisplayName, user.email(), "externalId");
+    insertExtId(
+        ExternalId.create(
+            ExternalId.Key.parse("gerrit:" + user.username(), false), user.id(), null, null, null));
+    doReturn(authenticatedUser).when(httpSession).getAttribute(SamlWebFilter.SESSION_ATTR_USER);
+
+    FakeHttpServletRequest req = new FakeHttpServletRequestWithSession(httpSession);
+    req.setPathInfo(SamlWebFilter.GERRIT_LOGIN);
+    HttpServletResponse res = new FakeHttpServletResponse();
+
+    samlWebFilter.doFilter(req, res, mock(FilterChain.class));
+    assertThat(res.getStatus()).isEqualTo(SC_OK);
+
+    AccountDetailInfo account = gApi.accounts().id(user.username()).detail();
+    assertThat(account.name).isNotEqualTo(samlDisplayName);
+  }
+
+  private void insertExtId(ExternalId extId) throws Exception {
+    accountsUpdateProvider
+        .get()
+        .update("Add External ID", extId.accountId(), u -> u.addExternalId(extId));
   }
 
   private static class FakeHttpServletRequestWithSession extends FakeHttpServletRequest {

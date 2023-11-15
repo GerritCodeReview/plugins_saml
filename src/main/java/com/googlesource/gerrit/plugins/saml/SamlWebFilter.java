@@ -24,8 +24,10 @@ import com.google.gerrit.common.Nullable;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
+import com.google.gerrit.extensions.client.AccountFieldName;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.account.Realm;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.config.SitePaths;
@@ -83,10 +85,12 @@ class SamlWebFilter implements Filter {
   private final GerritApi gApi;
   private final Accounts accounts;
   private final OneOffRequestContext oneOffRequestContext;
+  private final boolean setUserFullnameAllowed;
 
   @Inject
   SamlWebFilter(
       AuthConfig auth,
+      Realm realm,
       @CanonicalWebUrl @Nullable String canonicalUrl,
       SitePaths sitePaths,
       SamlConfig samlConfig,
@@ -97,6 +101,7 @@ class SamlWebFilter implements Filter {
       throws IOException {
     this.auth = auth;
     this.samlConfig = samlConfig;
+    this.setUserFullnameAllowed = realm.allowsEdit(AccountFieldName.FULL_NAME);
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     SAML2Configuration samlClientConfig =
@@ -177,14 +182,17 @@ class SamlWebFilter implements Filter {
         } else {
           HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
           chain.doFilter(req, response);
-          try (ManualRequestContext ignored =
-              oneOffRequestContext.openAs(
-                  Account.id(accounts.id(user.getUsername()).get()._accountId))) {
-            gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
-          } catch (RestApiException e) {
-            log.error("Saml plugin could not set account name", e);
-            httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-            return;
+
+          if (setUserFullnameAllowed) {
+            try (ManualRequestContext ignored =
+                oneOffRequestContext.openAs(
+                    Account.id(accounts.id(user.getUsername()).get()._accountId))) {
+              gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
+            } catch (RestApiException e) {
+              log.error("Saml plugin could not set account name", e);
+              httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+              return;
+            }
           }
         }
       } else if (isGerritLogout(httpRequest)) {
