@@ -87,8 +87,7 @@ public class SamlMembership {
   public void sync(AuthenticatedUser user, SAML2Profile profile) throws IOException {
     Set<AccountGroup.UUID> samlMembership =
         Optional.ofNullable((List<?>) profile.getAttribute(memberAttr, List.class))
-            .orElse(Collections.emptyList())
-            .stream()
+            .orElse(Collections.emptyList()).stream()
             .map(m -> getOrCreateGroup(m.toString()))
             .filter(Optional::isPresent)
             .map(Optional::get)
