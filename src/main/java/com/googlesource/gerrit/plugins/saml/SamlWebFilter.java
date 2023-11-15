@@ -43,6 +43,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -52,6 +55,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 import org.pac4j.core.context.J2EContext;
 import org.pac4j.core.context.session.SessionStore;
@@ -176,14 +180,19 @@ class SamlWebFilter implements Filter {
           redirectToIdentityProvider(context);
         } else {
           HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
-          chain.doFilter(req, response);
+
+          HttpSerlvetBufferedStatusResponse respWrapper = new HttpSerlvetBufferedStatusResponse(httpResponse);
+          chain.doFilter(req, respWrapper);
           try (ManualRequestContext ignored =
               oneOffRequestContext.openAs(
                   Account.id(accounts.id(user.getUsername()).get()._accountId))) {
             gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
+            respWrapper.commit();
           } catch (RestApiException e) {
             log.error("Saml plugin could not set account name", e);
-          }
+            httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+          } 
         }
       } else if (isGerritLogout(httpRequest)) {
         httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
