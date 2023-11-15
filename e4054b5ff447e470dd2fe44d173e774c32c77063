@@ -16,6 +16,24 @@
       "message": "The response has been already populated at L179. We should instead provide a \"FakeResponse\" object to the filter and override the response here.",
       "revId": "e4054b5ff447e470dd2fe44d173e774c32c77063",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "407bf8bf_770abb56",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-15T21:11:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c76cd2eb_537c276e",
+      "revId": "e4054b5ff447e470dd2fe44d173e774c32c77063",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
