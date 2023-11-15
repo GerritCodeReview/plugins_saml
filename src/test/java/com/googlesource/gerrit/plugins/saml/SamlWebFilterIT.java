@@ -18,7 +18,8 @@ import static com.google.common.base.Strings.nullToEmpty;
 import static com.google.common.truth.Truth.assertThat;
 import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
-import static org.mockito.Mockito.any;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -26,15 +27,21 @@ import static org.mockito.Mockito.mock;
 import com.google.gerrit.acceptance.AbstractDaemonTest;
 import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
+import com.google.gerrit.extensions.client.AccountFieldName;
 import com.google.gerrit.extensions.common.AccountDetailInfo;
 import com.google.gerrit.extensions.restapi.RestApiException;
+import com.google.gerrit.server.ServerInitiated;
+import com.google.gerrit.server.account.AccountsUpdate;
+import com.google.gerrit.server.account.Realm;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.gerrit.testing.ConfigSuite;
 import com.google.gerrit.util.http.testutil.FakeHttpServletRequest;
 import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Provider;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +56,8 @@ import org.eclipse.jgit.lib.Config;
 import org.junit.Test;
 
 public class SamlWebFilterIT extends AbstractDaemonTest {
+
+  @Inject @ServerInitiated private Provider<AccountsUpdate> accountsUpdateProvider;
 
   @ConfigSuite.Default
   public static Config setupSaml() throws ConfigInvalidException {
@@ -94,7 +103,10 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
   @Test
   public void failAuthenticationWhenAccountManipulationFails()
       throws IOException, ServletException, RestApiException {
-    SamlWebFilter samlWebFilter = newSamlWebFilter(newGerritApiMockFailingOnAccountsApi());
+    SamlWebFilter samlWebFilter =
+        newSamlWebFilter(
+            server.getTestInjector().getInstance(Realm.class),
+            newGerritApiMockFailingOnAccountsApi());
     List<Integer> responseStatuses = new ArrayList<>();
 
     HttpServletResponse res =
@@ -160,10 +172,11 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
     return apiMock;
   }
 
-  private SamlWebFilter newSamlWebFilter(GerritApi gerritApi) throws IOException {
+  private SamlWebFilter newSamlWebFilter(Realm realm, GerritApi gerritApi) throws IOException {
     Injector testInjector = server.getTestInjector();
     return new SamlWebFilter(
         testInjector.getInstance(AuthConfig.class),
+        realm,
         "",
         testInjector.getInstance(SitePaths.class),
         testInjector.getInstance(SamlConfig.class),
@@ -171,6 +184,30 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
         gerritApi,
         testInjector.getInstance(Accounts.class),
         testInjector.getInstance(OneOffRequestContext.class));
+  }
+
+  @Test
+  public void shouldSucceedAndNotSetFullNameWhenNotAllowedByRealm() throws Exception {
+    Realm realmMock = mock(Realm.class);
+    doReturn(false).when(realmMock).allowsEdit(eq(AccountFieldName.FULL_NAME));
+    SamlWebFilter samlWebFilter = newSamlWebFilter(realmMock, gApi);
+
+    String samlDisplayName = "Test display name";
+
+    HttpSession httpSession = mock(HttpSession.class);
+    AuthenticatedUser authenticatedUser =
+        new AuthenticatedUser(user.username(), samlDisplayName, user.email(), "externalId");
+    doReturn(authenticatedUser).when(httpSession).getAttribute(SamlWebFilter.SESSION_ATTR_USER);
+
+    FakeHttpServletRequest req = new FakeHttpServletRequestWithSession(httpSession);
+    req.setPathInfo(SamlWebFilter.GERRIT_LOGIN);
+    HttpServletResponse res = new FakeHttpServletResponse();
+
+    samlWebFilter.doFilter(req, res, mock(FilterChain.class));
+    assertThat(res.getStatus()).isEqualTo(SC_OK);
+
+    AccountDetailInfo account = gApi.accounts().id(user.username()).detail();
+    assertThat(account.name).isNotEqualTo(samlDisplayName);
   }
 
   private static class FakeHttpServletRequestWithSession extends FakeHttpServletRequest {
