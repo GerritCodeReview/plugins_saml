@@ -16,17 +16,28 @@ package com.googlesource.gerrit.plugins.saml;
 
 import static com.google.common.base.Strings.nullToEmpty;
 import static com.google.common.truth.Truth.assertThat;
+import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
 import com.google.gerrit.acceptance.AbstractDaemonTest;
+import com.google.gerrit.extensions.api.GerritApi;
+import com.google.gerrit.extensions.api.accounts.Accounts;
 import com.google.gerrit.extensions.common.AccountDetailInfo;
 import com.google.gerrit.extensions.restapi.RestApiException;
+import com.google.gerrit.server.config.AuthConfig;
+import com.google.gerrit.server.config.SitePaths;
+import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.gerrit.testing.ConfigSuite;
 import com.google.gerrit.util.http.testutil.FakeHttpServletRequest;
 import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
+import com.google.inject.Injector;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -71,12 +82,87 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
     req.setPathInfo(SamlWebFilter.GERRIT_LOGIN);
     HttpServletResponse res = new FakeHttpServletResponse();
 
-    samlWebFilter.doFilter(req, res, mock(FilterChain.class));
-
+    samlWebFilter.doFilter(req, res, mockFilterReturningStatusOK());
     assertThat(res.getStatus()).isEqualTo(SC_OK);
 
     AccountDetailInfo account = gApi.accounts().id(user.username()).detail();
     assertThat(account.name).isEqualTo(samlDisplayName);
+  }
+
+  @Test
+  public void failAuthenticationWhenAccountManipulationFails()
+      throws IOException, ServletException, RestApiException {
+    SamlWebFilter samlWebFilter = newSamlWebFilter(newGerritApiMockFailingOnAccountsApi());
+    List<Integer> responseStatuses = new ArrayList<>();
+
+    HttpServletResponse res =
+        new FakeHttpServletResponse() {
+          @Override
+          public synchronized void setStatus(int sc) {
+            super.setStatus(sc);
+            responseStatuses.add(sc);
+          }
+
+          @SuppressWarnings("deprecation")
+          @Override
+          public synchronized void setStatus(int sc, String msg) {
+            super.setStatus(sc, msg);
+            responseStatuses.add(sc);
+          }
+
+          @Override
+          public synchronized void sendError(int sc) {
+            super.sendError(sc);
+            responseStatuses.add(sc);
+          }
+
+          @Override
+          public synchronized void sendError(int sc, String msg) {
+            super.sendError(sc, msg);
+            responseStatuses.add(sc);
+          }
+        };
+
+    samlWebFilter.doFilter(newFinalLoginFakeHttpRequest(), res, mockFilterReturningStatusOK());
+
+    assertThat(res.getStatus()).isEqualTo(SC_FORBIDDEN);
+    assertThat(responseStatuses).containsExactly(SC_FORBIDDEN);
+  }
+
+  private FilterChain mockFilterReturningStatusOK() {
+    return (request, response) ->
+        ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_OK);
+  }
+
+  private FakeHttpServletRequest newFinalLoginFakeHttpRequest() {
+    HttpSession httpSession = mock(HttpSession.class);
+    AuthenticatedUser authenticatedUser =
+        new AuthenticatedUser(user.username(), "User Fullname", user.email(), "externalId");
+    doReturn(authenticatedUser).when(httpSession).getAttribute(SamlWebFilter.SESSION_ATTR_USER);
+    FakeHttpServletRequest req = new FakeHttpServletRequestWithSession(httpSession);
+    req.setPathInfo(SamlWebFilter.GERRIT_LOGIN);
+    return req;
+  }
+
+  private GerritApi newGerritApiMockFailingOnAccountsApi() throws RestApiException {
+    GerritApi apiMock = mock(GerritApi.class);
+    Accounts accountsApiMock = mock(Accounts.class);
+    doReturn(accountsApiMock).when(apiMock).accounts();
+    doThrow(RestApiException.class).when(accountsApiMock).id(any());
+    return apiMock;
+  }
+
+  private SamlWebFilter newSamlWebFilter(GerritApi gerritApi) throws IOException {
+    Injector testInjector = server.getTestInjector();
+    return new SamlWebFilter(
+        testInjector.getInstance(AuthConfig.class),
+        "",
+        testInjector.getInstance(SitePaths.class),
+        testInjector.getInstance(SamlConfig.class),
+        testInjector.getInstance(SamlMembership.class),
+        gerritApi,
+        testInjector.getInstance(Accounts.class),
+        testInjector.getInstance(OneOffRequestContext.class));
   }
 
   private static class FakeHttpServletRequestWithSession extends FakeHttpServletRequest {
