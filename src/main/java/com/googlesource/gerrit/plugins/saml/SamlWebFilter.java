@@ -176,13 +176,19 @@ class SamlWebFilter implements Filter {
           redirectToIdentityProvider(context);
         } else {
           HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
-          chain.doFilter(req, response);
+
+          HttpSerlvetBufferedStatusResponse respWrapper =
+              new HttpSerlvetBufferedStatusResponse(httpResponse);
+          chain.doFilter(req, respWrapper);
           try (ManualRequestContext ignored =
               oneOffRequestContext.openAs(
                   Account.id(accounts.id(user.getUsername()).get()._accountId))) {
             gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
+            respWrapper.commit();
           } catch (RestApiException e) {
             log.error("Saml plugin could not set account name", e);
+            httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
           }
         }
       } else if (isGerritLogout(httpRequest)) {
