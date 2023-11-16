@@ -50,6 +50,24 @@
       "message": "out of curiosity: does the req in line 200 need to be a instance of `AuthenticatedHttpRequest`?",
       "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cc03fdb_08a843e8",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-16T13:28:11Z",
+      "side": 1,
+      "message": "Yep, and it is: see L183",
+      "parentUuid": "f2a35dcd_fb1b8f11",
+      "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
