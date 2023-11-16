@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1fcdcd0_ef174e86",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlMembership.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-16T00:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca62d568_d5d208bc",
+      "revId": "9b7adaaa2355865f80d3a6dc4ae0e8f9d81b6dc8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31bec8dd_2e790978",
@@ -88,6 +106,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0e7ab94_4a7e97a5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-16T00:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06c0b562_babbd3ec",
+      "range": {
+        "startLine": 121,
+        "startChar": 1,
+        "endLine": 125,
+        "endChar": 37
+      },
+      "revId": "9b7adaaa2355865f80d3a6dc4ae0e8f9d81b6dc8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4dc858b_15e5cc49",
@@ -101,6 +143,30 @@
       "writtenOn": "2023-11-15T23:52:23Z",
       "side": 1,
       "message": "This should be done in the parent commit.",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 37
+      },
+      "revId": "9b7adaaa2355865f80d3a6dc4ae0e8f9d81b6dc8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fd0b56_c5d74c2e",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-16T00:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4dc858b_15e5cc49",
       "range": {
         "startLine": 136,
         "startChar": 0,
