@@ -16,6 +16,24 @@
       "message": "nit: unrelated empty line added.",
       "revId": "b8b5370516a1649a439dac6d390d69f008e9e857",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0677d1dd_de39dfbe",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-16T00:05:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "196a0fbc_e95628af",
+      "revId": "b8b5370516a1649a439dac6d390d69f008e9e857",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
