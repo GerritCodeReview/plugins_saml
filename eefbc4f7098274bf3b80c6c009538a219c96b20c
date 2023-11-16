@@ -16,6 +16,24 @@
       "message": "nit: unrelated change.",
       "revId": "eefbc4f7098274bf3b80c6c009538a219c96b20c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "833671ca_ef97496e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2023-11-16T00:02:49Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "691e43a4_7a7e44d1",
+      "revId": "eefbc4f7098274bf3b80c6c009538a219c96b20c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
