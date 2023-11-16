@@ -16,6 +16,40 @@
       "message": "Build and tested locally: all tests are  passing.",
       "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0feab67b_c52e3937",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-11-16T09:47:54Z",
+      "side": 1,
+      "message": "I would prefer `isUserFullnameEditable` but I dont have strong point on that. Up to you.",
+      "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a35dcd_fb1b8f11",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-11-16T09:47:54Z",
+      "side": 1,
+      "message": "out of curiosity: does the req in line 200 need to be a instance of `AuthenticatedHttpRequest`?",
+      "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
