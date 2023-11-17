@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61f92884_1615d515",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-11-17T08:59:20Z",
+      "side": 1,
+      "message": "would it be more readable?\n```suggestion\n                } else {\n          HttpServletRequest req \u003d new AuthenticatedHttpRequest(httpRequest, user);\n          HttpSerlvetBufferedStatusResponse respWrapper \u003d\n              new HttpSerlvetBufferedStatusResponse(httpResponse);\n          chain.doFilter(req, respWrapper);\n          if (setUserFullnameAllowed) {\n            try (ManualRequestContext ignored \u003d\n                oneOffRequestContext.openAs(\n                    Account.id(accounts.id(user.getUsername()).get()._accountId))) {\n              gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());\n              respWrapper.commit();\n            } catch (RestApiException e) {\n              log.error(\"Saml plugin could not set account name\", e);\n              httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);\n            }\n          }\n        }\n```",
+      "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2a35dcd_fb1b8f11",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
         "patchSetId": 7
