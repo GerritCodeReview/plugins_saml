@@ -136,7 +136,11 @@ class SamlWebFilter implements Filter {
               + "httpEmailHeader and httpExternalIdHeader are required.");
     }
     checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
-    saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
+    if (canonicalUrl.endsWith("/")) {
+      saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
+    } else {
+      saml2Client.setCallbackUrl(canonicalUrl + "/" + SAML_CALLBACK);
+    }
 
     this.gApi = gApi;
     this.accounts = accounts;
