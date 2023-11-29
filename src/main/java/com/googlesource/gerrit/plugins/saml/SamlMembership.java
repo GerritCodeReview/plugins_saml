@@ -27,7 +27,7 @@ import com.google.gerrit.server.account.*;
 import com.google.gerrit.server.group.db.GroupDelta;
 import com.google.gerrit.server.group.db.GroupsUpdate;
 import com.google.gerrit.server.group.db.InternalGroupCreation;
-import com.google.gerrit.server.notedb.Sequences;
+import com.google.gerrit.server.Sequences;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
