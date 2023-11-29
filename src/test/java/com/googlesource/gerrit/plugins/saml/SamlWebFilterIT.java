@@ -56,7 +56,8 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
   }
 
   @Test
-  public void supportAccountNamesWithNonIso88591Characters() throws IOException, ServletException, RestApiException {
+  public void supportAccountNamesWithNonIso88591Characters()
+      throws IOException, ServletException, RestApiException {
     SamlWebFilter samlWebFilter = server.getTestInjector().getInstance(SamlWebFilter.class);
 
     String samlDisplayName = nullToEmpty(user.displayName()) + " Saml Test 合覺那加情力心";
