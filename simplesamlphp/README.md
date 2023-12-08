@@ -48,7 +48,7 @@ docker run -it --rm --name=testsamlidp_idp \
 	autoUpdateAccountActiveStatus = true
 [saml]
 	serviceProviderEntityId = gerritSaml
-	keystorePath = /Users/d073103/sites/serviceuserMaster/etc/keystore
+	keystorePath = etc/keystore
 	keystorePassword = pac4j-demo-password
 	privateKeyPassword = pac4j-demo-password
 	metadataPath = http://localhost:8080/simplesaml/saml2/idp/metadata.php
