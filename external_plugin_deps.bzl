@@ -15,6 +15,12 @@ def external_plugin_deps():
     )
 
     maven_jar(
+        name = "commons-io",
+        artifact = "commons-io:commons-io:2.4",
+        sha1 = "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
+    )
+
+    maven_jar(
         name = "commons-lang",
         artifact = "commons-lang:commons-lang:2.6",
         sha1 = "0ce1edb914c94ebc388f086c6827e8bdeec71ac2",
