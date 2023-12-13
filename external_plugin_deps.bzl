@@ -15,6 +15,12 @@ def external_plugin_deps():
     )
 
     maven_jar(
+        name = "commons-io",
+        artifact = "commons-io:commons-io:2.4",
+        sha1 = "b1b6ea3b7e4aa4f492509a4952029cd8e48019ad",
+    )
+
+    maven_jar(
         name = "commons-lang",
         artifact = "commons-lang:commons-lang:2.6",
         sha1 = "0ce1edb914c94ebc388f086c6827e8bdeec71ac2",
@@ -191,4 +197,12 @@ def external_plugin_deps():
         name = "woodstox-core",
         artifact = "com.fasterxml.woodstox:woodstox-core:5.0.3",
         sha1 = "10aa199207fda142eff01cd61c69244877d71770",
+    )
+
+    SLF4J_VERS = "1.7.36"
+
+    maven_jar(
+        name = "log-api",
+        artifact = "org.slf4j:slf4j-api:" + SLF4J_VERS,
+        sha1 = "6c62681a2f655b49963a5983b8b0950a6120ae14",
     )
