@@ -42,7 +42,7 @@ public class SamlConfig {
   private final String memberOfAttr;
 
   @Inject
-  SamlConfig(@GerritServerConfig Config cfg, SitePaths sitePaths) {
+  public SamlConfig(@GerritServerConfig Config cfg, SitePaths sitePaths) {
     serviceProviderEntityId = getString(cfg, "serviceProviderEntityId");
     identityProviderEntityId = getString(cfg, "identityProviderEntityId");
     metadataPath = getString(cfg, "metadataPath");
