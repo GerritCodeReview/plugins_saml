@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7340cfe_58add372",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "Is this a mistake or do we really need this to be part of the build target?",
+      "range": {
+        "startLine": 224,
+        "startChar": 49,
+        "endLine": 224,
+        "endChar": 60
+      },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fad945bc_760de994",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/Main.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "Is this class really needed? Why not make the SamlMetadataCreator the main class?",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58614497_71746049",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "This is not passed to the `SamlClientFactory`, it is only used to delete the file in the line 55. Obviously, the knowledge about path of the `sp-metadata.xml` file is duplicated: it exists here and in the `SamlClientFactory`. Either move the handling of the `overwrite` option to the factory or pass the path to the factory when calling the `create` method.",
+      "range": {
+        "startLine": 51,
+        "startChar": 9,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422a7d7a_c5f401eb",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "The `File.delete()` method can also fail. It returns a boolean indicating whether the deletion was successful or not and this needs to be checked.\n\nAlternatively, use `Files.delete` which throws an exception in case of an error... whatever suits better for the program control.",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3f16788_6dbadeb7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "Forgot to remove a debug output?",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da14aee5_560dbef9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "Don\u0027t we have something in Gerrit core which overlays `gerrit.config` and `secure.config` in one `Config` instance?",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01386bfe_cdf40ffc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T14:23:36Z",
+      "side": 1,
+      "message": "If site path is mandatory then make it an `@Argument`. In that case the `args4j` will do this check for us.",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
