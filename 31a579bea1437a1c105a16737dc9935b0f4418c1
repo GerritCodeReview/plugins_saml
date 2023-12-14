@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0d8e483_802c873b",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T16:08:42Z",
+      "side": 1,
+      "message": "I am not asking about the `java_binary` usage but about the `_deploy.jar` suffix in this name",
+      "parentUuid": "d38bfca5_5daacf78",
+      "range": {
+        "startLine": 224,
+        "startChar": 49,
+        "endLine": 224,
+        "endChar": 60
+      },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f74461f8_096f87b8",
         "filename": "README.md",
         "patchSetId": 3
