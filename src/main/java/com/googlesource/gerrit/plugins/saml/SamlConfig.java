@@ -15,6 +15,7 @@
 package com.googlesource.gerrit.plugins.saml;
 
 import com.google.gerrit.server.config.GerritServerConfig;
+import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.eclipse.jgit.lib.Config;
@@ -41,11 +42,11 @@ public class SamlConfig {
   private final String memberOfAttr;
 
   @Inject
-  SamlConfig(@GerritServerConfig Config cfg) {
+  SamlConfig(@GerritServerConfig Config cfg, SitePaths sitePaths) {
     serviceProviderEntityId = getString(cfg, "serviceProviderEntityId");
     identityProviderEntityId = getString(cfg, "identityProviderEntityId");
     metadataPath = getString(cfg, "metadataPath");
-    keystorePath = getString(cfg, "keystorePath");
+    keystorePath = sitePaths.resolve(getString(cfg, "keystorePath")).toString();
     privateKeyPassword = getString(cfg, "privateKeyPassword");
     keystorePassword = getString(cfg, "keystorePassword");
     displayNameAttr = getGetStringWithDefault(cfg, "displayNameAttr", "DisplayName");
