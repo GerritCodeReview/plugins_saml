@@ -14,28 +14,21 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Strings;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
-import com.google.gerrit.common.Nullable;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.Url;
 import com.google.gerrit.server.config.AuthConfig;
-import com.google.gerrit.server.config.CanonicalWebUrl;
-import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -58,7 +51,6 @@ import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.exception.HttpAction;
 import org.pac4j.core.exception.TechnicalException;
 import org.pac4j.saml.client.SAML2Client;
-import org.pac4j.saml.config.SAML2Configuration;
 import org.pac4j.saml.credentials.SAML2Credentials;
 import org.pac4j.saml.profile.SAML2Profile;
 import org.pac4j.saml.state.SAML2StateGenerator;
@@ -71,8 +63,8 @@ class SamlWebFilter implements Filter {
 
   private static final String GERRIT_LOGOUT = "/logout";
   @VisibleForTesting static final String GERRIT_LOGIN = "/login";
-  private static final String SAML = "saml";
-  private static final String SAML_CALLBACK = "plugins/" + SAML + "/callback";
+  public static final String SAML = "saml";
+  public static final String SAML_CALLBACK = "plugins/" + SAML + "/callback";
   @VisibleForTesting static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
 
   private final SAML2Client saml2Client;
@@ -87,42 +79,19 @@ class SamlWebFilter implements Filter {
   @Inject
   SamlWebFilter(
       AuthConfig auth,
-      @CanonicalWebUrl @Nullable String canonicalUrl,
-      SitePaths sitePaths,
       SamlConfig samlConfig,
       SamlMembership samlMembership,
       GerritApi gApi,
       Accounts accounts,
-      OneOffRequestContext oneOffRequestContext)
-      throws IOException {
+      OneOffRequestContext oneOffRequestContext,
+      Provider<SAML2Client> samlClientProvider) {
     this.auth = auth;
     this.samlConfig = samlConfig;
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
-    SAML2Configuration samlClientConfig =
-        new SAML2Configuration(
-            samlConfig.getKeystorePath(), samlConfig.getKeystorePassword(),
-            samlConfig.getPrivateKeyPassword(), samlConfig.getMetadataPath());
+    this.saml2Client = samlClientProvider.get();
 
-    if (!Strings.isNullOrEmpty(samlConfig.getIdentityProviderEntityId())) {
-      if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
-        log.warn(
-            "Both identityProviderEntityId as serviceProviderEntityId are set, ignoring serviceProviderEntityId.");
-      }
-      samlClientConfig.setIdentityProviderEntityId(samlConfig.getIdentityProviderEntityId());
-    } else {
-      samlClientConfig.setServiceProviderMetadataPath(
-          ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
-      if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
-        samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
-      }
-    }
-
-    samlClientConfig.setUseNameQualifier(samlConfig.useNameQualifier());
-    samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
-
-    saml2Client = new SAML2Client(samlClientConfig);
-    authHeaders =
+    this.authHeaders =
         Sets.newHashSet(
             auth.getLoginHttpHeader().toUpperCase(),
             auth.getHttpEmailHeader().toUpperCase(),
@@ -134,12 +103,6 @@ class SamlWebFilter implements Filter {
       throw new RuntimeException(
           "Unique values for httpUserNameHeader, "
               + "httpEmailHeader and httpExternalIdHeader are required.");
-    }
-    checkNotNull(canonicalUrl, "gerrit.canonicalWebUrl must be set in gerrit.config");
-    if (canonicalUrl.endsWith("/")) {
-      saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
-    } else {
-      saml2Client.setCallbackUrl(canonicalUrl + "/" + SAML_CALLBACK);
     }
 
     this.gApi = gApi;
@@ -319,10 +282,6 @@ class SamlWebFilter implements Filter {
   private String getUserName(SAML2Profile user) {
     String username = getAttributeOrElseId(user, samlConfig.getUserNameAttr());
     return auth.isUserNameToLowerCase() ? username.toLowerCase(Locale.US) : username;
-  }
-
-  private static Path ensureExists(Path dataDir) throws IOException {
-    return Files.createDirectories(dataDir.resolve(SAML));
   }
 
   private class AuthenticatedHttpRequest extends HttpServletRequestWrapper {
