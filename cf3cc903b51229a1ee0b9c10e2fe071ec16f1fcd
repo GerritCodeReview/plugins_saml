@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6673e5a3_71c21458",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T15:55:58Z",
+      "side": 1,
+      "message": "Unrelated to this change but if you are already at it: let all fields that represent a path be of the type `Path`",
+      "revId": "cf3cc903b51229a1ee0b9c10e2fe071ec16f1fcd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
