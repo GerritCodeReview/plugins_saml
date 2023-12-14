@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e635491_b55e2a28",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-12-14T16:12:37Z",
+      "side": 1,
+      "message": "it\u0027s mentioned in the 3rd bullet point of the section \"Implicit output targets\":\n\n- name_deploy.jar: A Java archive suitable for deployment (only built if explicitly requested).\nBuilding the \u003cname\u003e_deploy.jar target for your rule creates a self-contained jar file with a manifest that allows it to be run with the java -jar command or with the wrapper script\u0027s --singlejar option.",
+      "parentUuid": "c0d8e483_802c873b",
+      "range": {
+        "startLine": 224,
+        "startChar": 49,
+        "endLine": 224,
+        "endChar": 60
+      },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f74461f8_096f87b8",
         "filename": "README.md",
         "patchSetId": 3
