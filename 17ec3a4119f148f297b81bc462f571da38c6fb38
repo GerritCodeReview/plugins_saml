@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "216dc751_c10ea32e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlClientFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T15:53:35Z",
+      "side": 1,
+      "message": "A standard pattern would be that this class `implements Provider\u003cSAML2Client\u003e`, which also means to name it `SamlClientProvider`.\n\nAt the injection place(s), like in the `SamlWebFilter` we then inject `Provider\u003cSAML2Client\u003e`.\n\nThis has advantage that the using classes do not depend on the implementation class and it is also then easier to provider mocks for testing code.",
+      "revId": "17ec3a4119f148f297b81bc462f571da38c6fb38",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
