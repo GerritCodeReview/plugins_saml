@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b477e95e_75a471a6",
+        "filename": "BUILD",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-12-14T15:31:48Z",
+      "side": 1,
+      "message": "I would use lowercase kebap case or snake case which is most frequently used to name jar files, e.g.\n\nsaml-metadata-creator",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7340cfe_58add372",
         "filename": "README.md",
         "patchSetId": 3
@@ -20,6 +43,47 @@
         "endLine": 224,
         "endChar": 60
       },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d38bfca5_5daacf78",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-12-14T15:31:48Z",
+      "side": 1,
+      "message": "yes, this is required to create a shaded jar which also contains all the dependencies, see https://bazel.build/reference/be/java#java_binary",
+      "parentUuid": "b7340cfe_58add372",
+      "range": {
+        "startLine": 224,
+        "startChar": 49,
+        "endLine": 224,
+        "endChar": 60
+      },
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f74461f8_096f87b8",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-12-14T15:31:48Z",
+      "side": 1,
+      "message": "bazel generates a launch script `bazel-bin/plugins/saml/SamlMetaDataCreator` which can be used to start the tool",
       "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -100,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e17801f_4870a8d5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-12-14T15:31:48Z",
+      "side": 1,
+      "message": "see the documentation which states:\n\nThe resulting metadata will be printed to standard out and stored at\n`$SITE/data/saml/sp-metadata.xml`.",
+      "parentUuid": "c3f16788_6dbadeb7",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da14aee5_560dbef9",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
         "patchSetId": 3
@@ -111,6 +193,24 @@
       "writtenOn": "2023-12-14T14:23:36Z",
       "side": 1,
       "message": "Don\u0027t we have something in Gerrit core which overlays `gerrit.config` and `secure.config` in one `Config` instance?",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13a468fe_ee50e875",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-12-14T15:31:48Z",
+      "side": 1,
+      "message": "JGit\u0027s `Config` class provides a constructor `Config(Config base)` where a base config can be passed to overlay 2 config files",
+      "parentUuid": "da14aee5_560dbef9",
       "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
