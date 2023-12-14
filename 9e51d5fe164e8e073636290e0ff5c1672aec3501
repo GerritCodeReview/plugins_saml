@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3613a00_fcd98ece",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-14T16:06:50Z",
+      "side": 1,
+      "message": "The `CanonicalWebUrlProvider` in Gerrit core already ensures that the URL ends with a trailing `/`.",
+      "revId": "9e51d5fe164e8e073636290e0ff5c1672aec3501",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
