@@ -239,6 +239,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16c801f0_2d8652c0",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/Main.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-15T13:17:20Z",
+      "side": 1,
+      "message": "The main method has to be static it creates an instance of the `SamlMetadataCreator` class and then non-static methods can be invoked on that instance.",
+      "parentUuid": "a38242f3_c8c94b2d",
+      "revId": "31a579bea1437a1c105a16737dc9935b0f4418c1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58614497_71746049",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/SamlMetadataCreator.java",
         "patchSetId": 3
