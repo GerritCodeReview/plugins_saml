@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93094eaf_68002855",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2023-12-15T13:03:26Z",
+      "side": 1,
+      "message": "This shall be squashed with the \"Ensure support for relative keystore path\" change",
+      "revId": "01297bde3167add2537daf878b1bf60f41520dc5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
