@@ -48,13 +48,13 @@ public class SamlConfig {
     keystorePath = getString(cfg, "keystorePath");
     privateKeyPassword = getString(cfg, "privateKeyPassword");
     keystorePassword = getString(cfg, "keystorePassword");
-    displayNameAttr = getGetStringWithDefault(cfg, "displayNameAttr", "DisplayName");
-    userNameAttr = getGetStringWithDefault(cfg, "userNameAttr", "UserName");
-    emailAddressAttr = getGetStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
+    displayNameAttr = getStringWithDefault(cfg, "displayNameAttr", "DisplayName");
+    userNameAttr = getStringWithDefault(cfg, "userNameAttr", "UserName");
+    emailAddressAttr = getStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
     maxAuthLifetimeAttr = cfg.getInt("saml", "maxAuthLifetime", maxAuthLifetimeDefault);
     computedDisplayName = cfg.getBoolean(SAML_SECTION, "computedDisplayName", false);
-    firstNameAttr = getGetStringWithDefault(cfg, "firstNameAttr", "FirstName");
-    lastNameAttr = getGetStringWithDefault(cfg, "lastNameAttr", "LastName");
+    firstNameAttr = getStringWithDefault(cfg, "firstNameAttr", "FirstName");
+    lastNameAttr = getStringWithDefault(cfg, "lastNameAttr", "LastName");
     useNameQualifier = cfg.getBoolean(SAML_SECTION, "useNameQualifier", true);
     memberOfAttr = getString(cfg, "memberOfAttr");
   }
@@ -95,7 +95,7 @@ public class SamlConfig {
     return cfg.getString(SAML_SECTION, null, name);
   }
 
-  private static String getGetStringWithDefault(Config cfg, String name, String defaultValue) {
+  private static String getStringWithDefault(Config cfg, String name, String defaultValue) {
     String result = getString(cfg, name);
     if (result != null) {
       return result;
