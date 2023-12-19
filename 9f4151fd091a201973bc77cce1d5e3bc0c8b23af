@@ -18,6 +18,29 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e144be5d_c454162a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2023-12-19T18:12:27Z",
+      "side": 1,
+      "message": "Is this still a TODO?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "009c14a0_d409a234",
@@ -48,6 +71,24 @@
       "writtenOn": "2023-12-19T15:26:39Z",
       "side": 1,
       "message": "Should we deal with the case where error \u003d 0 and status \u003d 0?",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c25d79dd_ab34ddc5",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/HttpSerlvetBufferedStatusResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1054778
+      },
+      "writtenOn": "2023-12-19T18:12:27Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "5fa56d44_7e191182",
       "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
