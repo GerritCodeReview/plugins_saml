@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb20b45_b4590544",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-19T15:26:39Z",
+      "side": 1,
+      "message": "IMHO this comment does not need to be in the commit message. It is a low level implementation detail.",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "009c14a0_d409a234",
@@ -14,6 +31,74 @@
       "writtenOn": "2023-11-16T00:14:54Z",
       "side": 1,
       "message": "Built locally and ran all tests successfully.",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa56d44_7e191182",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/HttpSerlvetBufferedStatusResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-19T15:26:39Z",
+      "side": 1,
+      "message": "Should we deal with the case where error \u003d 0 and status \u003d 0?",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321bb9f2_6c3f1462",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-19T15:26:39Z",
+      "side": 1,
+      "message": "nit: `throws Exception`",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26a604e6_2128ba31",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-19T15:26:39Z",
+      "side": 1,
+      "message": "nit: `throws Exception`",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5ff0b57_f27f39e0",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-19T15:26:39Z",
+      "side": 1,
+      "message": "```suggestion\n private FilterChain mockFilterReturningStatus(int statusCode) {\n    return (request, response) -\u003e ((HttpServletResponse) response).setStatus(statusCode);\n  }```",
       "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
