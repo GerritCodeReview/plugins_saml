@@ -18,6 +18,23 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91c91b23_907bb618",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-20T14:25:42Z",
+      "side": 1,
+      "message": "minor comment.",
+      "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0feab67b_c52e3937",
@@ -66,6 +83,24 @@
       "side": 1,
       "message": "@alvaro.vilaplana@gmail.com this is not part of this change, right?",
       "parentUuid": "61f92884_1615d515",
+      "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f059e2e2_cdea7810",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1149185
+      },
+      "writtenOn": "2023-12-20T14:25:42Z",
+      "side": 1,
+      "message": "I think you are right.",
+      "parentUuid": "8850f4ff_55ec5b67",
       "revId": "eda011cdd535bafbf5682252367120b3d87962b5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
