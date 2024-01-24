@@ -209,29 +209,3 @@ Default is not set.
 **saml.useNameQualifier**: By SAML specification, the authentication request must not contain a NameQualifier, if the SP entity is in the format nameid-format:entity. However, some IdP require that information to be present. You can force a NameQualifier in the request with the useNameQualifier parameter. For ADFS 3.0 support, set this to `false`.
 
 Default is true.
-
-### Create SAML metadata offline
-
-The SAML metadata file (`$SITE/data/saml/sp-metadata.xml`) will be created on the
-first login attempt, when the plugin has been installed. However, at that point
-authentication would fail until the identity provider was configured using the
-metadata file of Gerrit.
-
-To avoid this period in which authentication is not possible, the metadata can
-be created offline. To do so, a separate java binary has to be built:
-
-```sh
-bazelisk build //plugins/saml:SamlMetadataCreator_deploy.jar
-```
-
-The resulting jar-file can then be used to create the metadata file based on the
-existing gerrit.config:
-
-```sh
-bazel-bin/plugins/saml/SamlMetaDataCreator \
-  -d $SITE \    # Path to the Gerrit site
-  --overwrite   # Whether to overwrite any existing metadata file
-```
-
-The resulting metadata will be printed to standard out and stored at
-`$SITE/data/saml/sp-metadata.xml`.

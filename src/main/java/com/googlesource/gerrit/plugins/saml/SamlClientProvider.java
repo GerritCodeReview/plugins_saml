@@ -63,7 +63,8 @@ public class SamlClientProvider implements Provider<SAML2Client> {
       }
       samlClientConfig.setIdentityProviderEntityId(samlConfig.getIdentityProviderEntityId());
     } else {
-      samlClientConfig.setServiceProviderMetadataPath(getSpMetadataPath().toString());
+      samlClientConfig.setServiceProviderMetadataPath(
+          ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml").toString());
       if (!Strings.isNullOrEmpty(samlConfig.getServiceProviderEntityId())) {
         samlClientConfig.setServiceProviderEntityId(samlConfig.getServiceProviderEntityId());
       }
@@ -78,10 +79,6 @@ public class SamlClientProvider implements Provider<SAML2Client> {
     saml2Client.setCallbackUrl(canonicalUrl + SAML_CALLBACK);
 
     return saml2Client;
-  }
-
-  public Path getSpMetadataPath() {
-    return ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml");
   }
 
   private static Path ensureExists(Path dataDir) {
