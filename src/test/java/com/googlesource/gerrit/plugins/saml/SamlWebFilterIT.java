@@ -26,6 +26,7 @@ import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.testing.ConfigSuite;
 import com.google.gerrit.util.http.testutil.FakeHttpServletRequest;
 import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
+import com.google.inject.Module;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -77,6 +78,11 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
 
     AccountDetailInfo account = gApi.accounts().id(user.username()).detail();
     assertThat(account.name).isEqualTo(samlDisplayName);
+  }
+
+  @Override
+  public Module createModule() {
+    return new com.googlesource.gerrit.plugins.saml.Module();
   }
 
   private static class FakeHttpServletRequestWithSession extends FakeHttpServletRequest {

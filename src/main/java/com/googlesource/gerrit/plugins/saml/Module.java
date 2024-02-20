@@ -14,12 +14,42 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
+import com.google.common.collect.Sets;
+import com.google.gerrit.server.config.AuthConfig;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.ProvisionException;
+import com.google.inject.Singleton;
+import java.util.HashSet;
+import java.util.Set;
 import org.pac4j.saml.client.SAML2Client;
 
 public class Module extends AbstractModule {
   @Override
   protected void configure() {
     bind(SAML2Client.class).toProvider(SamlClientProvider.class);
+  }
+
+  @Provides
+  @Singleton
+  @AuthHeaders
+  public Set<String> getAuthHeaders(AuthConfig auth) {
+    HashSet<String> authHeaders =
+        Sets.newHashSet(
+            auth.getLoginHttpHeader().toUpperCase(),
+            auth.getHttpEmailHeader().toUpperCase(),
+            auth.getHttpExternalIdHeader().toUpperCase());
+
+    if (authHeaders.contains("") || authHeaders.contains(null)) {
+      throw new ProvisionException("All authentication headers must be set.");
+    }
+
+    if (authHeaders.size() != 3) {
+      throw new ProvisionException(
+          "Unique values for httpUserNameHeader, "
+              + "httpEmailHeader and httpExternalIdHeader are required.");
+    }
+
+    return authHeaders;
   }
 }
