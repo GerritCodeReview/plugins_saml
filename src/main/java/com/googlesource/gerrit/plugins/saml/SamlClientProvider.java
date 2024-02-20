@@ -15,18 +15,14 @@
 package com.googlesource.gerrit.plugins.saml;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static com.googlesource.gerrit.plugins.saml.SamlWebFilter.SAML;
 import static com.googlesource.gerrit.plugins.saml.SamlWebFilter.SAML_CALLBACK;
 
 import com.google.common.base.Strings;
 import com.google.gerrit.common.Nullable;
 import com.google.gerrit.server.config.CanonicalWebUrl;
-import com.google.gerrit.server.config.SitePaths;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import org.pac4j.saml.client.SAML2Client;
 import org.pac4j.saml.config.SAML2Configuration;
@@ -39,14 +35,16 @@ public class SamlClientProvider implements Provider<SAML2Client> {
 
   private final SamlConfig samlConfig;
   private final String canonicalUrl;
-  private final SitePaths sitePaths;
+  private final Path libModuleDataDir;
 
   @Inject
   public SamlClientProvider(
-      @CanonicalWebUrl @Nullable String canonicalUrl, SitePaths sitePaths, SamlConfig samlConfig) {
+      @CanonicalWebUrl @Nullable String canonicalUrl,
+      SamlConfig samlConfig,
+      @LibModuleData Path libModuleDataDir) {
     this.samlConfig = samlConfig;
     this.canonicalUrl = canonicalUrl;
-    this.sitePaths = sitePaths;
+    this.libModuleDataDir = libModuleDataDir;
   }
 
   @Override
@@ -81,14 +79,6 @@ public class SamlClientProvider implements Provider<SAML2Client> {
   }
 
   public Path getSpMetadataPath() {
-    return ensureExists(sitePaths.data_dir).resolve("sp-metadata.xml");
-  }
-
-  private static Path ensureExists(Path dataDir) {
-    try {
-      return Files.createDirectories(dataDir.resolve(SAML));
-    } catch (IOException e) {
-      throw new IllegalStateException("Unable to create data directory for the SAML-plugin.", e);
-    }
+    return libModuleDataDir.resolve("sp-metadata.xml");
   }
 }

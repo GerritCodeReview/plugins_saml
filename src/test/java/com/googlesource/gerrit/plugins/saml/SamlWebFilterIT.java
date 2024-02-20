@@ -16,18 +16,24 @@ package com.googlesource.gerrit.plugins.saml;
 
 import static com.google.common.base.Strings.nullToEmpty;
 import static com.google.common.truth.Truth.assertThat;
+import static com.googlesource.gerrit.plugins.saml.pgm.LibModuleDataDirUtil.createLibModuleDataDir;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 import com.google.gerrit.acceptance.AbstractDaemonTest;
+import com.google.gerrit.extensions.annotations.PluginData;
 import com.google.gerrit.extensions.common.AccountDetailInfo;
 import com.google.gerrit.extensions.restapi.RestApiException;
+import com.google.gerrit.server.config.SitePath;
 import com.google.gerrit.testing.ConfigSuite;
 import com.google.gerrit.util.http.testutil.FakeHttpServletRequest;
 import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
+import com.google.inject.AbstractModule;
 import com.google.inject.Module;
+import com.google.inject.Provides;
 import java.io.IOException;
+import java.nio.file.Path;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -82,7 +88,18 @@ public class SamlWebFilterIT extends AbstractDaemonTest {
 
   @Override
   public Module createModule() {
-    return new com.googlesource.gerrit.plugins.saml.Module();
+    return new AbstractModule() {
+      @Override
+      protected void configure() {
+        install(new com.googlesource.gerrit.plugins.saml.Module());
+      }
+
+      @Provides
+      @PluginData
+      Path pluginDataDir(@SitePath Path sitePath) {
+        return createLibModuleDataDir(sitePath);
+      }
+    };
   }
 
   private static class FakeHttpServletRequestWithSession extends FakeHttpServletRequest {
