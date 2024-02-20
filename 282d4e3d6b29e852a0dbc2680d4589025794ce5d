@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd10acf7_24e54a60",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2024-02-20T11:40:59Z",
+      "side": 1,
+      "message": "I don\u0027t believe that this is the reason.\n\nIMO, the reason is that the saml.jar doesn\u0027t provide any guice module(s) and thus Guice is using JIT (just-in-time) bindings for injection. While JIT can find a class by scanning the classpath, it probably cannot conclude how to inject `Provider\u003cSAML2Client\u003e` because there is no explicit binding which would tell Guice that this interface is actually implemented by the `Saml2ClientProvider` class. \n\nInjecting the implementation class `Saml2ClientProvider` would likely work with JIT binding but the best would be to provide a Guice module and install it using `gerrit.installModule` option in `gerrit.config`.",
+      "revId": "282d4e3d6b29e852a0dbc2680d4589025794ce5d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
