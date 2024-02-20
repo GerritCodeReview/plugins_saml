@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "427af990_83361396",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2024-02-20T15:13:47Z",
+      "side": 1,
+      "message": "I get the following error, when trying to start Gerrit:\n\n```\n[2024-02-20T16:12:53.047+01:00] [main] ERROR com.google.gerrit.pgm.Daemon : Unable to start daemon\ncom.google.inject.CreationException: Unable to create injector, see the following errors:\n\n1) [Guice/ErrorInjectingConstructor]: IllegalArgumentException: Unable to instantiate front-end HTTP Filter SamlWebFilter\n  at JettyServer.\u003cinit\u003e(JettyServer.java:218)\n  at JettyModule.configure(JettyModule.java:31)\n  while locating JettyServer\n\nLearn more:\n  https://github.com/google/guice/wiki/ERROR_INJECTING_CONSTRUCTOR\nCaused by: IllegalArgumentException: Unable to instantiate front-end HTTP Filter SamlWebFilter\n\tat JettyServer.makeContext(JettyServer.java:562)\n\tat JettyServer.makeContext(JettyServer.java:504)\n\tat JettyServer.\u003cinit\u003e(JettyServer.java:258)\n\tat JettyServer$$FastClassByGuice$$41461b69.GUICE$TRAMPOLINE(\u003cgenerated\u003e)\n\tat JettyServer$$FastClassByGuice$$41461b69.apply(\u003cgenerated\u003e)\n\tat DefaultConstructionProxyFactory$FastClassProxy.newInstance(DefaultConstructionProxyFactory.java:82)\n\tat ConstructorInjector.provision(ConstructorInjector.java:114)\n\tat ConstructorInjector.construct(ConstructorInjector.java:91)\n\tat ConstructorBindingImpl$Factory.get(ConstructorBindingImpl.java:300)\n\tat ProviderToInternalFactoryAdapter.get(ProviderToInternalFactoryAdapter.java:40)\n\tat SingletonScope$1.get(SingletonScope.java:169)\n\tat InternalFactoryToProviderAdapter.get(InternalFactoryToProviderAdapter.java:45)\n\tat InternalInjectorCreator.loadEagerSingletons(InternalInjectorCreator.java:213)\n\tat InternalInjectorCreator.injectDynamically(InternalInjectorCreator.java:186)\n\tat InternalInjectorCreator.build(InternalInjectorCreator.java:113)\n\tat InjectorImpl.createChildInjector(InjectorImpl.java:240)\n\tat Daemon.createHttpdInjector(Daemon.java:682)\n\tat Daemon.initHttpd(Daemon.java:633)\n\tat Daemon.start(Daemon.java:402)\n\tat Daemon.run(Daemon.java:298)\n\tat AbstractProgram.main(AbstractProgram.java:62)\n\tat java.base/NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/Method.invoke(Method.java:568)\n\tat GerritLauncher.invokeProgram(GerritLauncher.java:252)\n\tat GerritLauncher.mainImpl(GerritLauncher.java:148)\n\tat GerritLauncher.main(GerritLauncher.java:93)\n\tat Main.main(Main.java:30)\nCaused by: ConfigurationException: Guice configuration errors:\n\n1) [Guice/MissingImplementation]: No implementation for Set\u003cString\u003e annotated with @AuthHeaders() was bound.\n\nRequested by:\n1  : SamlWebFilter.\u003cinit\u003e(SamlWebFilter.java:87)\n      \\_ for 4th parameter authHeaders\n     while locating SamlWebFilter\n\nLearn more:\n  https://github.com/google/guice/wiki/MISSING_IMPLEMENTATION\n  ```",
+      "revId": "aab5e9008feb1a6c18bb420fa5232650ccbac3b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
