@@ -16,10 +16,13 @@ package com.googlesource.gerrit.plugins.saml;
 
 import com.google.common.collect.Sets;
 import com.google.gerrit.server.config.AuthConfig;
+import com.google.gerrit.server.config.SitePath;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.ProvisionException;
 import com.google.inject.Singleton;
+import com.googlesource.gerrit.plugins.saml.pgm.LibModuleDataDirUtil;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 import org.pac4j.saml.client.SAML2Client;
@@ -51,5 +54,11 @@ public class Module extends AbstractModule {
     }
 
     return authHeaders;
+  }
+
+  @Provides
+  @LibModuleData
+  Path getLibModuleData(@SitePath Path sitePath) {
+    return LibModuleDataDirUtil.createPluginDataDir(sitePath);
   }
 }
