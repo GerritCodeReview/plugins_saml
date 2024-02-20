@@ -16,7 +16,6 @@ package com.googlesource.gerrit.plugins.saml;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterators;
-import com.google.common.collect.Sets;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
@@ -35,6 +34,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -69,7 +69,7 @@ class SamlWebFilter implements Filter {
   private final SAML2Client saml2Client;
   private final SamlConfig samlConfig;
   private final AuthConfig auth;
-  private final HashSet<String> authHeaders;
+  private final Set<String> authHeaders;
   private final SamlMembership samlMembership;
   private final GerritApi gApi;
   private final Accounts accounts;
@@ -80,6 +80,7 @@ class SamlWebFilter implements Filter {
       AuthConfig auth,
       SamlConfig samlConfig,
       SamlMembership samlMembership,
+      @AuthHeaders Set<String> authHeaders,
       GerritApi gApi,
       Accounts accounts,
       SAML2Client saml2Client,
@@ -89,21 +90,7 @@ class SamlWebFilter implements Filter {
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     this.saml2Client = saml2Client;
-
-    this.authHeaders =
-        Sets.newHashSet(
-            auth.getLoginHttpHeader().toUpperCase(),
-            auth.getHttpEmailHeader().toUpperCase(),
-            auth.getHttpExternalIdHeader().toUpperCase());
-    if (authHeaders.contains("") || authHeaders.contains(null)) {
-      throw new RuntimeException("All authentication headers must be set.");
-    }
-    if (authHeaders.size() != 3) {
-      throw new RuntimeException(
-          "Unique values for httpUserNameHeader, "
-              + "httpEmailHeader and httpExternalIdHeader are required.");
-    }
-
+    this.authHeaders = authHeaders;
     this.gApi = gApi;
     this.accounts = accounts;
     this.oneOffRequestContext = oneOffRequestContext;
