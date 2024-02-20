@@ -75,9 +75,12 @@ Gerrit core in `tools/bzl/plugins.bzl`, and execute:
 How to build the Gerrit Plugin API is described in the [Gerrit documentation](../../../Documentation/dev-bazel.html#_extension_and_plugin_api_jar_files).
 
 ### Configure Gerrit to use the SAML filter:
-In `$site_path/etc/gerrit.config` file, the `[httpd]` section should contain
+In `$site_path/etc/gerrit.config` file, the `[httpd]` and `[gerrit]` sections should
+contain:
 
 ```
+[gerrit]
+    installModule = com.googlesource.gerrit.plugins.saml.Module
 [httpd]
     filterClass = com.googlesource.gerrit.plugins.saml.SamlWebFilter
 ```

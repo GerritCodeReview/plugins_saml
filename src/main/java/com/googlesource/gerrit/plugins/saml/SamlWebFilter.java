@@ -17,15 +17,12 @@ package com.googlesource.gerrit.plugins.saml;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
-import com.google.gerrit.common.Nullable;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.Url;
 import com.google.gerrit.server.config.AuthConfig;
-import com.google.gerrit.server.config.CanonicalWebUrl;
-import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
@@ -80,19 +77,18 @@ class SamlWebFilter implements Filter {
 
   @Inject
   SamlWebFilter(
-      @CanonicalWebUrl @Nullable String canonicalUrl,
-      SitePaths sitePaths,
       AuthConfig auth,
       SamlConfig samlConfig,
       SamlMembership samlMembership,
       GerritApi gApi,
       Accounts accounts,
+      SAML2Client saml2Client,
       OneOffRequestContext oneOffRequestContext) {
     this.auth = auth;
     this.samlConfig = samlConfig;
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
-    this.saml2Client = new SamlClientProvider(canonicalUrl, sitePaths, samlConfig).get();
+    this.saml2Client = saml2Client;
 
     this.authHeaders =
         Sets.newHashSet(
