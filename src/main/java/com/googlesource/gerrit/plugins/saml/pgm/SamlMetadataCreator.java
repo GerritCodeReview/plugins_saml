@@ -14,6 +14,8 @@
 
 package com.googlesource.gerrit.plugins.saml.pgm;
 
+import static com.googlesource.gerrit.plugins.saml.pgm.PluginDataDirUtil.createPluginDataDir;
+
 import com.google.gerrit.server.config.SitePaths;
 import com.googlesource.gerrit.plugins.saml.SamlClientProvider;
 import com.googlesource.gerrit.plugins.saml.SamlConfig;
@@ -89,7 +91,8 @@ public class SamlMetadataCreator {
       Config cfg = parseGerritConfig();
       String canonicalWebUrl = cfg.getString("gerrit", null, "canonicalWebUrl");
       samlClientProvider =
-          new SamlClientProvider(canonicalWebUrl, sitePaths, new SamlConfig(cfg, sitePaths));
+          new SamlClientProvider(
+              canonicalWebUrl, new SamlConfig(cfg, sitePaths), createPluginDataDir(sitePath));
     } catch (ConfigInvalidException | IOException e) {
       throw new ConfigInvalidException("Unable to parse Gerrit's configuration.", e);
     }
