@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14601935_9bb0da5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2024-02-21T11:12:41Z",
+      "side": 1,
+      "message": "Gerrit start fails with:\n```\n[2024-02-21 11:11:55,354] [main] ERROR com.google.gerrit.pgm.Daemon : Unable to start daemon\ncom.google.inject.CreationException: Unable to create injector, see the following errors:\n\n1) [Guice/MissingImplementation]: No implementation for Path annotated with @PluginData() was bound.\n\nRequested by:\n1  : SamlClientProvider.\u003cinit\u003e(SamlClientProvider.java:45)\n      \\_ for 3rd parameter pluginDataDir\n     at Module.configure(Module.java:30)\n\nLearn more:\n  https://github.com/google/guice/wiki/MISSING_IMPLEMENTATION\n\n1 error\n\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nFull classname legend:\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nModule:             \"com.googlesource.gerrit.plugins.saml.Module\"\nPath:               \"java.nio.file.Path\"\nPluginData:         \"com.google.gerrit.extensions.annotations.PluginData\"\nSamlClientProvider: \"com.googlesource.gerrit.plugins.saml.SamlClientProvider\"\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nEnd of classname legend:\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\n        at com.google.inject.internal.Errors.throwCreationExceptionIfErrorsExist(Errors.java:589)\n        at com.google.inject.internal.InternalInjectorCreator.initializeStatically(InternalInjectorCreator.java:163)\n        at com.google.inject.internal.InternalInjectorCreator.build(InternalInjectorCreator.java:110)\n        at com.google.inject.internal.InjectorImpl.createChildInjector(InjectorImpl.java:240)\n        at com.google.gerrit.pgm.Daemon.createSysInjector(Daemon.java:574)\n        at com.google.gerrit.pgm.Daemon.start(Daemon.java:392)\n        at com.google.gerrit.pgm.Daemon.run(Daemon.java:300)\n        at com.google.gerrit.pgm.util.AbstractProgram.main(AbstractProgram.java:62)\n        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n        at java.base/java.lang.reflect.Method.invoke(Method.java:568)\n        at com.google.gerrit.launcher.GerritLauncher.invokeProgram(GerritLauncher.java:251)\n        at com.google.gerrit.launcher.GerritLauncher.mainImpl(GerritLauncher.java:147)\n        at com.google.gerrit.launcher.GerritLauncher.main(GerritLauncher.java:92)\n\n```",
+      "revId": "51b803d7e21d0e169d13e1246485bfe39d3a1148",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a0026f_ec68e02c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlClientProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2024-02-21T11:12:41Z",
+      "side": 1,
+      "message": "Actually, injection of the `@PluginData` is only available for plugins and cannot work for lib-modules. So this cannot work.",
+      "revId": "51b803d7e21d0e169d13e1246485bfe39d3a1148",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
