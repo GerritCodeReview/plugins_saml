@@ -34,6 +34,24 @@
       "parentUuid": "427af990_83361396",
       "revId": "aab5e9008feb1a6c18bb420fa5232650ccbac3b8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2994ad90_44b32b14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2024-02-21T13:29:08Z",
+      "side": 1,
+      "message": "I didn\u0027t. Used a config designed for the state before this change series. My bad.",
+      "parentUuid": "112459b4_079e88ef",
+      "revId": "aab5e9008feb1a6c18bb420fa5232650ccbac3b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
