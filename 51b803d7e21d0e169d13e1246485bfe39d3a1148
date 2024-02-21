@@ -33,6 +33,24 @@
       "message": "Actually, injection of the `@PluginData` is only available for plugins and cannot work for lib-modules. So this cannot work.",
       "revId": "51b803d7e21d0e169d13e1246485bfe39d3a1148",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c61a50e_fd7c9aea",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlClientProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2024-02-21T13:27:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44a0026f_ec68e02c",
+      "revId": "51b803d7e21d0e169d13e1246485bfe39d3a1148",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
