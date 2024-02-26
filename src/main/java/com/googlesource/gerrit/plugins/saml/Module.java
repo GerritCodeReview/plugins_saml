@@ -30,6 +30,7 @@ import org.pac4j.saml.client.SAML2Client;
 public class Module extends AbstractModule {
   @Override
   protected void configure() {
+    bind(SamlConfig.class);
     bind(SAML2Client.class).toProvider(SamlClientProvider.class);
   }
 
