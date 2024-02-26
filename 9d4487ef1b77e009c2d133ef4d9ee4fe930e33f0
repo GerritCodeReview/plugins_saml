@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfd00952_5f8db101",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/pgm/LibModuleDataDirUtil.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2024-02-26T09:12:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0588408d_2cb507b9",
+      "range": {
+        "startLine": 23,
+        "startChar": 21,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "9d4487ef1b77e009c2d133ef4d9ee4fe930e33f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc276ff0_29285552",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-26T09:05:49Z",
       "side": 1,
       "message": "libModuleDataDir",
+      "range": {
+        "startLine": 99,
+        "startChar": 11,
+        "endLine": 99,
+        "endChar": 24
+      },
+      "revId": "9d4487ef1b77e009c2d133ef4d9ee4fe930e33f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fc5ce50_b46202d5",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2024-02-26T09:12:53Z",
+      "side": 1,
+      "message": "This method is not needed any more because the @LibModuleDataDir binding is now provided from the `com.googlesource.gerrit.plugins.saml.Module`.",
+      "parentUuid": "cc276ff0_29285552",
       "range": {
         "startLine": 99,
         "startChar": 11,
