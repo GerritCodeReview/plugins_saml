@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a864e9_be7251f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-10T20:06:33Z",
+      "side": 1,
+      "message": "We typically add a warning/info on the commit message when there is an additional code that isn\u0027t directly related and included just for completeness.\n\nIn my experience, it is best to have that information in the commit message so that can be more easily discovered rather than dug into the diff.",
+      "parentUuid": "9fb20b45_b4590544",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e144be5d_c454162a",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-19T18:12:27Z",
       "side": 1,
       "message": "Is this still a TODO?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "867e7928_da74f55a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-10T20:06:33Z",
+      "side": 1,
+      "message": "No, there is an IT testing covering it.",
+      "parentUuid": "e144be5d_c454162a",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -124,6 +166,24 @@
       "writtenOn": "2023-12-19T15:26:39Z",
       "side": 1,
       "message": "nit: `throws Exception`",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe948aa1_346c606d",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-10T20:06:33Z",
+      "side": 1,
+      "message": "I\u0027ll apply a follow-up change to amend all the throws conditions. P.S. I\u0027ve just reformatted the code, the list of exceptions was there before.",
+      "parentUuid": "321bb9f2_6c3f1462",
       "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
