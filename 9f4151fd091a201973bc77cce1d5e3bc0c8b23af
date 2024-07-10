@@ -93,6 +93,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d23e22bf_84c75adc",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/HttpSerlvetBufferedStatusResponse.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-10T19:56:45Z",
+      "side": 1,
+      "message": "If `error \u003d 0` and `status \u003d 0` means there was no action to send back any HTTP status code or error code to the client. So, doing nothing in the `commit()` is accurate alreeady.",
+      "parentUuid": "c25d79dd_ab34ddc5",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "321bb9f2_6c3f1462",
