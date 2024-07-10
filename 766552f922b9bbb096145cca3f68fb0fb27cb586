@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "925d6c00_9c81ab63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2024-07-10T13:48:27Z",
+      "side": 1,
+      "message": "I have verified the behaviour using a local simplesamlphp installation.",
+      "revId": "766552f922b9bbb096145cca3f68fb0fb27cb586",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
