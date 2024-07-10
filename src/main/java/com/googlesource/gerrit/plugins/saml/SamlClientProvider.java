@@ -67,6 +67,8 @@ public class SamlClientProvider implements Provider<SAML2Client> {
       }
     }
 
+    samlClientConfig.setForceAuth(samlConfig.getForceAuthAttr());
+
     samlClientConfig.setUseNameQualifier(samlConfig.useNameQualifier());
     samlClientConfig.setMaximumAuthenticationLifetime(samlConfig.getMaxAuthLifetimeAttr());
 
