@@ -205,6 +205,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42efda40_7e3edf52",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-10T20:17:42Z",
+      "side": 1,
+      "message": "Done in the follow-up change.",
+      "parentUuid": "26a604e6_2128ba31",
+      "revId": "9f4151fd091a201973bc77cce1d5e3bc0c8b23af",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5ff0b57_f27f39e0",
