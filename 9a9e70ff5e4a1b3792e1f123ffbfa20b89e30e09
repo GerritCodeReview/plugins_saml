@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "038b4368_ee57ce83",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/HttpSerlvetBufferedStatusResponse.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-11T21:21:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fd8b6d6_234f394f",
+      "revId": "9a9e70ff5e4a1b3792e1f123ffbfa20b89e30e09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd430a1e_6dd0c91e",
