@@ -53,6 +53,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4376a1fd_09077e6d",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1006192
+      },
+      "writtenOn": "2024-07-11T21:22:51Z",
+      "side": 1,
+      "message": "For security reasons, you typically do not give the reason why. What we want is the Gerrit admin to know, but not leaking any information about a security status code is paramount.",
+      "parentUuid": "fd430a1e_6dd0c91e",
+      "revId": "9a9e70ff5e4a1b3792e1f123ffbfa20b89e30e09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93734433_413c374b",
