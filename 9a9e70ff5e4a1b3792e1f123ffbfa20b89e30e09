@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd8b6d6_234f394f",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/HttpSerlvetBufferedStatusResponse.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-07-11T06:21:31Z",
+      "side": 1,
+      "message": "nit: AFAIU wrapper is used in the same package therefore class, constructor and `commit` method could be package protected",
+      "revId": "9a9e70ff5e4a1b3792e1f123ffbfa20b89e30e09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd430a1e_6dd0c91e",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-07-11T06:21:31Z",
+      "side": 1,
+      "message": "nit: how about sending `SC_FORBIDDEN` together with the reason why here?",
+      "revId": "9a9e70ff5e4a1b3792e1f123ffbfa20b89e30e09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93734433_413c374b",
+        "filename": "src/test/java/com/googlesource/gerrit/plugins/saml/SamlWebFilterIT.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-07-11T06:21:31Z",
+      "side": 1,
+      "message": "nit: not related change?",
+      "revId": "9a9e70ff5e4a1b3792e1f123ffbfa20b89e30e09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
