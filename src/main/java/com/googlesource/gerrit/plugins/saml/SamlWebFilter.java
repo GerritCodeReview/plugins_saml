@@ -24,14 +24,17 @@ import com.google.gerrit.common.Nullable;
 import com.google.gerrit.entities.Account;
 import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
+import com.google.gerrit.extensions.client.AccountFieldName;
 import com.google.gerrit.extensions.restapi.RestApiException;
 import com.google.gerrit.extensions.restapi.Url;
+import com.google.gerrit.server.account.Realm;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.CanonicalWebUrl;
 import com.google.gerrit.server.config.SitePaths;
 import com.google.gerrit.server.util.ManualRequestContext;
 import com.google.gerrit.server.util.OneOffRequestContext;
 import com.google.inject.Inject;
+import com.google.inject.ProvisionException;
 import com.google.inject.Singleton;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -83,10 +86,12 @@ class SamlWebFilter implements Filter {
   private final GerritApi gApi;
   private final Accounts accounts;
   private final OneOffRequestContext oneOffRequestContext;
+  private final boolean realmAllowsFullNameEditing;
 
   @Inject
   SamlWebFilter(
       AuthConfig auth,
+      Realm realm,
       @CanonicalWebUrl @Nullable String canonicalUrl,
       SitePaths sitePaths,
       SamlConfig samlConfig,
@@ -96,7 +101,13 @@ class SamlWebFilter implements Filter {
       OneOffRequestContext oneOffRequestContext)
       throws IOException {
     this.auth = auth;
+    if (auth.getHttpDisplaynameHeader() != null) {
+      throw new ProvisionException(
+          "auth.httpdisplaynameheader is not compatible with SAML: remove the config and restart");
+    }
+
     this.samlConfig = samlConfig;
+    this.realmAllowsFullNameEditing = realm.allowsEdit(AccountFieldName.FULL_NAME);
     this.samlMembership = samlMembership;
     log.debug("Max Authentication Lifetime: " + samlConfig.getMaxAuthLifetimeAttr());
     SAML2Configuration samlClientConfig =
@@ -176,13 +187,22 @@ class SamlWebFilter implements Filter {
           redirectToIdentityProvider(context);
         } else {
           HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
-          chain.doFilter(req, response);
-          try (ManualRequestContext ignored =
-              oneOffRequestContext.openAs(
-                  Account.id(accounts.id(user.getUsername()).get()._accountId))) {
-            gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
-          } catch (RestApiException e) {
-            log.error("Saml plugin could not set account name", e);
+
+          if (realmAllowsFullNameEditing) {
+            HttpServletBufferedStatusResponse respWrapper =
+                new HttpServletBufferedStatusResponse(httpResponse);
+            chain.doFilter(req, respWrapper);
+            try (ManualRequestContext ignored =
+                oneOffRequestContext.openAs(
+                    Account.id(accounts.id(user.getUsername()).get()._accountId))) {
+              gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
+              respWrapper.commit();
+            } catch (RestApiException e) {
+              log.error("Saml plugin could not set account name", e);
+              httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+            }
+          } else {
+            chain.doFilter(req, httpResponse);
           }
         }
       } else if (isGerritLogout(httpRequest)) {
