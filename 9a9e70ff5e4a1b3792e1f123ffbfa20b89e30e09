@@ -71,6 +71,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "648cca26_f28804d6",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2024-07-12T06:06:48Z",
+      "side": 1,
+      "message": "👍",
+      "parentUuid": "4376a1fd_09077e6d",
+      "revId": "9a9e70ff5e4a1b3792e1f123ffbfa20b89e30e09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93734433_413c374b",
