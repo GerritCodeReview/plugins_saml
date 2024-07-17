@@ -145,6 +145,11 @@ flag above.)
 
 Default is `86400`
 
+**saml.forceAuth**: (Optional) Whether to force authentication with the IdP, when
+the session in Gerrit expires.
+
+Default is `false`
+
 **saml.displayNameAttr**: Gerrit will look for an attribute with this name in
 the assertion to find a display name for the user. If the attribute is not
 found, the NameId from the SAML assertion is used instead.

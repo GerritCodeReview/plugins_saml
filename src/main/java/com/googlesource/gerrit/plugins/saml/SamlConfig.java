@@ -38,6 +38,7 @@ public class SamlConfig {
   private final String firstNameAttr;
   private final String lastNameAttr;
   private final int maxAuthLifetimeDefault = 24 * 60 * 60; // 24h;
+  private final boolean forceAuth;
   private final boolean useNameQualifier;
   private final String memberOfAttr;
 
@@ -54,6 +55,7 @@ public class SamlConfig {
     userNameAttr = getStringWithDefault(cfg, "userNameAttr", "UserName");
     emailAddressAttr = getStringWithDefault(cfg, "emailAddressAttr", "EmailAddress");
     maxAuthLifetimeAttr = cfg.getInt("saml", "maxAuthLifetime", maxAuthLifetimeDefault);
+    forceAuth = cfg.getBoolean(SAML_SECTION, "forceAuth", false);
     computedDisplayName = cfg.getBoolean(SAML_SECTION, "computedDisplayName", false);
     firstNameAttr = getStringWithDefault(cfg, "firstNameAttr", "FirstName");
     lastNameAttr = getStringWithDefault(cfg, "lastNameAttr", "LastName");
@@ -91,6 +93,10 @@ public class SamlConfig {
 
   public int getMaxAuthLifetimeAttr() {
     return maxAuthLifetimeAttr;
+  }
+
+  public boolean getForceAuthAttr() {
+    return forceAuth;
   }
 
   private static String getString(Config cfg, String name) {
