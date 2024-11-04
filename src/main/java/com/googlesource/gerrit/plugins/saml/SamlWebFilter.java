@@ -282,7 +282,7 @@ class SamlWebFilter implements Filter {
           "Email address attribute not found, NameId {} does not look like an email.", nameId);
       return null;
     }
-    return emailAddress;
+    return nameId;
   }
 
   private String getUserName(SAML2Profile user) {
