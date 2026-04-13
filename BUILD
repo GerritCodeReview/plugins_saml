@@ -1,35 +1,13 @@
-load("//tools/bzl:plugin.bzl", "PLUGIN_DEPS", "PLUGIN_TEST_DEPS", "gerrit_plugin")
-load("//tools/bzl:junit.bzl", "junit_tests")
+load(
+    "@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl",
+    "gerrit_plugin",
+    "gerrit_plugin_dependency_tests",
+    "gerrit_plugin_tests",
+)
 
 SAML_DEPS = [
-    "@commons-collections//jar",
-    "@commons-lang//jar",
-    "@cryptacular//jar",
-    "@joda-time//jar",
-    "@opensaml-core//jar",
-    "@opensaml-messaging-api//jar",
-    "@opensaml-messaging-impl//jar",
-    "@opensaml-profile-api//jar",
-    "@opensaml-profile-impl//jar",
-    "@opensaml-saml-api//jar",
-    "@opensaml-saml-impl//jar",
-    "@opensaml-security-api//jar",
-    "@opensaml-security-impl//jar",
-    "@opensaml-soap-api//jar",
-    "@opensaml-soap-impl//jar",
-    "@opensaml-storage-api//jar",
-    "@opensaml-storage-impl//jar",
-    "@opensaml-xmlsec-api//jar",
-    "@opensaml-xmlsec-impl//jar",
-    "@pac4j-core//jar",
-    "@pac4j-saml//jar",
-    "@santuario-xmlsec//jar",
-    "@shibboleth-utilities//jar",
-    "@shibboleth-xmlsectool//jar",
-    "@spring-core//jar",
-    "@stax2-api//jar",
-    "@velocity//jar",
-    "@woodstox-core//jar",
+    "@saml_plugin_deps//:org_pac4j_pac4j_core",
+    "@saml_plugin_deps//:org_pac4j_pac4j_saml",
 ]
 
 gerrit_plugin(
@@ -38,15 +16,14 @@ gerrit_plugin(
     manifest_entries = [
         "Gerrit-PluginName: saml",
     ],
-    resources = glob(["src/main/resources/**"]),
     deps = SAML_DEPS,
 )
 
-junit_tests(
+gerrit_plugin_tests(
     name = "saml_tests",
     srcs = glob(["src/test/java/**/*.java"]),
     tags = ["saml"],
-    deps = PLUGIN_TEST_DEPS + [
+    deps = [
         ":saml__plugin",
         "//javatests/com/google/gerrit/util/http/testutil",
     ],
@@ -58,7 +35,9 @@ java_binary(
         "src/main/java/com/googlesource/gerrit/plugins/saml/**/*.java",
     ]),
     main_class = "com.googlesource.gerrit.plugins.saml.pgm.SamlMetadataCreator",
-    deps = PLUGIN_DEPS + SAML_DEPS + [
-        "@commons-io//jar",
+    deps = SAML_DEPS + [
+        "//plugins:plugin-lib-neverlink",
     ],
 )
+
+gerrit_plugin_dependency_tests(plugin = "saml")

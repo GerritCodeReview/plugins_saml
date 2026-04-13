@@ -1,0 +1,116 @@
+module(name = "gerrit-saml")
+
+bazel_dep(name = "rules_java", version = "8.16.1")
+bazel_dep(name = "rules_jvm_external", version = "6.10")
+bazel_dep(name = "com_googlesource_gerrit_bazlets")
+git_override(
+    module_name = "com_googlesource_gerrit_bazlets",
+    commit = "fe7c19542f8dc0a5720be3a93dbbdd05551003ec",
+    remote = "https://gerrit.googlesource.com/bazlets",
+)
+
+GERRIT_API_VERS = "3.13.5"
+
+gerrit_api_version = use_repo_rule("@com_googlesource_gerrit_bazlets//:gerrit_api_version.bzl", "gerrit_api_version")
+
+gerrit_api_version(
+    name = "gerrit_api_version",
+    version = GERRIT_API_VERS,
+    visibility = ["//visibility:public"],
+)
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "external_plugin_deps",
+    artifacts = [
+        "com.google.gerrit:gerrit-plugin-api:" + GERRIT_API_VERS,
+        "com.google.gerrit:gerrit-acceptance-framework:" + GERRIT_API_VERS,
+    ],
+    # IMPORTANT:
+    # Do NOT set lock_file here.
+    #
+    # This repository is intentionally shared across plugins and contains
+    # only Gerrit-provided APIs (gerrit-plugin-api and acceptance framework)
+    # that are provided by Gerrit at runtime and must not be bundled into
+    # the plugin JAR.
+    #
+    # When built in-tree, rules_jvm_external merges maven.install() tags
+    # with the same name across all modules. Defining a lock_file for this
+    # shared repository in more than one plugin causes multiple lock files
+    # to be contributed for the same repository name, which is rejected by
+    # rules_jvm_external during module extension evaluation.
+    #
+    # Plugin runtime dependencies must instead be declared in a
+    # plugin-specific repository (e.g. oauth_plugin_deps) that owns
+    # its own lock file.
+)
+use_repo(maven, "external_plugin_deps")
+
+PAC4J_VERSION = "3.8.3"
+
+maven.install(
+    name = "saml_plugin_deps",
+    artifacts = [
+        "org.pac4j:pac4j-saml:" + PAC4J_VERSION,
+        "org.pac4j:pac4j-core:" + PAC4J_VERSION,
+    ],
+    excluded_artifacts = [
+        # Provided by Gerrit at runtime, and must not be bundled into the plugin JAR.
+        "com.google.code.findbugs:jsr305",
+        "com.google.guava:guava",
+        "com.google.j2objc:j2objc-annotations",
+        "commons-codec:commons-codec",
+        "commons-io:commons-io",
+        "io.dropwizard.metrics:metrics-core",
+        "org.apache.httpcomponents:httpclient",
+        "org.apache.httpcomponents:httpcore",
+        "org.slf4j:jcl-over-slf4j",
+        "org.slf4j:slf4j-api",
+        # Transitive dependencies not used by the plugin, which should not be
+        # bundled into the plugin JAR.
+        "antlr:antlr",
+        "com.beust:jcommander",
+        "com.sun.istack:istack-commons-runtime",
+        "com.sun.xml.fastinfoset:FastInfoset",
+        "dom4j:dom4j",
+        "jakarta.activation:jakarta.activation-api",
+        "jakarta.xml.bind:jakarta.xml.bind-api",
+        "javax.annotation:javax.annotation-api",
+        "javax.json:javax.json-api",
+        "net.spy:spymemcached",
+        "org.bouncycastle:bcprov-jdk15on",
+        "org.glassfish.jaxb:jaxb-runtime",
+        "org.glassfish.jaxb:txw2",
+        "org.glassfish:javax.json",
+        "org.hibernate.common:hibernate-commons-annotations",
+        "org.hibernate.javax.persistence:hibernate-jpa-2.1-api",
+        "org.hibernate:hibernate-core",
+        "org.hibernate:hibernate-entitymanager",
+        "org.javassist:javassist",
+        "org.jboss.logging:jboss-logging",
+        "org.jboss.logging:jboss-logging-annotations",
+        "org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec",
+        "org.jboss:jandex",
+        "org.jvnet.staxex:stax-ex",
+        "org.ldaptive:ldaptive",
+        "org.springframework:spring-beans",
+        "org.springframework:spring-jcl",
+        "org.springframework:spring-jdbc",
+        "org.springframework:spring-orm",
+        "org.springframework:spring-tx",
+        "xalan:serializer",
+        "xalan:xalan",
+        "xml-apis:xml-apis"
+    ],
+    duplicate_version_warning = "error",
+    fail_if_repin_required = True,
+    fail_on_missing_checksum = True,
+    fetch_sources = True,
+    lock_file = "//:saml_plugin_deps.lock.json",
+    repositories = [
+        "https://repo1.maven.org/maven2",
+        "https://build.shibboleth.net/nexus/content/repositories/releases/",
+    ],
+    version_conflict_policy = "pinned",
+)
+use_repo(maven, "saml_plugin_deps")
