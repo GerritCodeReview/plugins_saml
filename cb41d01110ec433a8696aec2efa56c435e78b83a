@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa444e13_a2df6cef",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-16T07:34:37Z",
+      "side": 1,
+      "message": "Should be simplified now.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "435303a7_040e2238",
+        "filename": "MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-16T07:34:37Z",
+      "side": 1,
+      "message": "We could add here two different exclude sections:\n\n* 1. transitive saml dependencies, that already included in `releaser.war`.\n* 2. transitive saml dependencies, that currently not used by this plugin.",
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e048e3_227a6040",
+        "filename": "saml_third_party_runtime_jars.allowlist.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-16T07:34:37Z",
+      "side": 1,
+      "message": "I understand why these transitive dependencies were added here, but I used a small migration check to compare the shaded runtime jars before and after the move to `rules_jvm_external`.\n\nI borrowed the allowlist-based check from the migration tooling and ran the tests to see what was actually shaded before the migration. Based on that comparison, the dependencies below do not appear to have been part of the previous shaded output.\n\nGiven that, I would prefer to exclude these additional dependencies for now. We can always add them back later if there is a demonstrated runtime need. \n\n```\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d Test output for //plugins/saml:check_saml_third_party_runtime_jars:\n--- /var/folders/cx/dy8y9cb54cq0nch6gb2k31nw0000gq/T/tmp.7MUG31Lf/allowlist.norm\t2026-04-16 07:21:48\n+++ /var/folders/cx/dy8y9cb54cq0nch6gb2k31nw0000gq/T/tmp.7MUG31Lf/generated.norm\t2026-04-16 07:21:48\n@@ -1,30 +1,8 @@\n-FastInfoset\n-antlr\n-bcprov-jdk15on\n commons-collections\n commons-lang\n cryptacular\n-dom4j\n-hibernate-commons-annotations\n-hibernate-core\n-hibernate-entitymanager\n-hibernate-jpa-2.1-api\n-istack-commons-runtime\n-jakarta.activation-api\n-jakarta.xml.bind-api\n-jandex\n java-support\n-javassist-3.18.1-GA\n-javax.annotation-api\n-javax.json\n-javax.json-api\n-jaxb-runtime\n-jboss-logging\n-jboss-logging-annotations\n-jboss-transaction-api_1.2_spec\n-jcommander\n joda-time\n-ldaptive\n opensaml-core\n opensaml-messaging-api\n opensaml-messaging-impl\n@@ -42,20 +20,9 @@\n opensaml-xmlsec-impl\n pac4j-core\n pac4j-saml\n-serializer\n-spring-beans\n spring-core\n-spring-jcl\n-spring-jdbc\n-spring-orm\n-spring-tx\n-spymemcached\n-stax-ex\n stax2-api\n-txw2\n velocity\n woodstox-core\n-xalan\n-xml-apis\n xmlsec\n xmlsectool\n```\n\nIt would also help to add a short comment explaining why we believe they are unnecessary, especially since production usage so far suggests they are not required.",
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d52f0f2_0b6e4e13",
+        "filename": "saml_third_party_runtime_jars.allowlist.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-16T07:34:37Z",
+      "side": 1,
+      "message": "This is suspicious. `bcprov-jdk15on` shouldn’t be shaded. As a JCA provider, it relies on stable package names and provider registration, and relocating it can break runtime behavior or conflict with other Bouncy Castle instances.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
