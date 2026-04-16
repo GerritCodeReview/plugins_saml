@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32ea729e_90ae1450",
+        "filename": "BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-16T12:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa444e13_a2df6cef",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "435303a7_040e2238",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-04-16T07:34:37Z",
       "side": 1,
       "message": "We could add here two different exclude sections:\n\n* 1. transitive saml dependencies, that already included in `releaser.war`.\n* 2. transitive saml dependencies, that currently not used by this plugin.",
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7a457d6_a01be94d",
+        "filename": "MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-16T12:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "435303a7_040e2238",
       "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -58,6 +100,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab22de40_be2eb8ff",
+        "filename": "saml_third_party_runtime_jars.allowlist.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-16T12:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e048e3_227a6040",
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d52f0f2_0b6e4e13",
@@ -71,6 +131,30 @@
       "writtenOn": "2026-04-16T07:34:37Z",
       "side": 1,
       "message": "This is suspicious. `bcprov-jdk15on` shouldn’t be shaded. As a JCA provider, it relies on stable package names and provider registration, and relocating it can break runtime behavior or conflict with other Bouncy Castle instances.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "cb41d01110ec433a8696aec2efa56c435e78b83a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "561325e2_44356988",
+        "filename": "saml_third_party_runtime_jars.allowlist.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-16T12:02:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d52f0f2_0b6e4e13",
       "range": {
         "startLine": 3,
         "startChar": 0,
