@@ -4,6 +4,7 @@ load(
     "gerrit_plugin_dependency_tests",
     "gerrit_plugin_tests",
 )
+load("@rules_java//java:defs.bzl", "java_binary")
 
 SAML_DEPS = [
     "@saml_plugin_deps//:org_pac4j_pac4j_core",
@@ -31,12 +32,10 @@ gerrit_plugin_tests(
 
 java_binary(
     name = "SamlMetadataCreator",
-    srcs = glob([
-        "src/main/java/com/googlesource/gerrit/plugins/saml/**/*.java",
-    ]),
     main_class = "com.googlesource.gerrit.plugins.saml.pgm.SamlMetadataCreator",
-    deps = SAML_DEPS + [
-        "//plugins:plugin-lib-neverlink",
+    runtime_deps = SAML_DEPS + [
+        ":saml__plugin",
+        "//plugins:plugin-lib",
     ],
 )
 
