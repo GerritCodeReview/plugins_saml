@@ -4,6 +4,7 @@ load(
     "gerrit_plugin_dependency_tests",
     "gerrit_plugin_tests",
 )
+load("@rules_java//java:defs.bzl", "java_binary")
 
 SAML_DEPS = [
     "@saml_plugin_deps//:org_pac4j_pac4j_core",
