@@ -31,12 +31,12 @@ gerrit_plugin_tests(
 
 java_binary(
     name = "SamlMetadataCreator",
-    srcs = glob([
-        "src/main/java/com/googlesource/gerrit/plugins/saml/**/*.java",
-    ]),
     main_class = "com.googlesource.gerrit.plugins.saml.pgm.SamlMetadataCreator",
-    deps = SAML_DEPS + [
-        "//plugins:plugin-lib-neverlink",
+    runtime_deps = SAML_DEPS + [
+        ":saml__plugin",
+        "//java/com/google/gerrit/server",
+        "//lib:args4j",
+        "//lib:jgit",
     ],
 )
 
