@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde76286_e4dda7c6",
+        "filename": "BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-05-04T08:25:01Z",
+      "side": 1,
+      "message": "```suggestion\n    runtime_deps \u003d SAML_DEPS + [\n        \":saml__plugin\",\n        \"//java/com/google/gerrit/server\",\n        \"//lib:args4j\",\n        \"//lib:jgit\",\n        \"//lib/bouncycastle:bcprov\",\n        \"//lib/dropwizard:dropwizard-core\",\n    ],\n```\n\nThanks for preparing a fix. There are still 2 dependencies missing",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "a93beb04afd24afad5acf9e7d00fb3dc2e4ce32c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
