@@ -22,6 +22,30 @@
       },
       "revId": "a93beb04afd24afad5acf9e7d00fb3dc2e4ce32c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c33fcb8_aaa54d51",
+        "filename": "BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-07T15:25:55Z",
+      "side": 1,
+      "message": "I’m concerned about shading Bouncy Castle. BC provider JARs are signed, and shading/repackaging typically invalidates or strips those signatures.\n\nSince this is a security provider, that could lead to runtime issues or weaken trust guarantees.\n\nI’d prefer keeping it as a normal runtime dependency rather than embedding it into the shaded standalone JAR.\n\nDo we know how this worked before the migration to Bazel modules? Previously we used PLUGIN_API, which didn’t include Bouncy Castle—so I assume it was either provided by Gerrit itself or not required at runtime in this way.\n\nAs an alternative, could we move this from a standalone utility into a plugin init step? That would allow running it before Gerrit starts and avoid the need for a separate shaded binary. Bouncy Castle is already included in gerrit.war, so we might be able to rely on that instead.\n\nFor example, similar to how the OAuth plugin defines:\n```python\n\"Gerrit-InitStep: com.googlesource.gerrit.plugins.oauth.InitOAuth\",\n```\n\nIf that approach doesn’t work, a simpler fallback might be to provide a small wrapper script instead of shading BC into the binary.",
+      "parentUuid": "bde76286_e4dda7c6",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "a93beb04afd24afad5acf9e7d00fb3dc2e4ce32c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
