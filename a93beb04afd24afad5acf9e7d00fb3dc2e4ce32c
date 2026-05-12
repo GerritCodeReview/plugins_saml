@@ -46,6 +46,30 @@
       },
       "revId": "a93beb04afd24afad5acf9e7d00fb3dc2e4ce32c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72cd2b34_2b7d5269",
+        "filename": "BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-05-12T08:16:26Z",
+      "side": 1,
+      "message": "I have found that bouncycastle was added as runtime dep through the PLUGIN_API:\n\n```\nbazelisk query \"somepath(plugins/saml:SamlMetadataCreator, //lib/bouncycastle:bcpg)\"\n//plugins/saml:SamlMetadataCreator\n//plugins:plugin-lib\n//java/com/google/gerrit/server/restapi:restapi\n//java/com/google/gerrit/gpg:gpg\n//lib/bouncycastle:bcpg\n```\n\nBack when I added this tool I wanted to explicitly have a standalone tool, since we in Kubernetes have the need to add the xml file as a ConfigMap that we have to create up front. The reason for that is, that each Gerrit instance in the setup needs the same xml file. An InitStep can\u0027t provide that.\n\nBtw, bouncycastle is not even shaded. The way the tool is created right now, you have to run it using `bazelisk run`. That should probably be improved.",
+      "parentUuid": "2c33fcb8_aaa54d51",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "a93beb04afd24afad5acf9e7d00fb3dc2e4ce32c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
