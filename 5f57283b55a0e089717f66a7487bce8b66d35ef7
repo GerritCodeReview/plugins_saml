@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d573da8_22b5d1f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-29T14:06:07Z",
+      "side": 1,
+      "message": "@luca.milanesio@gmail.com I have addressed the comments. PTAL.",
+      "revId": "5f57283b55a0e089717f66a7487bce8b66d35ef7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
