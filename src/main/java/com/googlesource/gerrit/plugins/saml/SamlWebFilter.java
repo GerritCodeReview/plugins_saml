@@ -21,7 +21,6 @@ import com.google.gerrit.extensions.api.GerritApi;
 import com.google.gerrit.extensions.api.accounts.Accounts;
 import com.google.gerrit.extensions.client.AccountFieldName;
 import com.google.gerrit.extensions.restapi.RestApiException;
-import com.google.gerrit.extensions.restapi.Url;
 import com.google.gerrit.server.account.Realm;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.util.ManualRequestContext;
@@ -204,17 +203,23 @@ class SamlWebFilter implements Filter {
   }
 
   private void redirectToIdentityProvider(J2EContext context) throws HttpAction {
-    String redirectUri =
-        Url.decode(
-            context
-                .getRequest()
-                .getRequestURI()
-                .substring(context.getRequest().getContextPath().length()));
+    String redirectUri = getRedirectUri(context.getRequest());
     @SuppressWarnings("unchecked")
     SessionStore<J2EContext> store = context.getSessionStore();
     store.set(context, SAML2StateGenerator.SAML_RELAY_STATE_ATTRIBUTE, redirectUri);
     log.debug("Setting redirectUri: {}", redirectUri);
     saml2Client.redirect(context);
+  }
+
+  /**
+   * Returns the request URI relative to the servlet context, left percent-encoded. Decoding it
+   * would turn an encoded deep-link login such as {@code /login/%2Fc%2F<change>} into {@code
+   * /login//c/<change>}, whose empty path segment Jetty 12 rejects ("Ambiguous URI empty segment")
+   * when the post-authentication callback redirects to it.
+   */
+  @VisibleForTesting
+  static String getRedirectUri(HttpServletRequest request) {
+    return request.getRequestURI().substring(request.getContextPath().length());
   }
 
   private static boolean isGerritLogin(HttpServletRequest request) {
