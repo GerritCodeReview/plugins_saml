@@ -26,8 +26,9 @@ would need to be put in place.
   $ docker-compose -f keycloak-postgres.yml up
 ```
 
-2. Login to Keycloak using user=admin and password=Pa55w0rd credentials and import
-the Gerrit client [keycloak json file](keycloak-gerrit-client-export.json).
+2. Open your Keycloak Admin Console and sign in with the administrator
+credentials configured for that installation. Select the `master` realm
+and import the Gerrit client [keycloak JSON file](keycloak-gerrit-client-export.json).
 
 3. Create test user (e.g., fullname="John Doe", username "jdoe", email: "john@doe.org", password "secret", Temporary=OFF)
 
@@ -36,7 +37,6 @@ the Gerrit client [keycloak json file](keycloak-gerrit-client-export.json).
 ```
 [auth]
     type = HTTP
-    logoutUrl = http://localhost:8080/auth/realms/master/protocol/openid-connect/logout
     httpHeader = X-SAML-UserName
     httpEmailHeader = X-SAML-EmailHeader
     httpExternalIdHeader = X-SAML-ExternalId
@@ -82,3 +82,32 @@ in gerrit with the right user name and email address.
 
 12. Congrats, you have Gerrit / Keycloak SAML integration up and running.
 
+## Single Logout
+
+To end both the Gerrit login and Keycloak SSO session, add this to
+`$GERRIT_SITE/etc/gerrit.config` and restart Gerrit:
+
+```ini
+[saml]
+    logoutType = slo-post
+```
+
+In the Keycloak Admin Console, select the realm used by `saml.metadataPath`
+and open **Clients → SAML2Client** (or the configured SP entity ID):
+
+1. Under **Settings → Logout settings**, enable **Front channel logout**.
+2. Under **Advanced → Fine Grain SAML Endpoint Configuration**, set
+   **Logout Service POST Binding URL** and **Logout Service Redirect Binding
+   URL** to the corresponding `SingleLogoutService` locations in
+   `$GERRIT_SITE/data/saml/sp-metadata.xml`, including any query parameters.
+3. Under **Settings → SAML capabilities**, set **Force POST binding** according
+   to the selected logout type, then save:
+
+   | Gerrit `saml.logoutType` | Keycloak **Force POST binding** |
+   |---|---|
+   | `slo-post` | On |
+   | `slo-redirect` | Off |
+
+Logout requests are signed by default. If **Client Signature Required** is
+on, Keycloak's client certificate must match Gerrit's SAML keystore.
+See [Enable Single Logout](../README.md#enable-single-logout) for other options.

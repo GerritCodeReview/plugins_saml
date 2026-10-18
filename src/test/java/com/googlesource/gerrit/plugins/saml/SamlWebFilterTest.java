@@ -15,8 +15,12 @@
 package com.googlesource.gerrit.plugins.saml;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -29,10 +33,14 @@ import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
 import java.util.Optional;
 import java.util.Set;
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InOrder;
 import org.pac4j.core.context.CallContext;
 import org.pac4j.core.credentials.Credentials;
 import org.pac4j.core.exception.http.FoundAction;
@@ -46,11 +54,20 @@ public class SamlWebFilterTest {
   private final HttpSession session = mock(HttpSession.class);
   private final FakeHttpServletResponse response = new FakeHttpServletResponse();
   private final FilterChain chain = mock(FilterChain.class);
+  private final SamlConfig config = mock(SamlConfig.class);
   private SamlWebFilter filter;
 
   @Before
-  public void setUp() {
-    SamlConfig config = mock(SamlConfig.class);
+  public void setUp() throws Exception {
+    doAnswer(
+            call -> {
+              ((HttpServletResponse) call.getArgument(1))
+                  .sendRedirect("https://gerrit.example.com/");
+              return null;
+            })
+        .when(chain)
+        .doFilter(any(), any());
+    when(config.getLogoutType()).thenReturn(SamlConfig.LogoutType.REDIRECT);
     when(config.getUserNameAttr()).thenReturn("UserName");
     when(config.getDisplayNameAttr()).thenReturn("DisplayName");
     when(config.getEmailAddressAttr()).thenReturn("EmailAddress");
@@ -122,6 +139,7 @@ public class SamlWebFilterTest {
   public void validatesCredentialsBeforeCreatingAuthenticatedSession() throws Exception {
     Credentials extracted = mock(Credentials.class);
     Credentials validated = mock(Credentials.class);
+    when(validated.isForAuthentication()).thenReturn(true);
     SAML2Profile profile = new SAML2Profile();
     profile.setId("persistent-subject");
     profile.addAttribute("UserName", "alice");
@@ -137,6 +155,7 @@ public class SamlWebFilterTest {
     assertThat(user.getValue().getDisplayName()).isEqualTo("Alice");
     assertThat(user.getValue().getEmail()).isEqualTo("alice@example.com");
     assertThat(user.getValue().getExternalId()).isEqualTo("saml/persistent-subject");
+    assertThat(user.getValue().getProfile()).isSameInstanceAs(profile);
     assertThat(response.getStatus()).isEqualTo(302);
   }
 
@@ -148,6 +167,182 @@ public class SamlWebFilterTest {
     filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
     verify(client, never()).getUserProfile(any(CallContext.class), any());
     verify(session, never()).setAttribute(eq(SamlWebFilter.SESSION_ATTR_USER), any());
+  }
+
+  private SAML2Profile enableSlo(SamlConfig.LogoutType type) {
+    when(config.getLogoutType()).thenReturn(type);
+    SAML2Profile profile = new SAML2Profile();
+    profile.setId("subject");
+    when(session.getAttribute(SamlWebFilter.SESSION_ATTR_USER))
+        .thenReturn(
+            new AuthenticatedUser("alice", "Alice", "alice@example.com", "saml/subject", profile));
+    return profile;
+  }
+
+  @Test
+  public void ordinaryLogoutUsesGerritServlet() throws Exception {
+    filter.doFilter(request("/logout", "GET"), response, chain);
+    verify(session).removeAttribute(SamlWebFilter.SESSION_ATTR_USER);
+    verify(chain).doFilter(any(), any());
+    verify(client, never()).getLogoutAction(any(), any(), any());
+  }
+
+  @Test
+  public void sessionWithoutProfileFallsBackToOrdinaryLogout() throws Exception {
+    when(config.getLogoutType()).thenReturn(SamlConfig.LogoutType.SLO_POST);
+    when(session.getAttribute(SamlWebFilter.SESSION_ATTR_USER))
+        .thenReturn(new AuthenticatedUser("alice", "Alice", "alice@example.com", "saml/subject"));
+    filter.doFilter(request("/logout", "GET"), response, chain);
+    verify(chain).doFilter(any(), any());
+    verify(client, never()).getLogoutAction(any(), any(), any());
+  }
+
+  @Test
+  public void sloPostDelegatesLocalLogoutBeforeRenderingForm() throws Exception {
+    SAML2Profile profile = enableSlo(SamlConfig.LogoutType.SLO_POST);
+    String form = "<form method='post'>LogoutRequest</form>";
+    when(client.getLogoutAction(any(), eq(profile), isNull()))
+        .thenReturn(Optional.of(new OkAction(form)));
+    filter.doFilter(request("/logout", "GET"), response, chain);
+    InOrder order = inOrder(chain, client);
+    order.verify(chain).doFilter(any(), any());
+    order.verify(client).getLogoutAction(any(), eq(profile), isNull());
+    response.getWriter().flush();
+    assertThat(response.getStatus()).isEqualTo(200);
+    assertThat(response.getActualBodyString()).isEqualTo(form);
+    assertThat(response.getHeader("Location")).isNull();
+    verify(session, never()).invalidate();
+  }
+
+  @Test
+  public void sloRedirectDelegatesLocalLogoutAndRedirectsToIdp() throws Exception {
+    SAML2Profile profile = enableSlo(SamlConfig.LogoutType.SLO_REDIRECT);
+    when(client.getLogoutAction(any(), eq(profile), isNull()))
+        .thenReturn(Optional.of(new FoundAction("https://idp.example.com/logout")));
+    filter.doFilter(request("/logout", "GET"), response, chain);
+    verify(chain).doFilter(any(), any());
+    assertThat(response.getStatus()).isEqualTo(302);
+    assertThat(response.getHeader("Location")).isEqualTo("https://idp.example.com/logout");
+  }
+
+  @Test
+  public void failedSloStillDelegatesLocalLogout() throws Exception {
+    SAML2Profile profile = enableSlo(SamlConfig.LogoutType.SLO_POST);
+    when(client.getLogoutAction(any(), eq(profile), isNull())).thenReturn(Optional.empty());
+    filter.doFilter(request("/logout", "GET"), response, chain);
+    verify(chain).doFilter(any(), any());
+    assertThat(response.getStatus()).isEqualTo(502);
+  }
+
+  @Test
+  public void sloDoesNotRenderActionAfterLocalLogoutCommitsResponse() throws Exception {
+    enableSlo(SamlConfig.LogoutType.SLO_POST);
+    commitLocalLogoutResponse();
+    ServletException error =
+        assertThrows(
+            ServletException.class,
+            () -> filter.doFilter(request("/logout", "GET"), response, chain));
+    assertThat(error).hasMessageThat().contains("local logout committed the response");
+    assertThat(response.getStatus()).isEqualTo(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+    verify(client, never()).getLogoutAction(any(), any(), any());
+  }
+
+  @Test
+  public void logoutCallbackDoesNotRenderActionAfterLocalLogoutCommitsResponse() throws Exception {
+    prepareLogoutCallback();
+    commitLocalLogoutResponse();
+    assertThrows(
+        ServletException.class,
+        () -> filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain));
+    assertThat(response.getStatus()).isEqualTo(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+    verify(client, never()).processLogout(any(), any());
+  }
+
+  private void commitLocalLogoutResponse() throws Exception {
+    doAnswer(
+            call -> {
+              ((HttpServletResponse) call.getArgument(1))
+                  .sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+              return null;
+            })
+        .when(chain)
+        .doFilter(any(), any());
+  }
+
+  private Credentials prepareLogoutCallback() {
+    when(config.getLogoutType()).thenReturn(SamlConfig.LogoutType.SLO_POST);
+    SAML2Profile profile = new SAML2Profile();
+    profile.setId("subject");
+    when(session.getAttribute(SamlWebFilter.SESSION_ATTR_USER))
+        .thenReturn(
+            new AuthenticatedUser("alice", "Alice", "alice@example.com", "saml/subject", profile));
+    Credentials extracted = mock(Credentials.class);
+    Credentials validated = mock(Credentials.class);
+    when(client.getCredentials(any())).thenReturn(Optional.of(extracted));
+    when(client.validateCredentials(any(), eq(extracted))).thenReturn(Optional.of(validated));
+    return validated;
+  }
+
+  @Test
+  public void redirectLogoutCallbackIsValidatedAndProcessed() throws Exception {
+    Credentials validated = prepareLogoutCallback();
+    when(client.processLogout(any(), eq(validated)))
+        .thenReturn(new FoundAction("https://gerrit.example.com/"));
+    filter.doFilter(request("/plugins/saml/callback", "GET"), response, chain);
+    ArgumentCaptor<HttpServletRequest> logoutRequest =
+        ArgumentCaptor.forClass(HttpServletRequest.class);
+    verify(chain).doFilter(logoutRequest.capture(), any());
+    assertThat(logoutRequest.getValue().getRequestURI()).isEqualTo("/logout");
+    assertThat(logoutRequest.getValue().getMethod()).isEqualTo("GET");
+    verify(client, never()).getUserProfile(any(), any());
+    assertThat(response.getStatus()).isEqualTo(302);
+    assertThat(response.getHeader("Location")).isEqualTo("https://gerrit.example.com/");
+  }
+
+  @Test
+  public void postLogoutCallbackPreservesIdpResponseForm() throws Exception {
+    Credentials validated = prepareLogoutCallback();
+    String form = "<form>LogoutResponse</form>";
+    when(client.processLogout(any(), eq(validated))).thenReturn(new OkAction(form));
+    filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
+    verify(chain).doFilter(any(), any());
+    response.getWriter().flush();
+    assertThat(response.getActualBodyString()).isEqualTo(form);
+    assertThat(response.getHeader("Location")).isNull();
+  }
+
+  @Test
+  public void invalidLogoutCredentialsDoNotDelegateLocalLogout() throws Exception {
+    when(config.getLogoutType()).thenReturn(SamlConfig.LogoutType.SLO_POST);
+    Credentials extracted = mock(Credentials.class);
+    when(client.getCredentials(any())).thenReturn(Optional.of(extracted));
+    when(client.validateCredentials(any(), eq(extracted))).thenReturn(Optional.empty());
+    filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
+    verify(chain, never()).doFilter(any(), any());
+    verify(client, never()).processLogout(any(), any());
+    assertThat(response.getStatus()).isEqualTo(403);
+  }
+
+  @Test
+  public void logoutCallbackIsRejectedWhenSloIsDisabled() throws Exception {
+    prepareLogoutCallback();
+    when(config.getLogoutType()).thenReturn(SamlConfig.LogoutType.REDIRECT);
+    filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
+    verify(chain, never()).doFilter(any(), any());
+    verify(client, never()).processLogout(any(), any());
+    assertThat(response.getStatus()).isEqualTo(403);
+  }
+
+  @Test
+  public void logoutCallbackWithoutActiveSessionSkipsLocalLogout() throws Exception {
+    Credentials validated = prepareLogoutCallback();
+    when(session.getAttribute(SamlWebFilter.SESSION_ATTR_USER)).thenReturn(null);
+    when(client.processLogout(any(), eq(validated))).thenReturn(new OkAction("ok"));
+    filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
+    // No authenticated session, so the synthetic Gerrit logout must not run.
+    verify(chain, never()).doFilter(any(), any());
+    // The SAML message is still answered. An IdP LogoutRequest needs its response.
+    verify(client).processLogout(any(), eq(validated));
   }
 
   @Test
