@@ -147,6 +147,9 @@ The header names are used internally between the SAML plugin and Gerrit to
 communicate the user's identity.  You can use other names (as long as it will
 not conflict with any other HTTP header Gerrit might expect).
 
+When using Single Logout (SLO), `auth.logoutUrl` is not required. See
+[Enable Single Logout](#enable-single-logout).
+
 ### Create a local keystore
 
 In `$gerrit_site/etc` create a local keystore:
@@ -260,6 +263,28 @@ Default is not set.
 
 Default is true.
 
+**saml.logoutType**: Set the desired logout behavior, can be one of:
+
+- `redirect` - perform a standard redirect based on the value from `auth.logoutUrl`
+
+- `slo-default` - perform SLO using pac4j's default binding (POST)
+
+- `slo-post` - perform a SLO using the POST method
+
+- `slo-redirect` - perform a SLO using a redirect
+
+Default is redirect.
+
+**saml.signSLORequest**: Determines if the SLO request is signed when `saml.logoutType`
+is set to one of the SLO values.
+
+Default is true.
+
+**saml.postLogoutURL**: The URL to redirect to once the SLO flow completes. Only used
+when `saml.logoutType` is set to one of the SLO values.
+
+Default is `gerrit.canonicalWebUrl`.
+
 ### Create SAML metadata offline
 
 The SAML metadata file (`$SITE/data/saml/sp-metadata.xml`) will be created on the
@@ -285,3 +310,35 @@ bazel-bin/plugins/saml/SamlMetaDataCreator \
 
 The resulting metadata will be printed to standard out and stored at
 `$SITE/data/saml/sp-metadata.xml`.
+
+### Enable Single Logout
+
+Single Logout (SLO) ends both the Gerrit login and the SAML identity
+provider's SSO session. By default, `saml.logoutType` is `redirect`, which
+performs Gerrit's ordinary logout and follows `auth.logoutUrl` when
+configured.
+
+To enable SLO, add this to `$site_path/etc/gerrit.config` and restart Gerrit:
+
+```ini
+[saml]
+    logoutType = slo-post
+```
+
+Use `slo-redirect` for the HTTP-Redirect binding instead. Logout requests
+are signed by default using `saml.keystorePath`. Configure the IdP's logout
+callback URLs from the `SingleLogoutService` entries in
+`$site_path/data/saml/sp-metadata.xml`, and its SP issuer from that file's
+`entityID`. See the [Keycloak setup and browser test](keycloak/README.md#single-logout)
+for a complete example.
+
+Sign in, sign out, then sign in again. The IdP should ask for credentials
+again when no other authentication method signs the user in automatically.
+The browser must be able to reach both the IdP and the callback URLs.
+
+Gerrit's authentication token is revoked before contacting the IdP, so a
+failed SLO attempt still ends the local login. Sessions created before SLO
+was enabled fall back to ordinary Gerrit logout until the next sign-in.
+Logout callbacks are validated before local cleanup or response processing.
+This filter supports browser logout; back-channel logout of other browser
+sessions is not implemented.
