@@ -5,27 +5,29 @@ load(
     "gerrit_plugin_tests",
 )
 load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_jvm_external//:defs.bzl", "artifact")
 
 SAML_DEPS = [
-    "@saml_plugin_deps//:org_pac4j_pac4j_core",
-    "@saml_plugin_deps//:org_pac4j_pac4j_saml",
+    "org.pac4j:pac4j-core",
+    "org.pac4j:pac4j-javaee",
+    "org.pac4j:pac4j-saml",
+    "org.springframework:spring-core",
 ]
 
 gerrit_plugin(
-    name = "saml",
     srcs = glob(["src/main/java/**/*.java"]),
+    ext_deps = SAML_DEPS,
     manifest_entries = [
         "Gerrit-PluginName: saml",
     ],
-    deps = SAML_DEPS,
+    plugin = "saml",
 )
 
 gerrit_plugin_tests(
-    name = "saml_tests",
     srcs = glob(["src/test/java/**/*.java"]),
-    tags = ["saml"],
+    ext_deps = SAML_DEPS,
+    plugin = "saml",
     deps = [
-        ":saml__plugin",
         "//javatests/com/google/gerrit/util/http/testutil",
     ],
 )
@@ -33,7 +35,10 @@ gerrit_plugin_tests(
 java_binary(
     name = "SamlMetadataCreator",
     main_class = "com.googlesource.gerrit.plugins.saml.pgm.SamlMetadataCreator",
-    runtime_deps = SAML_DEPS + [
+    runtime_deps = [artifact(
+        dep,
+        repository_name = "saml_plugin_deps",
+    ) for dep in SAML_DEPS] + [
         ":saml__plugin",
         "//java/com/google/gerrit/server",
         "//lib:args4j",
@@ -42,5 +47,3 @@ java_binary(
         "//lib/dropwizard:dropwizard-core",
     ],
 )
-
-gerrit_plugin_dependency_tests(plugin = "saml")

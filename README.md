@@ -85,6 +85,48 @@ contain:
     filterClass = com.googlesource.gerrit.plugins.saml.SamlWebFilter
 ```
 
+### Protect SAML credentials in logs
+
+Before deploying pac4j 6.5.9, set the logger
+`org.pac4j.saml.credentials.SAML2AuthenticationCredentials` to `WARN`.
+Its constructor logs the NameID, session index and SAML attributes at `INFO`,
+before the filter receives the credentials. This also happens without SLO.
+The plugin cannot redact that message after credential extraction.
+
+Add the following to your existing Gerrit logging configuration. Keep the
+other logger settings and appenders; these snippets are not complete
+logging configurations.
+
+Selecting an external configuration disables Gerrit's built-in error-log
+setup. The external file must define the console and file appenders you
+need; the bundled logger-only XML is not sufficient on its own.
+
+For Gerrit using reload4j/Log4j 1 properties:
+
+```properties
+log4j.logger.org.pac4j.saml.credentials.SAML2AuthenticationCredentials=WARN
+```
+
+If using an external properties file, select it with
+`container.javaOptions = -Dlog4j.configuration=file:///absolute/path/to/log4j.properties`
+in `gerrit.config`.
+
+For Gerrit using Log4j 2, add this inside the existing `<Loggers>` element:
+
+```xml
+<Logger name="org.pac4j.saml.credentials.SAML2AuthenticationCredentials" level="warn"/>
+```
+
+Select an external XML configuration with
+`container.javaOptions = -Dlog4j2.configurationFile=/absolute/path/to/log4j2.xml`.
+Restart Gerrit after changing its startup options. For a directly launched
+`java -jar` daemon, pass the corresponding `-D` option before `-jar`.
+
+After a login, verify that the error log no longer contains
+`Constructed SAML2 credentials:`. Keep this class-specific restriction even
+when enabling broader SAML debug logging. It suppresses this known INFO
+message; other debug or trace logging may still contain sensitive data.
+
 ### Configure HTTP authentication for Gerrit:
 
 Please make sure you are using Gerrit 2.11.5 or later.

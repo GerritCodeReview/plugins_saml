@@ -16,10 +16,16 @@
     "jakarta.xml.bind:jakarta.xml.bind-api": -1675921593,
     "javax.annotation:javax.annotation-api": 2130729383,
     "javax.json:javax.json-api": -1689713273,
+    "javax.servlet:javax.servlet-api": -908348125,
     "net.spy:spymemcached": -1229464946,
+    "org.apache.commons:commons-lang3": -2144251182,
+    "org.apache.commons:commons-text": -428254758,
     "org.apache.httpcomponents:httpclient": 1407535949,
     "org.apache.httpcomponents:httpcore": -1485416135,
+    "org.bouncycastle:bcpkix-jdk18on": 2082510257,
     "org.bouncycastle:bcprov-jdk15on": 1343277677,
+    "org.bouncycastle:bcprov-jdk18on": -2812240,
+    "org.bouncycastle:bcutil-jdk18on": -959681207,
     "org.glassfish.jaxb:jaxb-runtime": -934194879,
     "org.glassfish.jaxb:txw2": 1166785588,
     "org.glassfish:javax.json": -1306772566,
@@ -34,11 +40,13 @@
     "org.jboss:jandex": 381532071,
     "org.jvnet.staxex:stax-ex": 1653702714,
     "org.ldaptive:ldaptive": -1401312048,
-    "org.pac4j:pac4j-core": -1885834262,
-    "org.pac4j:pac4j-saml": 546994744,
+    "org.pac4j:pac4j-core": 370018608,
+    "org.pac4j:pac4j-javaee": -63796845,
+    "org.pac4j:pac4j-saml": -1492119682,
     "org.slf4j:jcl-over-slf4j": 952037207,
     "org.slf4j:slf4j-api": 2145585153,
     "org.springframework:spring-beans": 1730161258,
+    "org.springframework:spring-core": -398056982,
     "org.springframework:spring-jcl": 305529370,
     "org.springframework:spring-jdbc": -1672745176,
     "org.springframework:spring-orm": -2082237149,
@@ -49,380 +57,541 @@
     "xml-apis:xml-apis": -113825062
   },
   "__RESOLVED_ARTIFACTS_HASH": {
-    "com.fasterxml.woodstox:woodstox-core": 1559142143,
-    "com.fasterxml.woodstox:woodstox-core:jar:sources": 562322615,
-    "commons-collections:commons-collections": -1554676895,
-    "commons-collections:commons-collections:jar:sources": -940592224,
-    "commons-lang:commons-lang": 1068578062,
-    "commons-lang:commons-lang:jar:sources": -1880892831,
-    "joda-time:joda-time": 1802772986,
-    "joda-time:joda-time:jar:sources": -2055935237,
-    "net.shibboleth.tool:xmlsectool": 1283688185,
-    "net.shibboleth.tool:xmlsectool:jar:sources": 1685923833,
-    "net.shibboleth.utilities:java-support": -829122539,
-    "net.shibboleth.utilities:java-support:jar:sources": -1859970925,
-    "org.apache.santuario:xmlsec": 1600832347,
-    "org.apache.santuario:xmlsec:jar:sources": 16778711,
-    "org.apache.velocity:velocity": -338007855,
-    "org.apache.velocity:velocity:jar:sources": 423768923,
-    "org.codehaus.woodstox:stax2-api": 1683625127,
-    "org.codehaus.woodstox:stax2-api:jar:sources": -635980412,
-    "org.cryptacular:cryptacular": -1278569359,
-    "org.cryptacular:cryptacular:jar:sources": 532170463,
-    "org.opensaml:opensaml-core": 1448554566,
-    "org.opensaml:opensaml-core:jar:sources": -1372251147,
-    "org.opensaml:opensaml-messaging-api": 567233078,
-    "org.opensaml:opensaml-messaging-api:jar:sources": 1514783622,
-    "org.opensaml:opensaml-messaging-impl": -458533045,
-    "org.opensaml:opensaml-messaging-impl:jar:sources": -965946012,
-    "org.opensaml:opensaml-profile-api": -1273884513,
-    "org.opensaml:opensaml-profile-api:jar:sources": 12498399,
-    "org.opensaml:opensaml-profile-impl": 1217071109,
-    "org.opensaml:opensaml-profile-impl:jar:sources": 1258239839,
-    "org.opensaml:opensaml-saml-api": 952195453,
-    "org.opensaml:opensaml-saml-api:jar:sources": 467367240,
-    "org.opensaml:opensaml-saml-impl": 2051094081,
-    "org.opensaml:opensaml-saml-impl:jar:sources": 877274651,
-    "org.opensaml:opensaml-security-api": 1449104502,
-    "org.opensaml:opensaml-security-api:jar:sources": -1186479754,
-    "org.opensaml:opensaml-security-impl": -1616860860,
-    "org.opensaml:opensaml-security-impl:jar:sources": -421683774,
-    "org.opensaml:opensaml-soap-api": 1825222250,
-    "org.opensaml:opensaml-soap-api:jar:sources": 1367807556,
-    "org.opensaml:opensaml-soap-impl": -1989989837,
-    "org.opensaml:opensaml-soap-impl:jar:sources": 1365807144,
-    "org.opensaml:opensaml-storage-api": -1107019852,
-    "org.opensaml:opensaml-storage-api:jar:sources": -1255292524,
-    "org.opensaml:opensaml-storage-impl": 951553791,
-    "org.opensaml:opensaml-storage-impl:jar:sources": -1806560411,
-    "org.opensaml:opensaml-xmlsec-api": 1540948441,
-    "org.opensaml:opensaml-xmlsec-api:jar:sources": 366870672,
-    "org.opensaml:opensaml-xmlsec-impl": 1186580558,
-    "org.opensaml:opensaml-xmlsec-impl:jar:sources": 2136134416,
-    "org.pac4j:pac4j-core": -1843825366,
-    "org.pac4j:pac4j-core:jar:sources": -1023161084,
-    "org.pac4j:pac4j-saml": 570280143,
-    "org.pac4j:pac4j-saml:jar:sources": -1783477431,
-    "org.springframework:spring-core": -1934413677,
-    "org.springframework:spring-core:jar:sources": 1308686065
+    "com.fasterxml.jackson.core:jackson-annotations": -1012223496,
+    "com.fasterxml.jackson.core:jackson-annotations:jar:sources": -164405597,
+    "com.fasterxml.jackson.core:jackson-core": 789964708,
+    "com.fasterxml.jackson.core:jackson-core:jar:sources": -616277826,
+    "com.fasterxml.jackson.core:jackson-databind": 1075068690,
+    "com.fasterxml.jackson.core:jackson-databind:jar:sources": 779577142,
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": 1674025786,
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:sources": -1994626552,
+    "io.dropwizard.metrics:metrics-json": 1295327220,
+    "io.dropwizard.metrics:metrics-json:jar:sources": 521561687,
+    "net.shibboleth:shib-networking": -2075164924,
+    "net.shibboleth:shib-networking:jar:sources": -537605938,
+    "net.shibboleth:shib-security": -262513916,
+    "net.shibboleth:shib-security:jar:sources": 1842380389,
+    "net.shibboleth:shib-support": -1081706611,
+    "net.shibboleth:shib-support:jar:sources": -1513927962,
+    "net.shibboleth:shib-velocity": 1215903765,
+    "net.shibboleth:shib-velocity:jar:sources": -1784886551,
+    "org.apache.httpcomponents.client5:httpclient5": 800501743,
+    "org.apache.httpcomponents.client5:httpclient5-cache": -368899088,
+    "org.apache.httpcomponents.client5:httpclient5-cache:jar:sources": -1888978166,
+    "org.apache.httpcomponents.client5:httpclient5:jar:sources": 1992568014,
+    "org.apache.httpcomponents.core5:httpcore5": 332900645,
+    "org.apache.httpcomponents.core5:httpcore5-h2": -52989829,
+    "org.apache.httpcomponents.core5:httpcore5-h2:jar:sources": -988235276,
+    "org.apache.httpcomponents.core5:httpcore5:jar:sources": 760286222,
+    "org.apache.santuario:xmlsec": 639922367,
+    "org.apache.santuario:xmlsec:jar:sources": 1416289556,
+    "org.apache.velocity:velocity-engine-core": -1806357654,
+    "org.apache.velocity:velocity-engine-core:jar:sources": 1602477622,
+    "org.cryptacular:cryptacular": 1239587705,
+    "org.cryptacular:cryptacular:jar:sources": -2122503169,
+    "org.glassfish:jakarta.json": -475452808,
+    "org.glassfish:jakarta.json:jar:sources": -1199095535,
+    "org.opensaml:opensaml-core-api": -175650615,
+    "org.opensaml:opensaml-core-api:jar:sources": -1198783633,
+    "org.opensaml:opensaml-core-impl": 551542291,
+    "org.opensaml:opensaml-core-impl:jar:sources": -1477251049,
+    "org.opensaml:opensaml-messaging-api": 9864133,
+    "org.opensaml:opensaml-messaging-api:jar:sources": 410340122,
+    "org.opensaml:opensaml-messaging-impl": 1861708730,
+    "org.opensaml:opensaml-messaging-impl:jar:sources": -1385629921,
+    "org.opensaml:opensaml-profile-api": 1509447967,
+    "org.opensaml:opensaml-profile-api:jar:sources": -231042120,
+    "org.opensaml:opensaml-profile-impl": 356670148,
+    "org.opensaml:opensaml-profile-impl:jar:sources": -1951319021,
+    "org.opensaml:opensaml-saml-api": -1070258419,
+    "org.opensaml:opensaml-saml-api:jar:sources": -216031883,
+    "org.opensaml:opensaml-saml-impl": 152778957,
+    "org.opensaml:opensaml-saml-impl:jar:sources": 1862587643,
+    "org.opensaml:opensaml-security-api": -1864435520,
+    "org.opensaml:opensaml-security-api:jar:sources": 530113089,
+    "org.opensaml:opensaml-security-impl": 237506242,
+    "org.opensaml:opensaml-security-impl:jar:sources": -180034428,
+    "org.opensaml:opensaml-soap-api": -1023167944,
+    "org.opensaml:opensaml-soap-api:jar:sources": 1001999878,
+    "org.opensaml:opensaml-soap-impl": -529478200,
+    "org.opensaml:opensaml-soap-impl:jar:sources": 1837445766,
+    "org.opensaml:opensaml-storage-api": 707041312,
+    "org.opensaml:opensaml-storage-api:jar:sources": 140281274,
+    "org.opensaml:opensaml-storage-impl": -2048005868,
+    "org.opensaml:opensaml-storage-impl:jar:sources": -1775057832,
+    "org.opensaml:opensaml-xmlsec-api": -1276278267,
+    "org.opensaml:opensaml-xmlsec-api:jar:sources": -1754718471,
+    "org.opensaml:opensaml-xmlsec-impl": -998588851,
+    "org.opensaml:opensaml-xmlsec-impl:jar:sources": -1086138539,
+    "org.pac4j:pac4j-core": 1141069736,
+    "org.pac4j:pac4j-core:jar:sources": -21223306,
+    "org.pac4j:pac4j-javaee": 1975402300,
+    "org.pac4j:pac4j-javaee:jar:sources": -1358763818,
+    "org.pac4j:pac4j-saml": 1055445833,
+    "org.pac4j:pac4j-saml:jar:sources": -108708903,
+    "org.springframework:spring-core": 1865325991,
+    "org.springframework:spring-core:jar:sources": 1100676333
   },
   "artifacts": {
-    "com.fasterxml.woodstox:woodstox-core": {
+    "com.fasterxml.jackson.core:jackson-annotations": {
       "shasums": {
-        "jar": "a1c04b64fbfe20ae9f2c60a3bf1633fed6688ae31935b6bd4a457a1bbb2e82d4",
-        "sources": "d515c11b586b29da98c6359bbf0fd0eedfe5251b70626b28ca3f553e1c9061d9"
+        "jar": "21ddb598807d3a51a876704eb979d9296e1c6a6f47ab1826ff88c6d6a127a2d0",
+        "sources": "f5375c756ee3c585808f9937eb087d074743fd3f05f6aeff9b183cf19230c9f7"
       },
-      "version": "5.0.3"
+      "version": "2.22"
     },
-    "commons-collections:commons-collections": {
+    "com.fasterxml.jackson.core:jackson-core": {
       "shasums": {
-        "jar": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8",
-        "sources": "a5b5ee16a02edadf7fe637f250217c19878bc6134f15eb55635c48996f6fed1d"
+        "jar": "941ff029bcdb93e83d209ce516c1a7fb8bbac07d0a2fa122f5bf194b2cd7b4f4",
+        "sources": "f08c6bcea73ec33dcc18861a9c56e2ecb7c124619f5de46e1de89c02e4f65283"
       },
-      "version": "3.2.2"
+      "version": "2.22.1"
     },
-    "commons-lang:commons-lang": {
+    "com.fasterxml.jackson.core:jackson-databind": {
       "shasums": {
-        "jar": "2c73b940c91250bc98346926270f13a6a10bb6e29d2c9316a70d134e382c873e",
-        "sources": "8ceb33a5122d6540ebb90f114e9d52979cc364ab3ece2435a6df25c7b5b2e955"
+        "jar": "7dcd7e53bec1f56c7ad278bd1ca0840bebcc595d61ce44d6a8439abb75b965b2",
+        "sources": "4e7160e0e90a844ae12ac3c73b70ea3855d29425890d3c5aed40723bca5bce52"
       },
-      "version": "2.4"
+      "version": "2.22.1"
     },
-    "joda-time:joda-time": {
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": {
       "shasums": {
-        "jar": "b049a43c1057942e6acfbece008e4949b2e35d1658d0c8e06f4485397e2fa4e7",
-        "sources": "facba3aeb0c0d842d545bf7e732ea19869e2b18916adaa4eeda395c946c22991"
+        "jar": "85da45b7e5e565418963ff8f0dcb184365b0557c15468933f4318dde5c3ce845",
+        "sources": "a7ad98f51575c04073ce99f7eec64fbda91d853628a0abde0eaf4a014d74bebd"
       },
-      "version": "2.9.9"
+      "version": "2.22.1"
     },
-    "net.shibboleth.tool:xmlsectool": {
+    "io.dropwizard.metrics:metrics-json": {
       "shasums": {
-        "jar": "47f92f83257552bb65ea10150ed10b50ad1c1afb3461c94db62a9617f1a1eeba",
-        "sources": "5ec9e7894924eafd6fae90d9d4e4d84364dd204391ab9c873b07ab7890eecf22"
+        "jar": "8726b15affd61992a4ecd0ed1dc3936782781e7fa0fdc47be04d338f9341dd46",
+        "sources": "438fa95bdb4de679ea0205c47a75e4427a953bb6b58478ebfb8058418ef07ac2"
       },
-      "version": "2.0.0"
+      "version": "4.2.39"
     },
-    "net.shibboleth.utilities:java-support": {
+    "net.shibboleth:shib-networking": {
       "shasums": {
-        "jar": "bccd0aaa211c20d68ef1d46f6bfc680b3a97d8c6c4c4d216168d7c272efd9edb",
-        "sources": "8bfd5ca8be60e0e80f932cc9bc23285c95f4caee685edb7022b87036ac94d18a"
+        "jar": "cca1d53b5a5bfab21320ed68ee77c5e0f87af53753d69711a52af87cced94861",
+        "sources": "9ad26f46df28188983be8ea6bac21e1a3570817aaecaf8635b06725fba662bd2"
       },
-      "version": "7.5.0"
+      "version": "9.2.3"
+    },
+    "net.shibboleth:shib-security": {
+      "shasums": {
+        "jar": "46c53c48a6e1930f145add7f65ed51ab9273de9e3dc746b82e5d695d25bb0ba8",
+        "sources": "a054eadba38043a694bd23d767a4c3991905615674c2511ff9816ab9c4d08ed7"
+      },
+      "version": "9.2.3"
+    },
+    "net.shibboleth:shib-support": {
+      "shasums": {
+        "jar": "c68f5668d23aa30a2a5b672dd03b46882bb0ce1185cf02240c4c99eee9bd94b0",
+        "sources": "067954d50a2c642fed26dbaa0f702367d7d7e88a22c1e11f292f7b1ef1989982"
+      },
+      "version": "9.2.3"
+    },
+    "net.shibboleth:shib-velocity": {
+      "shasums": {
+        "jar": "42f0fc3c53eae0b7d241b6e7c5a4c782100c78fe67d3527c1df67ba513a830c8",
+        "sources": "467038ba9bce06d7972539e4d91ceced2b88f1ded247f0ce09df1be9f3756467"
+      },
+      "version": "9.2.3"
+    },
+    "org.apache.httpcomponents.client5:httpclient5": {
+      "shasums": {
+        "jar": "bdef5f8841145cd76c4c605ff301bc840eea0d5292332b7b892a93316c0d8ee1",
+        "sources": "6739ab6a3ef576236c784efd94767248b2aad5549d433ff3562f3df76fabeb83"
+      },
+      "version": "5.6.4"
+    },
+    "org.apache.httpcomponents.client5:httpclient5-cache": {
+      "shasums": {
+        "jar": "c425cb6db4863480982899092d1d283f84c0f32914a59bf2de479e69daa8fa11",
+        "sources": "a95fbe664713e15480f10e9ef4d02a2151ad532fda997d2c5ec244945f851d23"
+      },
+      "version": "5.6.4"
+    },
+    "org.apache.httpcomponents.core5:httpcore5": {
+      "shasums": {
+        "jar": "18bfbbabb478dfb67f31aeaf428c387f3c3df654582e1309f708ee1f3086830a",
+        "sources": "1039d1c7d5f09d48fdd684b8268abfd7206648e9939930cccfe88b6b0d36c741"
+      },
+      "version": "5.4.3"
+    },
+    "org.apache.httpcomponents.core5:httpcore5-h2": {
+      "shasums": {
+        "jar": "c7db7026b8e2dea39132b04a6069f6671e2858309b20a146ec5c7dd6ed73a0b6",
+        "sources": "ca7bc36ef8d56f17fb5455596d9dd38b80f8eb8931f8e4e167868356458625fa"
+      },
+      "version": "5.4.3"
     },
     "org.apache.santuario:xmlsec": {
       "shasums": {
-        "jar": "2e2ec8fe0cf873979f630ae4d35e7ede3390321279b7a15de9deed3f3430990c",
-        "sources": "817db7cf71d51bd358d9b516bff1d21b87452797c9a8678a26e5799b8b14408c"
+        "jar": "8b2f8483b662ba5462126074dadf4d4f33966d8e8244889c6a81d53789da5402",
+        "sources": "1af387187bdb559ec34b089957546a6d27e947e98503e95e870b39336b6b3504"
       },
-      "version": "2.1.4"
+      "version": "4.0.4"
     },
-    "org.apache.velocity:velocity": {
+    "org.apache.velocity:velocity-engine-core": {
       "shasums": {
-        "jar": "ec92dae810034f4b46dbb16ef4364a4013b0efb24a8c5dd67435cae46a290d8e",
-        "sources": "fb8079077f7ef9b4ee406b893d0e919f97fa468b3aa45782b341519f3ccbc2c2"
+        "jar": "1c19157d1171d560088e485be97c93a7a2f7e9f56e517f0a30273c5c39df6231",
+        "sources": "ea48b1899de5ba6a1b986e848a859b0dbe900befd944e0b49f3f14658e0becb5"
       },
-      "version": "1.7"
-    },
-    "org.codehaus.woodstox:stax2-api": {
-      "shasums": {
-        "jar": "86d7c0b775a7c9b454cc6ba61d40a8eb3b99cc129f832eb9b977a3755b4b338e",
-        "sources": "2c36141117b83f63b5dded35f490c7b501a472fe60c60ecf02ed9e9954ef28b9"
-      },
-      "version": "3.1.4"
+      "version": "2.4.1"
     },
     "org.cryptacular:cryptacular": {
       "shasums": {
-        "jar": "0053f8d816b272a4be84c50b42ca97fe4cf42886e535b9389c834f1afc09158f",
-        "sources": "eaa3b3ff66c676f3157d23bfba887e5ee4e0ce6914d60cdbc4b94fdc6e0b40e8"
+        "jar": "5bef5b396aba0607bd972365991f833f7d8f16af506f2ade1f589fe344105123",
+        "sources": "038ff711cd9b408d13b05efc08ef4aee2f1c53e978e348c0d1ae12722fec1d54"
       },
-      "version": "1.2.1"
+      "version": "1.3.0"
     },
-    "org.opensaml:opensaml-core": {
+    "org.glassfish:jakarta.json": {
       "shasums": {
-        "jar": "6364aa5bdef85d7ff010cdc1d1fd9e19e8b9d717500f2b39ea9b204df626ad94",
-        "sources": "6126c991f3fd85fe2c7d148cee983bdc5fbf40619e60741b6851abda0ee53ee4"
+        "jar": "52539b39498b86ca9910b0eacc608a8c78de8db3842caa84bc87169372202cc0",
+        "sources": "4a799d3961be710c9d18481d47bb4041f44f2bc73ab0672b65f45b9aaf8a653f"
       },
-      "version": "3.4.3"
+      "version": "2.0.1"
+    },
+    "org.opensaml:opensaml-core-api": {
+      "shasums": {
+        "jar": "40ed25f0892dfb833aa2b917bd2be1e10cb7c788efb3276b66b19338b80c29f6",
+        "sources": "b50fc2323fa76b49b7f248e7b2e04f8a752e6c55726cf64f6ebab158db0f5a1e"
+      },
+      "version": "5.2.3"
+    },
+    "org.opensaml:opensaml-core-impl": {
+      "shasums": {
+        "jar": "af8604462837a7931d4688ccca3404db325ef7abff7a70a36206a9c4dd7fe953",
+        "sources": "271e13aa012c55f19e03efdf7e5345d176d4101f4bbee70a7f3d519d1c1355f2"
+      },
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-messaging-api": {
       "shasums": {
-        "jar": "498786b70f96295b84e8afc7300ddcca60947957ab59c97ac6b31b9438727468",
-        "sources": "93871a1444259222b97f06dee19ff0b8c357393c6e44461707c717a5f366f359"
+        "jar": "53e9a343afcdefdfaad4987d63598a2284c1bf98b99761c8baea1a69c2f7ebcd",
+        "sources": "444dca78fb0c20909687a6522f7c188bb794a2f7dfef0281ca10a361e18c609a"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-messaging-impl": {
       "shasums": {
-        "jar": "d1c2b2131b77736aa7464c3ef87d174ecd6b4fee748e030facd42565fcff916c",
-        "sources": "010916adff774fdeaecabb223d0d592438f31dff50a25a1d900120214efe8021"
+        "jar": "005464650110ed60842f1c0ca02b0866875aab51d57c4618f26dc36632ff2e9d",
+        "sources": "a0b6ce483db387c32f545674d81d05309b9bb5818cd3b69d2219131115b93d09"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-profile-api": {
       "shasums": {
-        "jar": "174a4b550fb705b903ffd67cfce99317dca99919e6db7b992fb2d4fbcdc0163d",
-        "sources": "0fa786f804ddb0af225839b01e5251e566d6721b9691c4c312e13d39ad9ceed1"
+        "jar": "3c150e2db1dee689b776c604d601adcc060d0305c6eabffa17f213509f5587f8",
+        "sources": "4f1debba76c84d6daa306989219bbc56bc800aeb9b7f33db63d922204fd76290"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-profile-impl": {
       "shasums": {
-        "jar": "bb72430db4e207ae43a1a371aa5caae9030165786e5cdd48b39e323545e837c4",
-        "sources": "e6724a9d73c6a000484ba27a3739bafacab00d2e09574826a131f205f2c90692"
+        "jar": "ed65b8524022fd870b588fedb994a7c4b2f0e4fe63a5d62085ca7c419f6a751f",
+        "sources": "a42a9e162b4a719061cbda21444dda4d85b62a88f1eaf150819a35cb8593e61d"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-saml-api": {
       "shasums": {
-        "jar": "58b6d42a47d6ef1326853bd1dd5c22fcffd40fcde6006280cfc3fdbd63284e50",
-        "sources": "d369a72e092bbe88be64e99585190589e8e9ba4a18cf087f90f34306ea4e7a83"
+        "jar": "cce72578ec8df5dd18cb71c88bba89bd196c640281c199ce875e2aa44154f93f",
+        "sources": "b842b921ba4d97ebc4c0779b1990a9c3d5330d6a86d53ca0da8a4d8967278a82"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-saml-impl": {
       "shasums": {
-        "jar": "4370a3f296ff958a1dd7a77b4fa032bbe8ab145981fbf39f221cd5a1e4fed60e",
-        "sources": "cb3a91ab64932fa0fc14fc75a6df3535885b095f4028c99f510103feaa0d1176"
+        "jar": "9f04221e172dc426f90fb3873d0148a0744edbf9e7a37de7ee0e6a34f7b74581",
+        "sources": "680aacafceda3deb9e08a06cf4e5b48d63b185e0d409f77b45cce3fdb91d2e55"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-security-api": {
       "shasums": {
-        "jar": "559ba68e1d823e7997d8734d6e901f4d278caa7d7946dacf3b7156b827097380",
-        "sources": "e6fbc2c76e08fb0275b957f8deea385eb81858b2b654fa6af7f7e766670dba21"
+        "jar": "2053f9ae1f37a87cf94117ea61395080eb3ec71c631aa71dd2a6c386dd8ff3af",
+        "sources": "d08bb5a2e583031a4e3c5463e6c89d3d14b7c7520d5da1882a98ac98816ccdbe"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-security-impl": {
       "shasums": {
-        "jar": "24ce19d2b8edea7c509a4772cb4c3587a97f55e14658f527aef671193c9e344f",
-        "sources": "6eb8ae9ff3e2aab0fe962701037ee1e59098ac77a33276ab974a59561c83b8c6"
+        "jar": "21cc4cc73551f4ded22e8390286b9a4202b48c5054498bcd263f393f30d441a1",
+        "sources": "5f7de2e634071b7a2640c0af3337e22deb5b6b75e3c9b967ea35d46c1398f566"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-soap-api": {
       "shasums": {
-        "jar": "99bda4c02bdd1528dec1a283c610bd448495019845044f42616a0baefeb60d8e",
-        "sources": "4703c6a9982b767016dce4f54db2aa7a7965b865b76fa64f9244ed9555e21e25"
+        "jar": "1b503de27e275bbe9014b4d503ce80a8b8dcfcb0c47fff9e48f14b05cb2788ab",
+        "sources": "87aeafb0c359e32a3148b4f2760189a455856a99206e8897a274cdcd3ac853e7"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-soap-impl": {
       "shasums": {
-        "jar": "5c8a87aa67c3c302cd9cf73ba4fd9004c29fe3ee507c11fd876a845c1e892451",
-        "sources": "f08f16b205a740e1d62bea6bd37ab484d1d20c4d3f3769fa06dc7db881e3c37f"
+        "jar": "b6a38b04741401de8b697ca773f200edb2421347e1eb0aa220355596d5675bf9",
+        "sources": "218003200f625f1a2ab542fab70a8acd2cbf4cbaa625635396531c51ff8cb586"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-storage-api": {
       "shasums": {
-        "jar": "62105376b3e4887376ba321b72c81e8c2b6936fa6384505cd921da064d5d01c5",
-        "sources": "999e4b8a31fd65140b291e8c29e35daa464f872c8137948b2d68b1dfa1f46806"
+        "jar": "07402db8880c7da7143c57f1c2ea3cf08e1e80e1470d86409e2db56e1d3fb02a",
+        "sources": "436644336e7f03043cac1120df4260da0e22e42b9b5f3e97c271cf3c1702292c"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-storage-impl": {
       "shasums": {
-        "jar": "d7916083bfd28472d18aa20749a867ff3bca7a727ddac1bdaa53a370e3d3f4ac",
-        "sources": "40353d1fbecf39ca7e06dd8fcc30f9cc331afec56ecb6785adddfaac6584c945"
+        "jar": "9d79ac795fe5e15bb3f03f0188893a9cdd006c93f551623d4be82f89d109cef5",
+        "sources": "60d93158cf5459b508fa171bfa4cc8029eb77d27ddf2c6378a90b3235b10cf19"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-xmlsec-api": {
       "shasums": {
-        "jar": "9aeeacab145d2c7890d5753bebc11ca42e5885888a65514aa71c2131386b8470",
-        "sources": "18cef28e06c336d8a11b62f5c915ab6f04962555c0b4f7815b9631a64d1b8243"
+        "jar": "3401e9e309fd170f4b9ea0d8fc68b5b778c2374bf654371378bce21952d6c6b9",
+        "sources": "56e684ad839485e0c1e8dcd49bbfa26d175fac9f1f2f08f2762e76757cce5bd0"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.opensaml:opensaml-xmlsec-impl": {
       "shasums": {
-        "jar": "4f381b0c3eff01b6d2b9a6bd29535e26fb32303e58dad6e43fc6b1759727c04f",
-        "sources": "440fa3cf20185ff5a8f5f310c3db7d7b23fb6c3030be3df25f18d0b1e3d581f9"
+        "jar": "cc67fc1bd9cb435cdbe7483ef04513c83cc9619a3015c04ad41bb6cc0eb6e68e",
+        "sources": "050dbea833a58de9b909b88a38fbccddf5bf9caa06936d2ba1c83fe74856a385"
       },
-      "version": "3.4.3"
+      "version": "5.2.3"
     },
     "org.pac4j:pac4j-core": {
       "shasums": {
-        "jar": "2345c23cf4f80972c4acebc74f558c2e114d4c4ebaaf633c2996e38cbf0f4caa",
-        "sources": "53b659e9a8cf67e7986ea0b012ad9075c761a3a4cd3f26b3f8b8a495ec4d7763"
+        "jar": "ac0e92b79d7d5a6716fce679b20d5ff43071080d9bee7d5d52555e77d530ebf2",
+        "sources": "94088999b430f4fab69599b103ec0db5f025619d80527cb25c769e99521ee193"
       },
-      "version": "3.8.3"
+      "version": "6.5.9"
+    },
+    "org.pac4j:pac4j-javaee": {
+      "shasums": {
+        "jar": "b974555ef6b507a8b7bdb9daa6689657f6253788b903ed75cd534811e038fb85",
+        "sources": "29d3706b292f942cb2aeac18f345d9940ffab0fec1df16a734d054b80f16bcd7"
+      },
+      "version": "6.5.9"
     },
     "org.pac4j:pac4j-saml": {
       "shasums": {
-        "jar": "382c33da50ac726eb128c04d3311ace3235456a466baaf84b1da4383e406b3df",
-        "sources": "70160a85a946547885e63e0b8ed038bfa0ffc7e02d911d3a2f15d273ca525d33"
+        "jar": "313d8e3e5b23661bcd952da0fb4d3803217b981c022478a661966b0a117078b9",
+        "sources": "33c3ea38aa72c651d68bcc627b879d195ef06412b8095958607ac4bac790830a"
       },
-      "version": "3.8.3"
+      "version": "6.5.9"
     },
     "org.springframework:spring-core": {
       "shasums": {
-        "jar": "7fdf01404d57297b81103de73c79e2f13655bcc8096488f2fa47d74a0f0d1959",
-        "sources": "8f39b963a4c64c78ed6dd9a2a4f76d43ab5748aa6db4432b9f2031613ecd2668"
+        "jar": "52146689e71a911c92bac26677d73c692512a739893a57710cc233591756bff6",
+        "sources": "92c917c8a7aabb6cc3295fbb07cbb8dbb754bccceadd10838b24c7f99ba14835"
       },
-      "version": "5.0.2.RELEASE"
+      "version": "6.2.19"
     }
   },
   "dependencies": {
-    "com.fasterxml.woodstox:woodstox-core": [
-      "org.codehaus.woodstox:stax2-api"
+    "com.fasterxml.jackson.core:jackson-databind": [
+      "com.fasterxml.jackson.core:jackson-annotations",
+      "com.fasterxml.jackson.core:jackson-core"
     ],
-    "net.shibboleth.tool:xmlsectool": [
-      "net.shibboleth.utilities:java-support",
-      "org.apache.santuario:xmlsec",
-      "org.opensaml:opensaml-core",
-      "org.opensaml:opensaml-security-api",
-      "org.opensaml:opensaml-xmlsec-api",
-      "org.opensaml:opensaml-xmlsec-impl"
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": [
+      "com.fasterxml.jackson.core:jackson-annotations",
+      "com.fasterxml.jackson.core:jackson-core",
+      "com.fasterxml.jackson.core:jackson-databind"
     ],
-    "net.shibboleth.utilities:java-support": [
-      "joda-time:joda-time"
+    "io.dropwizard.metrics:metrics-json": [
+      "com.fasterxml.jackson.core:jackson-core",
+      "com.fasterxml.jackson.core:jackson-databind"
     ],
-    "org.apache.santuario:xmlsec": [
-      "com.fasterxml.woodstox:woodstox-core"
+    "net.shibboleth:shib-networking": [
+      "net.shibboleth:shib-support",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.client5:httpclient5-cache",
+      "org.apache.httpcomponents.core5:httpcore5"
     ],
-    "org.apache.velocity:velocity": [
-      "commons-collections:commons-collections",
-      "commons-lang:commons-lang"
+    "net.shibboleth:shib-security": [
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-support"
     ],
-    "org.opensaml:opensaml-core": [
-      "joda-time:joda-time",
-      "net.shibboleth.utilities:java-support"
+    "net.shibboleth:shib-velocity": [
+      "net.shibboleth:shib-support",
+      "org.apache.velocity:velocity-engine-core"
+    ],
+    "org.apache.httpcomponents.client5:httpclient5": [
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.apache.httpcomponents.core5:httpcore5-h2"
+    ],
+    "org.apache.httpcomponents.client5:httpclient5-cache": [
+      "org.apache.httpcomponents.client5:httpclient5"
+    ],
+    "org.apache.httpcomponents.core5:httpcore5-h2": [
+      "org.apache.httpcomponents.core5:httpcore5"
+    ],
+    "org.opensaml:opensaml-core-api": [
+      "net.shibboleth:shib-support"
+    ],
+    "org.opensaml:opensaml-core-impl": [
+      "com.fasterxml.jackson.core:jackson-databind",
+      "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
+      "io.dropwizard.metrics:metrics-json",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-support",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.opensaml:opensaml-core-api",
+      "org.opensaml:opensaml-security-api"
     ],
     "org.opensaml:opensaml-messaging-api": [
-      "joda-time:joda-time",
-      "net.shibboleth.utilities:java-support",
-      "org.opensaml:opensaml-core"
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.opensaml:opensaml-core-api"
     ],
     "org.opensaml:opensaml-messaging-impl": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-support",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api"
     ],
     "org.opensaml:opensaml-profile-api": [
-      "net.shibboleth.utilities:java-support",
-      "org.opensaml:opensaml-core",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api"
     ],
     "org.opensaml:opensaml-profile-impl": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-profile-api",
+      "org.opensaml:opensaml-security-api",
       "org.opensaml:opensaml-xmlsec-api",
       "org.opensaml:opensaml-xmlsec-impl"
     ],
     "org.opensaml:opensaml-saml-api": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.apache.santuario:xmlsec",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-profile-api",
+      "org.opensaml:opensaml-security-api",
       "org.opensaml:opensaml-soap-api",
-      "org.opensaml:opensaml-storage-api",
       "org.opensaml:opensaml-xmlsec-api"
     ],
     "org.opensaml:opensaml-saml-impl": [
-      "net.shibboleth.utilities:java-support",
-      "org.apache.velocity:velocity",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "net.shibboleth:shib-velocity",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.apache.santuario:xmlsec",
+      "org.apache.velocity:velocity-engine-core",
+      "org.opensaml:opensaml-core-api",
+      "org.opensaml:opensaml-core-impl",
+      "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-profile-api",
       "org.opensaml:opensaml-saml-api",
+      "org.opensaml:opensaml-security-api",
       "org.opensaml:opensaml-security-impl",
+      "org.opensaml:opensaml-soap-api",
       "org.opensaml:opensaml-soap-impl",
       "org.opensaml:opensaml-storage-api",
+      "org.opensaml:opensaml-xmlsec-api",
       "org.opensaml:opensaml-xmlsec-impl"
     ],
     "org.opensaml:opensaml-security-api": [
-      "net.shibboleth.utilities:java-support",
-      "org.apache.santuario:xmlsec",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.core5:httpcore5",
       "org.cryptacular:cryptacular",
-      "org.opensaml:opensaml-core",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api"
     ],
     "org.opensaml:opensaml-security-impl": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-support",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-security-api"
     ],
     "org.opensaml:opensaml-soap-api": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-support",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api",
+      "org.opensaml:opensaml-security-api",
       "org.opensaml:opensaml-xmlsec-api"
     ],
     "org.opensaml:opensaml-soap-impl": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.opensaml:opensaml-core-api",
+      "org.opensaml:opensaml-core-impl",
+      "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-profile-api",
-      "org.opensaml:opensaml-soap-api"
+      "org.opensaml:opensaml-soap-api",
+      "org.opensaml:opensaml-xmlsec-api"
     ],
     "org.opensaml:opensaml-storage-api": [
-      "joda-time:joda-time",
-      "net.shibboleth.utilities:java-support"
+      "net.shibboleth:shib-support",
+      "org.opensaml:opensaml-core-api"
     ],
     "org.opensaml:opensaml-storage-impl": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
       "org.cryptacular:cryptacular",
+      "org.glassfish:jakarta.json",
+      "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-profile-api",
       "org.opensaml:opensaml-storage-api"
     ],
     "org.opensaml:opensaml-xmlsec-api": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-support",
+      "org.apache.santuario:xmlsec",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-security-api"
     ],
     "org.opensaml:opensaml-xmlsec-impl": [
-      "net.shibboleth.utilities:java-support",
+      "net.shibboleth:shib-support",
       "org.apache.santuario:xmlsec",
-      "org.cryptacular:cryptacular",
-      "org.opensaml:opensaml-core",
+      "org.opensaml:opensaml-core-api",
+      "org.opensaml:opensaml-core-impl",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-security-api",
       "org.opensaml:opensaml-security-impl",
       "org.opensaml:opensaml-xmlsec-api"
     ],
+    "org.pac4j:pac4j-core": [
+      "com.fasterxml.jackson.core:jackson-databind",
+      "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    ],
+    "org.pac4j:pac4j-javaee": [
+      "org.pac4j:pac4j-core"
+    ],
     "org.pac4j:pac4j-saml": [
-      "commons-collections:commons-collections",
-      "joda-time:joda-time",
-      "net.shibboleth.tool:xmlsectool",
-      "org.apache.velocity:velocity",
+      "com.fasterxml.jackson.core:jackson-databind",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.velocity:velocity-engine-core",
       "org.cryptacular:cryptacular",
-      "org.opensaml:opensaml-core",
+      "org.opensaml:opensaml-core-api",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-messaging-impl",
       "org.opensaml:opensaml-profile-api",
@@ -435,83 +604,188 @@
       "org.opensaml:opensaml-storage-impl",
       "org.opensaml:opensaml-xmlsec-api",
       "org.opensaml:opensaml-xmlsec-impl",
-      "org.pac4j:pac4j-core",
-      "org.springframework:spring-core"
+      "org.pac4j:pac4j-core"
     ]
   },
   "packages": {
-    "com.fasterxml.woodstox:woodstox-core": [
-      "com.ctc.wstx.api",
-      "com.ctc.wstx.cfg",
-      "com.ctc.wstx.compat",
-      "com.ctc.wstx.dom",
-      "com.ctc.wstx.dtd",
-      "com.ctc.wstx.ent",
-      "com.ctc.wstx.evt",
-      "com.ctc.wstx.exc",
-      "com.ctc.wstx.io",
-      "com.ctc.wstx.msv",
-      "com.ctc.wstx.osgi",
-      "com.ctc.wstx.sax",
-      "com.ctc.wstx.sr",
-      "com.ctc.wstx.stax",
-      "com.ctc.wstx.sw",
-      "com.ctc.wstx.util"
+    "com.fasterxml.jackson.core:jackson-annotations": [
+      "com.fasterxml.jackson.annotation"
     ],
-    "commons-collections:commons-collections": [
-      "org.apache.commons.collections",
-      "org.apache.commons.collections.bag",
-      "org.apache.commons.collections.bidimap",
-      "org.apache.commons.collections.buffer",
-      "org.apache.commons.collections.collection",
-      "org.apache.commons.collections.comparators",
-      "org.apache.commons.collections.functors",
-      "org.apache.commons.collections.iterators",
-      "org.apache.commons.collections.keyvalue",
-      "org.apache.commons.collections.list",
-      "org.apache.commons.collections.map",
-      "org.apache.commons.collections.set"
+    "com.fasterxml.jackson.core:jackson-core": [
+      "com.fasterxml.jackson.core",
+      "com.fasterxml.jackson.core.async",
+      "com.fasterxml.jackson.core.base",
+      "com.fasterxml.jackson.core.exc",
+      "com.fasterxml.jackson.core.filter",
+      "com.fasterxml.jackson.core.format",
+      "com.fasterxml.jackson.core.internal.shaded.fdp.v2_22_1",
+      "com.fasterxml.jackson.core.io",
+      "com.fasterxml.jackson.core.io.schubfach",
+      "com.fasterxml.jackson.core.json",
+      "com.fasterxml.jackson.core.json.async",
+      "com.fasterxml.jackson.core.sym",
+      "com.fasterxml.jackson.core.type",
+      "com.fasterxml.jackson.core.util"
     ],
-    "commons-lang:commons-lang": [
-      "org.apache.commons.lang",
-      "org.apache.commons.lang.builder",
-      "org.apache.commons.lang.enum",
-      "org.apache.commons.lang.enums",
-      "org.apache.commons.lang.exception",
-      "org.apache.commons.lang.math",
-      "org.apache.commons.lang.mutable",
-      "org.apache.commons.lang.text",
-      "org.apache.commons.lang.time"
+    "com.fasterxml.jackson.core:jackson-databind": [
+      "com.fasterxml.jackson.databind",
+      "com.fasterxml.jackson.databind.annotation",
+      "com.fasterxml.jackson.databind.cfg",
+      "com.fasterxml.jackson.databind.deser",
+      "com.fasterxml.jackson.databind.deser.impl",
+      "com.fasterxml.jackson.databind.deser.std",
+      "com.fasterxml.jackson.databind.exc",
+      "com.fasterxml.jackson.databind.ext",
+      "com.fasterxml.jackson.databind.introspect",
+      "com.fasterxml.jackson.databind.jdk14",
+      "com.fasterxml.jackson.databind.json",
+      "com.fasterxml.jackson.databind.jsonFormatVisitors",
+      "com.fasterxml.jackson.databind.jsonschema",
+      "com.fasterxml.jackson.databind.jsontype",
+      "com.fasterxml.jackson.databind.jsontype.impl",
+      "com.fasterxml.jackson.databind.module",
+      "com.fasterxml.jackson.databind.node",
+      "com.fasterxml.jackson.databind.ser",
+      "com.fasterxml.jackson.databind.ser.impl",
+      "com.fasterxml.jackson.databind.ser.std",
+      "com.fasterxml.jackson.databind.type",
+      "com.fasterxml.jackson.databind.util",
+      "com.fasterxml.jackson.databind.util.internal"
     ],
-    "joda-time:joda-time": [
-      "org.joda.time",
-      "org.joda.time.base",
-      "org.joda.time.chrono",
-      "org.joda.time.convert",
-      "org.joda.time.field",
-      "org.joda.time.format",
-      "org.joda.time.tz"
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": [
+      "com.fasterxml.jackson.datatype.jsr310",
+      "com.fasterxml.jackson.datatype.jsr310.deser",
+      "com.fasterxml.jackson.datatype.jsr310.deser.key",
+      "com.fasterxml.jackson.datatype.jsr310.ser",
+      "com.fasterxml.jackson.datatype.jsr310.ser.key",
+      "com.fasterxml.jackson.datatype.jsr310.util"
     ],
-    "net.shibboleth.tool:xmlsectool": [
-      "net.shibboleth.tool.xmlsectool"
+    "io.dropwizard.metrics:metrics-json": [
+      "com.codahale.metrics.json"
     ],
-    "net.shibboleth.utilities:java-support": [
-      "net.shibboleth.utilities.java.support.annotation",
-      "net.shibboleth.utilities.java.support.annotation.constraint",
-      "net.shibboleth.utilities.java.support.codec",
-      "net.shibboleth.utilities.java.support.collection",
-      "net.shibboleth.utilities.java.support.component",
+    "net.shibboleth:shib-networking": [
+      "net.shibboleth.shared.httpclient",
+      "net.shibboleth.shared.net",
+      "net.shibboleth.shared.net.impl",
+      "net.shibboleth.shared.servlet",
+      "net.shibboleth.shared.servlet.impl",
       "net.shibboleth.utilities.java.support.httpclient",
+      "net.shibboleth.utilities.java.support.net"
+    ],
+    "net.shibboleth:shib-security": [
+      "net.shibboleth.shared.security",
+      "net.shibboleth.shared.security.impl"
+    ],
+    "net.shibboleth:shib-support": [
+      "net.shibboleth.shared.annotation",
+      "net.shibboleth.shared.annotation.constraint",
+      "net.shibboleth.shared.codec",
+      "net.shibboleth.shared.collection",
+      "net.shibboleth.shared.component",
+      "net.shibboleth.shared.io",
+      "net.shibboleth.shared.logic",
+      "net.shibboleth.shared.primitive",
+      "net.shibboleth.shared.resolver",
+      "net.shibboleth.shared.resource",
+      "net.shibboleth.shared.scripting",
+      "net.shibboleth.shared.xml",
+      "net.shibboleth.shared.xml.impl",
+      "net.shibboleth.utilities.java.support.codec",
       "net.shibboleth.utilities.java.support.logic",
-      "net.shibboleth.utilities.java.support.net",
-      "net.shibboleth.utilities.java.support.primitive",
-      "net.shibboleth.utilities.java.support.resolver",
-      "net.shibboleth.utilities.java.support.resource",
-      "net.shibboleth.utilities.java.support.scripting",
-      "net.shibboleth.utilities.java.support.security",
-      "net.shibboleth.utilities.java.support.service",
-      "net.shibboleth.utilities.java.support.velocity",
-      "net.shibboleth.utilities.java.support.xml"
+      "net.shibboleth.utilities.java.support.primitive"
+    ],
+    "net.shibboleth:shib-velocity": [
+      "net.shibboleth.shared.velocity"
+    ],
+    "org.apache.httpcomponents.client5:httpclient5": [
+      "org.apache.hc.client5.http",
+      "org.apache.hc.client5.http.async",
+      "org.apache.hc.client5.http.async.methods",
+      "org.apache.hc.client5.http.auth",
+      "org.apache.hc.client5.http.classic",
+      "org.apache.hc.client5.http.classic.methods",
+      "org.apache.hc.client5.http.config",
+      "org.apache.hc.client5.http.cookie",
+      "org.apache.hc.client5.http.entity",
+      "org.apache.hc.client5.http.entity.compress",
+      "org.apache.hc.client5.http.entity.mime",
+      "org.apache.hc.client5.http.impl",
+      "org.apache.hc.client5.http.impl.async",
+      "org.apache.hc.client5.http.impl.auth",
+      "org.apache.hc.client5.http.impl.classic",
+      "org.apache.hc.client5.http.impl.compat",
+      "org.apache.hc.client5.http.impl.cookie",
+      "org.apache.hc.client5.http.impl.io",
+      "org.apache.hc.client5.http.impl.nio",
+      "org.apache.hc.client5.http.impl.routing",
+      "org.apache.hc.client5.http.io",
+      "org.apache.hc.client5.http.nio",
+      "org.apache.hc.client5.http.protocol",
+      "org.apache.hc.client5.http.psl",
+      "org.apache.hc.client5.http.routing",
+      "org.apache.hc.client5.http.socket",
+      "org.apache.hc.client5.http.ssl",
+      "org.apache.hc.client5.http.utils",
+      "org.apache.hc.client5.http.validator"
+    ],
+    "org.apache.httpcomponents.client5:httpclient5-cache": [
+      "org.apache.hc.client5.http.cache",
+      "org.apache.hc.client5.http.impl.cache",
+      "org.apache.hc.client5.http.impl.cache.ehcache",
+      "org.apache.hc.client5.http.impl.cache.memcached",
+      "org.apache.hc.client5.http.impl.schedule",
+      "org.apache.hc.client5.http.schedule"
+    ],
+    "org.apache.httpcomponents.core5:httpcore5": [
+      "org.apache.hc.core5.annotation",
+      "org.apache.hc.core5.concurrent",
+      "org.apache.hc.core5.function",
+      "org.apache.hc.core5.http",
+      "org.apache.hc.core5.http.config",
+      "org.apache.hc.core5.http.impl",
+      "org.apache.hc.core5.http.impl.bootstrap",
+      "org.apache.hc.core5.http.impl.io",
+      "org.apache.hc.core5.http.impl.io.support",
+      "org.apache.hc.core5.http.impl.nio",
+      "org.apache.hc.core5.http.impl.routing",
+      "org.apache.hc.core5.http.io",
+      "org.apache.hc.core5.http.io.entity",
+      "org.apache.hc.core5.http.io.ssl",
+      "org.apache.hc.core5.http.io.support",
+      "org.apache.hc.core5.http.message",
+      "org.apache.hc.core5.http.nio",
+      "org.apache.hc.core5.http.nio.command",
+      "org.apache.hc.core5.http.nio.entity",
+      "org.apache.hc.core5.http.nio.ssl",
+      "org.apache.hc.core5.http.nio.support",
+      "org.apache.hc.core5.http.nio.support.classic",
+      "org.apache.hc.core5.http.protocol",
+      "org.apache.hc.core5.http.ssl",
+      "org.apache.hc.core5.http.support",
+      "org.apache.hc.core5.io",
+      "org.apache.hc.core5.net",
+      "org.apache.hc.core5.pool",
+      "org.apache.hc.core5.reactor",
+      "org.apache.hc.core5.reactor.ssl",
+      "org.apache.hc.core5.ssl",
+      "org.apache.hc.core5.util"
+    ],
+    "org.apache.httpcomponents.core5:httpcore5-h2": [
+      "org.apache.hc.core5.http2",
+      "org.apache.hc.core5.http2.config",
+      "org.apache.hc.core5.http2.frame",
+      "org.apache.hc.core5.http2.hpack",
+      "org.apache.hc.core5.http2.impl",
+      "org.apache.hc.core5.http2.impl.io",
+      "org.apache.hc.core5.http2.impl.nio",
+      "org.apache.hc.core5.http2.impl.nio.bootstrap",
+      "org.apache.hc.core5.http2.nio",
+      "org.apache.hc.core5.http2.nio.command",
+      "org.apache.hc.core5.http2.nio.pool",
+      "org.apache.hc.core5.http2.nio.support",
+      "org.apache.hc.core5.http2.priority",
+      "org.apache.hc.core5.http2.protocol",
+      "org.apache.hc.core5.http2.ssl"
     ],
     "org.apache.santuario:xmlsec": [
       "org.apache.jcp.xml.dsig.internal",
@@ -522,6 +796,7 @@
       "org.apache.xml.security.binding.excc14n",
       "org.apache.xml.security.binding.xmldsig",
       "org.apache.xml.security.binding.xmldsig11",
+      "org.apache.xml.security.binding.xmldsigmore",
       "org.apache.xml.security.binding.xmlenc",
       "org.apache.xml.security.binding.xmlenc11",
       "org.apache.xml.security.binding.xop",
@@ -530,6 +805,10 @@
       "org.apache.xml.security.c14n.implementations",
       "org.apache.xml.security.configuration",
       "org.apache.xml.security.encryption",
+      "org.apache.xml.security.encryption.keys",
+      "org.apache.xml.security.encryption.keys.content",
+      "org.apache.xml.security.encryption.keys.content.derivedKey",
+      "org.apache.xml.security.encryption.params",
       "org.apache.xml.security.exceptions",
       "org.apache.xml.security.keys",
       "org.apache.xml.security.keys.content",
@@ -539,6 +818,7 @@
       "org.apache.xml.security.keys.keyresolver.implementations",
       "org.apache.xml.security.keys.storage",
       "org.apache.xml.security.keys.storage.implementations",
+      "org.apache.xml.security.parser",
       "org.apache.xml.security.signature",
       "org.apache.xml.security.signature.reference",
       "org.apache.xml.security.stax.config",
@@ -563,45 +843,25 @@
       "org.apache.xml.security.utils.resolver",
       "org.apache.xml.security.utils.resolver.implementations"
     ],
-    "org.apache.velocity:velocity": [
+    "org.apache.velocity:velocity-engine-core": [
       "org.apache.velocity",
-      "org.apache.velocity.anakia",
       "org.apache.velocity.app",
       "org.apache.velocity.app.event",
       "org.apache.velocity.app.event.implement",
-      "org.apache.velocity.app.tools",
       "org.apache.velocity.context",
-      "org.apache.velocity.convert",
       "org.apache.velocity.exception",
       "org.apache.velocity.io",
       "org.apache.velocity.runtime",
       "org.apache.velocity.runtime.directive",
-      "org.apache.velocity.runtime.log",
+      "org.apache.velocity.runtime.directive.contrib",
       "org.apache.velocity.runtime.parser",
       "org.apache.velocity.runtime.parser.node",
       "org.apache.velocity.runtime.resource",
       "org.apache.velocity.runtime.resource.loader",
       "org.apache.velocity.runtime.resource.util",
       "org.apache.velocity.runtime.visitor",
-      "org.apache.velocity.servlet",
-      "org.apache.velocity.texen",
-      "org.apache.velocity.texen.ant",
-      "org.apache.velocity.texen.util",
       "org.apache.velocity.util",
       "org.apache.velocity.util.introspection"
-    ],
-    "org.codehaus.woodstox:stax2-api": [
-      "org.codehaus.stax2",
-      "org.codehaus.stax2.evt",
-      "org.codehaus.stax2.io",
-      "org.codehaus.stax2.osgi",
-      "org.codehaus.stax2.ri",
-      "org.codehaus.stax2.ri.dom",
-      "org.codehaus.stax2.ri.evt",
-      "org.codehaus.stax2.ri.typed",
-      "org.codehaus.stax2.typed",
-      "org.codehaus.stax2.util",
-      "org.codehaus.stax2.validation"
     ],
     "org.cryptacular:cryptacular": [
       "org.cryptacular",
@@ -614,25 +874,38 @@
       "org.cryptacular.generator.sp80038d",
       "org.cryptacular.io",
       "org.cryptacular.pbe",
+      "org.cryptacular.pem",
       "org.cryptacular.spec",
+      "org.cryptacular.ssh",
       "org.cryptacular.util",
       "org.cryptacular.x509",
       "org.cryptacular.x509.dn"
     ],
-    "org.opensaml:opensaml-core": [
+    "org.glassfish:jakarta.json": [
+      "jakarta.json",
+      "jakarta.json.spi",
+      "jakarta.json.stream",
+      "org.glassfish.json",
+      "org.glassfish.json.api"
+    ],
+    "org.opensaml:opensaml-core-api": [
       "org.opensaml.core",
       "org.opensaml.core.config",
       "org.opensaml.core.config.provider",
       "org.opensaml.core.criterion",
       "org.opensaml.core.metrics",
-      "org.opensaml.core.metrics.impl",
       "org.opensaml.core.xml",
       "org.opensaml.core.xml.config",
       "org.opensaml.core.xml.io",
       "org.opensaml.core.xml.persist",
       "org.opensaml.core.xml.schema",
-      "org.opensaml.core.xml.schema.impl",
       "org.opensaml.core.xml.util"
+    ],
+    "org.opensaml:opensaml-core-impl": [
+      "org.opensaml.core.metrics.impl",
+      "org.opensaml.core.xml.config.impl",
+      "org.opensaml.core.xml.persist.impl",
+      "org.opensaml.core.xml.schema.impl"
     ],
     "org.opensaml:opensaml-messaging-api": [
       "org.opensaml.messaging",
@@ -646,7 +919,6 @@
       "org.opensaml.messaging.encoder.httpclient",
       "org.opensaml.messaging.encoder.servlet",
       "org.opensaml.messaging.error",
-      "org.opensaml.messaging.error.servlet",
       "org.opensaml.messaging.handler",
       "org.opensaml.messaging.logic",
       "org.opensaml.messaging.pipeline",
@@ -660,6 +932,7 @@
       "org.opensaml.profile.action",
       "org.opensaml.profile.context",
       "org.opensaml.profile.context.navigate",
+      "org.opensaml.profile.criterion",
       "org.opensaml.profile.logic"
     ],
     "org.opensaml:opensaml-profile-impl": [
@@ -707,6 +980,7 @@
       "org.opensaml.saml.saml1.core",
       "org.opensaml.saml.saml1.profile",
       "org.opensaml.saml.saml2.assertion",
+      "org.opensaml.saml.saml2.assertion.messaging",
       "org.opensaml.saml.saml2.binding.artifact",
       "org.opensaml.saml.saml2.common",
       "org.opensaml.saml.saml2.core",
@@ -715,7 +989,8 @@
       "org.opensaml.saml.saml2.metadata",
       "org.opensaml.saml.saml2.profile",
       "org.opensaml.saml.saml2.profile.context",
-      "org.opensaml.saml.saml2.wssecurity"
+      "org.opensaml.saml.saml2.wssecurity",
+      "org.opensaml.saml.security"
     ],
     "org.opensaml:opensaml-saml-impl": [
       "org.opensaml.saml.common.binding.artifact.impl",
@@ -739,6 +1014,8 @@
       "org.opensaml.saml.ext.samlpthrpty.impl",
       "org.opensaml.saml.metadata.criteria.entity.impl",
       "org.opensaml.saml.metadata.criteria.role.impl",
+      "org.opensaml.saml.metadata.generator.impl",
+      "org.opensaml.saml.metadata.resolver.filter.data.impl",
       "org.opensaml.saml.metadata.resolver.filter.impl",
       "org.opensaml.saml.metadata.resolver.impl",
       "org.opensaml.saml.metadata.resolver.index.impl",
@@ -748,6 +1025,7 @@
       "org.opensaml.saml.saml1.core.impl",
       "org.opensaml.saml.saml1.profile.impl",
       "org.opensaml.saml.saml2.assertion.impl",
+      "org.opensaml.saml.saml2.assertion.messaging.impl",
       "org.opensaml.saml.saml2.binding.decoding.impl",
       "org.opensaml.saml.saml2.binding.encoding.impl",
       "org.opensaml.saml.saml2.binding.impl",
@@ -761,9 +1039,13 @@
     ],
     "org.opensaml:opensaml-security-api": [
       "org.opensaml.security",
+      "org.opensaml.security.config",
       "org.opensaml.security.credential",
       "org.opensaml.security.criteria",
       "org.opensaml.security.crypto",
+      "org.opensaml.security.crypto.dh",
+      "org.opensaml.security.crypto.ec",
+      "org.opensaml.security.crypto.ec.curves",
       "org.opensaml.security.httpclient",
       "org.opensaml.security.messaging",
       "org.opensaml.security.trust",
@@ -786,6 +1068,7 @@
       "org.opensaml.soap.client.messaging",
       "org.opensaml.soap.client.security",
       "org.opensaml.soap.common",
+      "org.opensaml.soap.config",
       "org.opensaml.soap.messaging",
       "org.opensaml.soap.messaging.context",
       "org.opensaml.soap.soap11",
@@ -829,12 +1112,14 @@
     ],
     "org.opensaml:opensaml-xmlsec-api": [
       "org.opensaml.xmlsec",
+      "org.opensaml.xmlsec.agreement",
       "org.opensaml.xmlsec.algorithm",
       "org.opensaml.xmlsec.algorithm.descriptors",
       "org.opensaml.xmlsec.config",
       "org.opensaml.xmlsec.context",
       "org.opensaml.xmlsec.criterion",
       "org.opensaml.xmlsec.crypto",
+      "org.opensaml.xmlsec.derivation",
       "org.opensaml.xmlsec.encryption",
       "org.opensaml.xmlsec.encryption.support",
       "org.opensaml.xmlsec.keyinfo",
@@ -842,9 +1127,12 @@
       "org.opensaml.xmlsec.signature.support"
     ],
     "org.opensaml:opensaml-xmlsec-impl": [
+      "org.opensaml.xmlsec.agreement.impl",
       "org.opensaml.xmlsec.config.impl",
+      "org.opensaml.xmlsec.derivation.impl",
       "org.opensaml.xmlsec.encryption.impl",
       "org.opensaml.xmlsec.impl",
+      "org.opensaml.xmlsec.impl.provider",
       "org.opensaml.xmlsec.keyinfo.impl",
       "org.opensaml.xmlsec.keyinfo.impl.provider",
       "org.opensaml.xmlsec.messaging.impl",
@@ -853,14 +1141,16 @@
       "org.opensaml.xmlsec.signature.support.impl.provider"
     ],
     "org.pac4j:pac4j-core": [
+      "org.pac4j.core.adapter",
       "org.pac4j.core.authorization.authorizer",
-      "org.pac4j.core.authorization.authorizer.csrf",
       "org.pac4j.core.authorization.checker",
       "org.pac4j.core.authorization.generator",
       "org.pac4j.core.client",
+      "org.pac4j.core.client.config",
       "org.pac4j.core.client.direct",
       "org.pac4j.core.client.finder",
       "org.pac4j.core.config",
+      "org.pac4j.core.config.properties",
       "org.pac4j.core.context",
       "org.pac4j.core.context.session",
       "org.pac4j.core.credentials",
@@ -868,25 +1158,51 @@
       "org.pac4j.core.credentials.extractor",
       "org.pac4j.core.credentials.password",
       "org.pac4j.core.engine",
-      "org.pac4j.core.engine.decision",
+      "org.pac4j.core.engine.savedrequest",
       "org.pac4j.core.exception",
+      "org.pac4j.core.exception.http",
       "org.pac4j.core.http.adapter",
       "org.pac4j.core.http.ajax",
       "org.pac4j.core.http.callback",
       "org.pac4j.core.http.url",
+      "org.pac4j.core.keystore.generation",
+      "org.pac4j.core.keystore.loading",
       "org.pac4j.core.logout",
       "org.pac4j.core.logout.handler",
-      "org.pac4j.core.matching",
+      "org.pac4j.core.logout.processor",
+      "org.pac4j.core.matching.checker",
+      "org.pac4j.core.matching.matcher",
+      "org.pac4j.core.matching.matcher.csrf",
       "org.pac4j.core.profile",
       "org.pac4j.core.profile.converter",
       "org.pac4j.core.profile.creator",
       "org.pac4j.core.profile.definition",
+      "org.pac4j.core.profile.factory",
       "org.pac4j.core.profile.jwt",
       "org.pac4j.core.profile.service",
       "org.pac4j.core.redirect",
-      "org.pac4j.core.state",
+      "org.pac4j.core.resource",
       "org.pac4j.core.store",
-      "org.pac4j.core.util"
+      "org.pac4j.core.util",
+      "org.pac4j.core.util.generator",
+      "org.pac4j.core.util.security",
+      "org.pac4j.core.util.serializer",
+      "org.pac4j.test.context",
+      "org.pac4j.test.context.session",
+      "org.pac4j.test.ldap",
+      "org.pac4j.test.mongo",
+      "org.pac4j.test.run",
+      "org.pac4j.test.sql",
+      "org.pac4j.test.util",
+      "org.pac4j.test.web"
+    ],
+    "org.pac4j:pac4j-javaee": [
+      "org.pac4j.jee.adapter",
+      "org.pac4j.jee.config",
+      "org.pac4j.jee.context",
+      "org.pac4j.jee.context.session",
+      "org.pac4j.jee.http.adapter",
+      "org.pac4j.jee.saml.metadata"
     ],
     "org.pac4j:pac4j-saml": [
       "org.pac4j.saml.client",
@@ -899,20 +1215,35 @@
       "org.pac4j.saml.exceptions",
       "org.pac4j.saml.logout",
       "org.pac4j.saml.logout.impl",
+      "org.pac4j.saml.logout.processor",
       "org.pac4j.saml.metadata",
+      "org.pac4j.saml.metadata.jdbc",
+      "org.pac4j.saml.metadata.keystore",
+      "org.pac4j.saml.metadata.mongo",
+      "org.pac4j.saml.metadata.s3",
       "org.pac4j.saml.profile",
       "org.pac4j.saml.profile.api",
+      "org.pac4j.saml.profile.converter",
       "org.pac4j.saml.profile.impl",
       "org.pac4j.saml.redirect",
       "org.pac4j.saml.replay",
       "org.pac4j.saml.sso.artifact",
       "org.pac4j.saml.sso.impl",
       "org.pac4j.saml.state",
-      "org.pac4j.saml.storage",
+      "org.pac4j.saml.store",
       "org.pac4j.saml.transport",
       "org.pac4j.saml.util"
     ],
     "org.springframework:spring-core": [
+      "org.springframework.aot",
+      "org.springframework.aot.generate",
+      "org.springframework.aot.hint",
+      "org.springframework.aot.hint.annotation",
+      "org.springframework.aot.hint.predicate",
+      "org.springframework.aot.hint.support",
+      "org.springframework.aot.nativex",
+      "org.springframework.aot.nativex.feature",
+      "org.springframework.aot.nativex.substitution",
       "org.springframework.asm",
       "org.springframework.cglib",
       "org.springframework.cglib.beans",
@@ -933,6 +1264,9 @@
       "org.springframework.core.io",
       "org.springframework.core.io.buffer",
       "org.springframework.core.io.support",
+      "org.springframework.core.log",
+      "org.springframework.core.metrics",
+      "org.springframework.core.metrics.jfr",
       "org.springframework.core.serializer",
       "org.springframework.core.serializer.support",
       "org.springframework.core.style",
@@ -941,6 +1275,7 @@
       "org.springframework.core.type",
       "org.springframework.core.type.classreading",
       "org.springframework.core.type.filter",
+      "org.springframework.javapoet",
       "org.springframework.lang",
       "org.springframework.objenesis",
       "org.springframework.objenesis.instantiator",
@@ -956,33 +1291,51 @@
       "org.springframework.util.backoff",
       "org.springframework.util.comparator",
       "org.springframework.util.concurrent",
+      "org.springframework.util.function",
+      "org.springframework.util.unit",
       "org.springframework.util.xml"
     ]
   },
   "repositories": {
     "https://repo1.maven.org/maven2/": [
-      "com.fasterxml.woodstox:woodstox-core",
-      "com.fasterxml.woodstox:woodstox-core:jar:sources",
-      "commons-collections:commons-collections",
-      "commons-collections:commons-collections:jar:sources",
-      "commons-lang:commons-lang",
-      "commons-lang:commons-lang:jar:sources",
-      "joda-time:joda-time",
-      "joda-time:joda-time:jar:sources",
-      "net.shibboleth.tool:xmlsectool",
-      "net.shibboleth.tool:xmlsectool:jar:sources",
-      "net.shibboleth.utilities:java-support",
-      "net.shibboleth.utilities:java-support:jar:sources",
+      "com.fasterxml.jackson.core:jackson-annotations",
+      "com.fasterxml.jackson.core:jackson-annotations:jar:sources",
+      "com.fasterxml.jackson.core:jackson-core",
+      "com.fasterxml.jackson.core:jackson-core:jar:sources",
+      "com.fasterxml.jackson.core:jackson-databind",
+      "com.fasterxml.jackson.core:jackson-databind:jar:sources",
+      "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
+      "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:sources",
+      "io.dropwizard.metrics:metrics-json",
+      "io.dropwizard.metrics:metrics-json:jar:sources",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-networking:jar:sources",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-security:jar:sources",
+      "net.shibboleth:shib-support",
+      "net.shibboleth:shib-support:jar:sources",
+      "net.shibboleth:shib-velocity",
+      "net.shibboleth:shib-velocity:jar:sources",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.client5:httpclient5-cache",
+      "org.apache.httpcomponents.client5:httpclient5-cache:jar:sources",
+      "org.apache.httpcomponents.client5:httpclient5:jar:sources",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.apache.httpcomponents.core5:httpcore5-h2",
+      "org.apache.httpcomponents.core5:httpcore5-h2:jar:sources",
+      "org.apache.httpcomponents.core5:httpcore5:jar:sources",
       "org.apache.santuario:xmlsec",
       "org.apache.santuario:xmlsec:jar:sources",
-      "org.apache.velocity:velocity",
-      "org.apache.velocity:velocity:jar:sources",
-      "org.codehaus.woodstox:stax2-api",
-      "org.codehaus.woodstox:stax2-api:jar:sources",
+      "org.apache.velocity:velocity-engine-core",
+      "org.apache.velocity:velocity-engine-core:jar:sources",
       "org.cryptacular:cryptacular",
       "org.cryptacular:cryptacular:jar:sources",
-      "org.opensaml:opensaml-core",
-      "org.opensaml:opensaml-core:jar:sources",
+      "org.glassfish:jakarta.json",
+      "org.glassfish:jakarta.json:jar:sources",
+      "org.opensaml:opensaml-core-api",
+      "org.opensaml:opensaml-core-api:jar:sources",
+      "org.opensaml:opensaml-core-impl",
+      "org.opensaml:opensaml-core-impl:jar:sources",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-messaging-api:jar:sources",
       "org.opensaml:opensaml-messaging-impl",
@@ -1013,34 +1366,52 @@
       "org.opensaml:opensaml-xmlsec-impl:jar:sources",
       "org.pac4j:pac4j-core",
       "org.pac4j:pac4j-core:jar:sources",
+      "org.pac4j:pac4j-javaee",
+      "org.pac4j:pac4j-javaee:jar:sources",
       "org.pac4j:pac4j-saml",
       "org.pac4j:pac4j-saml:jar:sources",
       "org.springframework:spring-core",
       "org.springframework:spring-core:jar:sources"
     ],
     "https://build.shibboleth.net/nexus/content/repositories/releases/": [
-      "com.fasterxml.woodstox:woodstox-core",
-      "com.fasterxml.woodstox:woodstox-core:jar:sources",
-      "commons-collections:commons-collections",
-      "commons-collections:commons-collections:jar:sources",
-      "commons-lang:commons-lang",
-      "commons-lang:commons-lang:jar:sources",
-      "joda-time:joda-time",
-      "joda-time:joda-time:jar:sources",
-      "net.shibboleth.tool:xmlsectool",
-      "net.shibboleth.tool:xmlsectool:jar:sources",
-      "net.shibboleth.utilities:java-support",
-      "net.shibboleth.utilities:java-support:jar:sources",
+      "com.fasterxml.jackson.core:jackson-annotations",
+      "com.fasterxml.jackson.core:jackson-annotations:jar:sources",
+      "com.fasterxml.jackson.core:jackson-core",
+      "com.fasterxml.jackson.core:jackson-core:jar:sources",
+      "com.fasterxml.jackson.core:jackson-databind",
+      "com.fasterxml.jackson.core:jackson-databind:jar:sources",
+      "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
+      "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:sources",
+      "io.dropwizard.metrics:metrics-json",
+      "io.dropwizard.metrics:metrics-json:jar:sources",
+      "net.shibboleth:shib-networking",
+      "net.shibboleth:shib-networking:jar:sources",
+      "net.shibboleth:shib-security",
+      "net.shibboleth:shib-security:jar:sources",
+      "net.shibboleth:shib-support",
+      "net.shibboleth:shib-support:jar:sources",
+      "net.shibboleth:shib-velocity",
+      "net.shibboleth:shib-velocity:jar:sources",
+      "org.apache.httpcomponents.client5:httpclient5",
+      "org.apache.httpcomponents.client5:httpclient5-cache",
+      "org.apache.httpcomponents.client5:httpclient5-cache:jar:sources",
+      "org.apache.httpcomponents.client5:httpclient5:jar:sources",
+      "org.apache.httpcomponents.core5:httpcore5",
+      "org.apache.httpcomponents.core5:httpcore5-h2",
+      "org.apache.httpcomponents.core5:httpcore5-h2:jar:sources",
+      "org.apache.httpcomponents.core5:httpcore5:jar:sources",
       "org.apache.santuario:xmlsec",
       "org.apache.santuario:xmlsec:jar:sources",
-      "org.apache.velocity:velocity",
-      "org.apache.velocity:velocity:jar:sources",
-      "org.codehaus.woodstox:stax2-api",
-      "org.codehaus.woodstox:stax2-api:jar:sources",
+      "org.apache.velocity:velocity-engine-core",
+      "org.apache.velocity:velocity-engine-core:jar:sources",
       "org.cryptacular:cryptacular",
       "org.cryptacular:cryptacular:jar:sources",
-      "org.opensaml:opensaml-core",
-      "org.opensaml:opensaml-core:jar:sources",
+      "org.glassfish:jakarta.json",
+      "org.glassfish:jakarta.json:jar:sources",
+      "org.opensaml:opensaml-core-api",
+      "org.opensaml:opensaml-core-api:jar:sources",
+      "org.opensaml:opensaml-core-impl",
+      "org.opensaml:opensaml-core-impl:jar:sources",
       "org.opensaml:opensaml-messaging-api",
       "org.opensaml:opensaml-messaging-api:jar:sources",
       "org.opensaml:opensaml-messaging-impl",
@@ -1071,6 +1442,8 @@
       "org.opensaml:opensaml-xmlsec-impl:jar:sources",
       "org.pac4j:pac4j-core",
       "org.pac4j:pac4j-core:jar:sources",
+      "org.pac4j:pac4j-javaee",
+      "org.pac4j:pac4j-javaee:jar:sources",
       "org.pac4j:pac4j-saml",
       "org.pac4j:pac4j-saml:jar:sources",
       "org.springframework:spring-core",
@@ -1078,58 +1451,56 @@
     ]
   },
   "services": {
-    "com.fasterxml.woodstox:woodstox-core": {
-      "javax.xml.stream.XMLEventFactory": [
-        "com.ctc.wstx.stax.WstxEventFactory"
-      ],
-      "javax.xml.stream.XMLInputFactory": [
-        "com.ctc.wstx.stax.WstxInputFactory"
-      ],
-      "javax.xml.stream.XMLOutputFactory": [
-        "com.ctc.wstx.stax.WstxOutputFactory"
-      ],
-      "org.codehaus.stax2.validation.XMLValidationSchemaFactory.dtd": [
-        "com.ctc.wstx.dtd.DTDSchemaFactory"
-      ],
-      "org.codehaus.stax2.validation.XMLValidationSchemaFactory.relaxng": [
-        "com.ctc.wstx.msv.RelaxNGSchemaFactory"
-      ],
-      "org.codehaus.stax2.validation.XMLValidationSchemaFactory.w3c": [
-        "com.ctc.wstx.msv.W3CSchemaFactory"
+    "com.fasterxml.jackson.core:jackson-core": {
+      "com.fasterxml.jackson.core.JsonFactory": [
+        "com.fasterxml.jackson.core.JsonFactory"
       ]
     },
-    "com.fasterxml.woodstox:woodstox-core:jar:sources": {
-      "javax.xml.stream.XMLEventFactory": [
-        "com.ctc.wstx.stax.WstxEventFactory"
-      ],
-      "javax.xml.stream.XMLInputFactory": [
-        "com.ctc.wstx.stax.WstxInputFactory"
-      ],
-      "javax.xml.stream.XMLOutputFactory": [
-        "com.ctc.wstx.stax.WstxOutputFactory"
-      ],
-      "org.codehaus.stax2.validation.XMLValidationSchemaFactory.dtd": [
-        "com.ctc.wstx.dtd.DTDSchemaFactory"
-      ],
-      "org.codehaus.stax2.validation.XMLValidationSchemaFactory.relaxng": [
-        "com.ctc.wstx.msv.RelaxNGSchemaFactory"
-      ],
-      "org.codehaus.stax2.validation.XMLValidationSchemaFactory.w3c": [
-        "com.ctc.wstx.msv.W3CSchemaFactory"
+    "com.fasterxml.jackson.core:jackson-core:jar:sources": {
+      "com.fasterxml.jackson.core.JsonFactory": [
+        "com.fasterxml.jackson.core.JsonFactory"
       ]
     },
-    "org.opensaml:opensaml-core": {
+    "com.fasterxml.jackson.core:jackson-databind": {
+      "com.fasterxml.jackson.core.ObjectCodec": [
+        "com.fasterxml.jackson.databind.ObjectMapper"
+      ]
+    },
+    "com.fasterxml.jackson.core:jackson-databind:jar:sources": {
+      "com.fasterxml.jackson.core.ObjectCodec": [
+        "com.fasterxml.jackson.databind.ObjectMapper"
+      ]
+    },
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": {
+      "com.fasterxml.jackson.databind.Module": [
+        "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule"
+      ]
+    },
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:sources": {
+      "com.fasterxml.jackson.databind.Module": [
+        "com.fasterxml.jackson.datatype.jsr310.JavaTimeModule"
+      ]
+    },
+    "org.opensaml:opensaml-core-api": {
+      "org.opensaml.core.config.Initializer": [
+        "org.opensaml.core.xml.config.GlobalParserPoolInitializer"
+      ]
+    },
+    "org.opensaml:opensaml-core-api:jar:sources": {
+      "org.opensaml.core.config.Initializer": [
+        "org.opensaml.core.xml.config.GlobalParserPoolInitializer"
+      ]
+    },
+    "org.opensaml:opensaml-core-impl": {
       "org.opensaml.core.config.Initializer": [
         "org.opensaml.core.metrics.impl.MetricRegistryInitializer",
-        "org.opensaml.core.xml.config.GlobalParserPoolInitializer",
-        "org.opensaml.core.xml.config.XMLObjectProviderInitializer"
+        "org.opensaml.core.xml.config.impl.XMLObjectProviderInitializer"
       ]
     },
-    "org.opensaml:opensaml-core:jar:sources": {
+    "org.opensaml:opensaml-core-impl:jar:sources": {
       "org.opensaml.core.config.Initializer": [
         "org.opensaml.core.metrics.impl.MetricRegistryInitializer",
-        "org.opensaml.core.xml.config.GlobalParserPoolInitializer",
-        "org.opensaml.core.xml.config.XMLObjectProviderInitializer"
+        "org.opensaml.core.xml.config.impl.XMLObjectProviderInitializer"
       ]
     },
     "org.opensaml:opensaml-saml-impl": {
@@ -1142,6 +1513,122 @@
       "org.opensaml.core.config.Initializer": [
         "org.opensaml.saml.config.impl.SAMLConfigurationInitializer",
         "org.opensaml.saml.config.impl.XMLObjectProviderInitializer"
+      ]
+    },
+    "org.opensaml:opensaml-security-api": {
+      "org.opensaml.core.config.Initializer": [
+        "org.opensaml.security.config.BouncyCastleInitializer",
+        "org.opensaml.security.config.GlobalNamedCurveRegistryInitializer"
+      ],
+      "org.opensaml.security.crypto.ec.NamedCurve": [
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP256r1",
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP320r1",
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP384r1",
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP512r1",
+        "org.opensaml.security.crypto.ec.curves.Secp112r1",
+        "org.opensaml.security.crypto.ec.curves.Secp112r2",
+        "org.opensaml.security.crypto.ec.curves.Secp128r1",
+        "org.opensaml.security.crypto.ec.curves.Secp128r2",
+        "org.opensaml.security.crypto.ec.curves.Secp160k1",
+        "org.opensaml.security.crypto.ec.curves.Secp160r1",
+        "org.opensaml.security.crypto.ec.curves.Secp160r2",
+        "org.opensaml.security.crypto.ec.curves.Secp192k1",
+        "org.opensaml.security.crypto.ec.curves.Secp192r1",
+        "org.opensaml.security.crypto.ec.curves.Secp224k1",
+        "org.opensaml.security.crypto.ec.curves.Secp224r1",
+        "org.opensaml.security.crypto.ec.curves.Secp256k1",
+        "org.opensaml.security.crypto.ec.curves.Secp256r1",
+        "org.opensaml.security.crypto.ec.curves.Secp384r1",
+        "org.opensaml.security.crypto.ec.curves.Secp521r1",
+        "org.opensaml.security.crypto.ec.curves.Sect113r1",
+        "org.opensaml.security.crypto.ec.curves.Sect113r2",
+        "org.opensaml.security.crypto.ec.curves.Sect131r1",
+        "org.opensaml.security.crypto.ec.curves.Sect131r2",
+        "org.opensaml.security.crypto.ec.curves.Sect163k1",
+        "org.opensaml.security.crypto.ec.curves.Sect163r1",
+        "org.opensaml.security.crypto.ec.curves.Sect163r2",
+        "org.opensaml.security.crypto.ec.curves.Sect193r1",
+        "org.opensaml.security.crypto.ec.curves.Sect193r2",
+        "org.opensaml.security.crypto.ec.curves.Sect233k1",
+        "org.opensaml.security.crypto.ec.curves.Sect233r1",
+        "org.opensaml.security.crypto.ec.curves.Sect239k1",
+        "org.opensaml.security.crypto.ec.curves.Sect283k1",
+        "org.opensaml.security.crypto.ec.curves.Sect283r1",
+        "org.opensaml.security.crypto.ec.curves.Sect409k1",
+        "org.opensaml.security.crypto.ec.curves.Sect409r1",
+        "org.opensaml.security.crypto.ec.curves.Sect571k1",
+        "org.opensaml.security.crypto.ec.curves.Sect571r1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb191v1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb191v2",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb191v3",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb239v1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb239v2",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb239v3",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb359v1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb431r1",
+        "org.opensaml.security.crypto.ec.curves.X962prime192v2",
+        "org.opensaml.security.crypto.ec.curves.X962prime192v3",
+        "org.opensaml.security.crypto.ec.curves.X962prime239v1",
+        "org.opensaml.security.crypto.ec.curves.X962prime239v2",
+        "org.opensaml.security.crypto.ec.curves.X962prime239v3"
+      ]
+    },
+    "org.opensaml:opensaml-security-api:jar:sources": {
+      "org.opensaml.core.config.Initializer": [
+        "org.opensaml.security.config.BouncyCastleInitializer",
+        "org.opensaml.security.config.GlobalNamedCurveRegistryInitializer"
+      ],
+      "org.opensaml.security.crypto.ec.NamedCurve": [
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP256r1",
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP320r1",
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP384r1",
+        "org.opensaml.security.crypto.ec.curves.BrainpoolP512r1",
+        "org.opensaml.security.crypto.ec.curves.Secp112r1",
+        "org.opensaml.security.crypto.ec.curves.Secp112r2",
+        "org.opensaml.security.crypto.ec.curves.Secp128r1",
+        "org.opensaml.security.crypto.ec.curves.Secp128r2",
+        "org.opensaml.security.crypto.ec.curves.Secp160k1",
+        "org.opensaml.security.crypto.ec.curves.Secp160r1",
+        "org.opensaml.security.crypto.ec.curves.Secp160r2",
+        "org.opensaml.security.crypto.ec.curves.Secp192k1",
+        "org.opensaml.security.crypto.ec.curves.Secp192r1",
+        "org.opensaml.security.crypto.ec.curves.Secp224k1",
+        "org.opensaml.security.crypto.ec.curves.Secp224r1",
+        "org.opensaml.security.crypto.ec.curves.Secp256k1",
+        "org.opensaml.security.crypto.ec.curves.Secp256r1",
+        "org.opensaml.security.crypto.ec.curves.Secp384r1",
+        "org.opensaml.security.crypto.ec.curves.Secp521r1",
+        "org.opensaml.security.crypto.ec.curves.Sect113r1",
+        "org.opensaml.security.crypto.ec.curves.Sect113r2",
+        "org.opensaml.security.crypto.ec.curves.Sect131r1",
+        "org.opensaml.security.crypto.ec.curves.Sect131r2",
+        "org.opensaml.security.crypto.ec.curves.Sect163k1",
+        "org.opensaml.security.crypto.ec.curves.Sect163r1",
+        "org.opensaml.security.crypto.ec.curves.Sect163r2",
+        "org.opensaml.security.crypto.ec.curves.Sect193r1",
+        "org.opensaml.security.crypto.ec.curves.Sect193r2",
+        "org.opensaml.security.crypto.ec.curves.Sect233k1",
+        "org.opensaml.security.crypto.ec.curves.Sect233r1",
+        "org.opensaml.security.crypto.ec.curves.Sect239k1",
+        "org.opensaml.security.crypto.ec.curves.Sect283k1",
+        "org.opensaml.security.crypto.ec.curves.Sect283r1",
+        "org.opensaml.security.crypto.ec.curves.Sect409k1",
+        "org.opensaml.security.crypto.ec.curves.Sect409r1",
+        "org.opensaml.security.crypto.ec.curves.Sect571k1",
+        "org.opensaml.security.crypto.ec.curves.Sect571r1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb191v1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb191v2",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb191v3",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb239v1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb239v2",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb239v3",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb359v1",
+        "org.opensaml.security.crypto.ec.curves.X962c2tnb431r1",
+        "org.opensaml.security.crypto.ec.curves.X962prime192v2",
+        "org.opensaml.security.crypto.ec.curves.X962prime192v3",
+        "org.opensaml.security.crypto.ec.curves.X962prime239v1",
+        "org.opensaml.security.crypto.ec.curves.X962prime239v2",
+        "org.opensaml.security.crypto.ec.curves.X962prime239v3"
       ]
     },
     "org.opensaml:opensaml-security-impl": {
@@ -1158,18 +1645,21 @@
     },
     "org.opensaml:opensaml-soap-impl": {
       "org.opensaml.core.config.Initializer": [
+        "org.opensaml.soap.config.impl.SOAPConfigurationInitializer",
         "org.opensaml.soap.config.impl.XMLObjectProviderInitializer"
       ]
     },
     "org.opensaml:opensaml-soap-impl:jar:sources": {
       "org.opensaml.core.config.Initializer": [
+        "org.opensaml.soap.config.impl.SOAPConfigurationInitializer",
         "org.opensaml.soap.config.impl.XMLObjectProviderInitializer"
       ]
     },
     "org.opensaml:opensaml-xmlsec-api": {
       "org.opensaml.core.config.Initializer": [
         "org.opensaml.xmlsec.config.DecryptionParserPoolInitializer",
-        "org.opensaml.xmlsec.config.GlobalAlgorithmRegistryInitializer"
+        "org.opensaml.xmlsec.config.GlobalAlgorithmRegistryInitializer",
+        "org.opensaml.xmlsec.config.GlobalKeyAgreementProcessorRegistryInitializer"
       ],
       "org.opensaml.xmlsec.algorithm.AlgorithmDescriptor": [
         "org.opensaml.xmlsec.algorithm.descriptors.BlockEncryptionAES128CBC",
@@ -1185,6 +1675,10 @@
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA224",
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA256",
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA384",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_224",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_256",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_384",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_512",
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA512",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACMD5",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACRIPEMD160",
@@ -1193,6 +1687,9 @@
         "org.opensaml.xmlsec.algorithm.descriptors.HMACSHA256",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACSHA384",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACSHA512",
+        "org.opensaml.xmlsec.algorithm.descriptors.KeyAgreementDHExplicitKDF",
+        "org.opensaml.xmlsec.algorithm.descriptors.KeyAgreementDHLegacyKDF",
+        "org.opensaml.xmlsec.algorithm.descriptors.KeyAgreementECDH",
         "org.opensaml.xmlsec.algorithm.descriptors.KeyTransportRSA15",
         "org.opensaml.xmlsec.algorithm.descriptors.KeyTransportRSAOAEP",
         "org.opensaml.xmlsec.algorithm.descriptors.KeyTransportRSAOAEPMGF1P",
@@ -1210,6 +1707,15 @@
         "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASHA256",
         "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASHA384",
         "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASHA512",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA1_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA224_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA256_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA384_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_224_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_256_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_384_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_512_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA512_MGF1",
         "org.opensaml.xmlsec.algorithm.descriptors.SymmetricKeyWrapAES128",
         "org.opensaml.xmlsec.algorithm.descriptors.SymmetricKeyWrapAES192",
         "org.opensaml.xmlsec.algorithm.descriptors.SymmetricKeyWrapAES256",
@@ -1219,7 +1725,8 @@
     "org.opensaml:opensaml-xmlsec-api:jar:sources": {
       "org.opensaml.core.config.Initializer": [
         "org.opensaml.xmlsec.config.DecryptionParserPoolInitializer",
-        "org.opensaml.xmlsec.config.GlobalAlgorithmRegistryInitializer"
+        "org.opensaml.xmlsec.config.GlobalAlgorithmRegistryInitializer",
+        "org.opensaml.xmlsec.config.GlobalKeyAgreementProcessorRegistryInitializer"
       ],
       "org.opensaml.xmlsec.algorithm.AlgorithmDescriptor": [
         "org.opensaml.xmlsec.algorithm.descriptors.BlockEncryptionAES128CBC",
@@ -1235,6 +1742,10 @@
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA224",
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA256",
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA384",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_224",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_256",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_384",
+        "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA3_512",
         "org.opensaml.xmlsec.algorithm.descriptors.DigestSHA512",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACMD5",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACRIPEMD160",
@@ -1243,6 +1754,9 @@
         "org.opensaml.xmlsec.algorithm.descriptors.HMACSHA256",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACSHA384",
         "org.opensaml.xmlsec.algorithm.descriptors.HMACSHA512",
+        "org.opensaml.xmlsec.algorithm.descriptors.KeyAgreementDHExplicitKDF",
+        "org.opensaml.xmlsec.algorithm.descriptors.KeyAgreementDHLegacyKDF",
+        "org.opensaml.xmlsec.algorithm.descriptors.KeyAgreementECDH",
         "org.opensaml.xmlsec.algorithm.descriptors.KeyTransportRSA15",
         "org.opensaml.xmlsec.algorithm.descriptors.KeyTransportRSAOAEP",
         "org.opensaml.xmlsec.algorithm.descriptors.KeyTransportRSAOAEPMGF1P",
@@ -1260,6 +1774,15 @@
         "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASHA256",
         "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASHA384",
         "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASHA512",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA1_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA224_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA256_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA384_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_224_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_256_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_384_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA3_512_MGF1",
+        "org.opensaml.xmlsec.algorithm.descriptors.SignatureRSASSA_PSS_SHA512_MGF1",
         "org.opensaml.xmlsec.algorithm.descriptors.SymmetricKeyWrapAES128",
         "org.opensaml.xmlsec.algorithm.descriptors.SymmetricKeyWrapAES192",
         "org.opensaml.xmlsec.algorithm.descriptors.SymmetricKeyWrapAES256",
@@ -1272,6 +1795,17 @@
         "org.opensaml.xmlsec.config.impl.GlobalSecurityConfigurationInitializer",
         "org.opensaml.xmlsec.config.impl.JavaCryptoValidationInitializer",
         "org.opensaml.xmlsec.config.impl.XMLObjectProviderInitializer"
+      ],
+      "org.opensaml.xmlsec.agreement.KeyAgreementProcessor": [
+        "org.opensaml.xmlsec.agreement.impl.DHWithExplicitKDFKeyAgreementProcessor",
+        "org.opensaml.xmlsec.agreement.impl.DHWithLegacyKDFKeyAgreementProcessor",
+        "org.opensaml.xmlsec.agreement.impl.ECDHKeyAgreementProcessor"
+      ],
+      "org.opensaml.xmlsec.agreement.impl.KeyAgreementParameterParser": [
+        "org.opensaml.xmlsec.agreement.impl.DigestMethod$Parser",
+        "org.opensaml.xmlsec.agreement.impl.KANonce$Parser",
+        "org.opensaml.xmlsec.derivation.impl.ConcatKDF$Parser",
+        "org.opensaml.xmlsec.derivation.impl.PBKDF2$Parser"
       ],
       "org.opensaml.xmlsec.signature.support.SignatureValidationProvider": [
         "org.opensaml.xmlsec.signature.support.impl.provider.ApacheSantuarioSignatureValidationProviderImpl"
@@ -1286,6 +1820,17 @@
         "org.opensaml.xmlsec.config.impl.GlobalSecurityConfigurationInitializer",
         "org.opensaml.xmlsec.config.impl.JavaCryptoValidationInitializer",
         "org.opensaml.xmlsec.config.impl.XMLObjectProviderInitializer"
+      ],
+      "org.opensaml.xmlsec.agreement.KeyAgreementProcessor": [
+        "org.opensaml.xmlsec.agreement.impl.DHWithExplicitKDFKeyAgreementProcessor",
+        "org.opensaml.xmlsec.agreement.impl.DHWithLegacyKDFKeyAgreementProcessor",
+        "org.opensaml.xmlsec.agreement.impl.ECDHKeyAgreementProcessor"
+      ],
+      "org.opensaml.xmlsec.agreement.impl.KeyAgreementParameterParser": [
+        "org.opensaml.xmlsec.agreement.impl.DigestMethod$Parser",
+        "org.opensaml.xmlsec.agreement.impl.KANonce$Parser",
+        "org.opensaml.xmlsec.derivation.impl.ConcatKDF$Parser",
+        "org.opensaml.xmlsec.derivation.impl.PBKDF2$Parser"
       ],
       "org.opensaml.xmlsec.signature.support.SignatureValidationProvider": [
         "org.opensaml.xmlsec.signature.support.impl.provider.ApacheSantuarioSignatureValidationProviderImpl"
@@ -1302,6 +1847,16 @@
     "org.pac4j:pac4j-saml:jar:sources": {
       "org.pac4j.saml.util.ConfigurationManager": [
         "org.pac4j.saml.util.DefaultConfigurationManager"
+      ]
+    },
+    "org.springframework:spring-core": {
+      "reactor.blockhound.integration.BlockHoundIntegration": [
+        "org.springframework.core.ReactiveAdapterRegistry$SpringCoreBlockHoundIntegration"
+      ]
+    },
+    "org.springframework:spring-core:jar:sources": {
+      "reactor.blockhound.integration.BlockHoundIntegration": [
+        "org.springframework.core.ReactiveAdapterRegistry$SpringCoreBlockHoundIntegration"
       ]
     }
   },

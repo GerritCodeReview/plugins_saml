@@ -47,12 +47,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.pac4j.core.context.J2EContext;
+import org.pac4j.core.context.CallContext;
 import org.pac4j.core.context.session.SessionStore;
-import org.pac4j.core.exception.HttpAction;
 import org.pac4j.core.exception.TechnicalException;
+import org.pac4j.core.exception.http.HttpAction;
+import org.pac4j.jee.context.JEEContext;
+import org.pac4j.jee.context.session.JEESessionStore;
+import org.pac4j.jee.http.adapter.JEEHttpActionAdapter;
 import org.pac4j.saml.client.SAML2Client;
-import org.pac4j.saml.credentials.SAML2Credentials;
 import org.pac4j.saml.profile.SAML2Profile;
 import org.pac4j.saml.state.SAML2StateGenerator;
 import org.slf4j.Logger;
@@ -69,6 +71,7 @@ class SamlWebFilter implements Filter {
   @VisibleForTesting static final String SESSION_ATTR_USER = "Gerrit-Saml-User";
 
   private final SAML2Client saml2Client;
+  private final SessionStore sessionStore = new JEESessionStore();
   private final SamlConfig samlConfig;
   private final AuthConfig auth;
   private final Set<String> authHeaders;
@@ -130,7 +133,7 @@ class SamlWebFilter implements Filter {
 
     try {
       if (isSamlPostback(httpRequest)) {
-        J2EContext context = new J2EContext(httpRequest, httpResponse);
+        JEEContext context = new JEEContext(httpRequest, httpResponse);
         handleSamlCallback(context);
       } else if (isGerritLogin(httpRequest)) {
         handleLoginRequest(httpRequest, httpResponse, chain);
@@ -140,13 +143,7 @@ class SamlWebFilter implements Filter {
         chain.doFilter(httpRequest, httpResponse);
       }
     } catch (HttpAction httpAction) {
-      // In pac4j v3.4.0 SLO (Single Log Out) throws HttpAction with code 200.
-      // Detect that flow and recover by redirecting to the main gerrit page.
-      if (httpAction.getCode() != 200) {
-        throw new TechnicalException("Unexpected HTTP action", httpAction);
-      }
-
-      httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
+      JEEHttpActionAdapter.INSTANCE.adapt(httpAction, new JEEContext(httpRequest, httpResponse));
     }
   }
 
@@ -155,7 +152,7 @@ class SamlWebFilter implements Filter {
       throws HttpAction, IOException, ServletException {
     AuthenticatedUser user = userFromRequest(httpRequest);
     if (user == null) {
-      J2EContext context = new J2EContext(httpRequest, httpResponse);
+      JEEContext context = new JEEContext(httpRequest, httpResponse);
       startSamlLogin(context);
     } else {
       HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
@@ -186,15 +183,21 @@ class SamlWebFilter implements Filter {
     chain.doFilter(httpRequest, httpResponse);
   }
 
-  private void handleSamlCallback(J2EContext context) throws HttpAction, IOException {
-    SAML2Credentials credentials = saml2Client.getCredentials(context);
-    SAML2Profile user = saml2Client.getUserProfile(credentials, context);
+  private void handleSamlCallback(JEEContext context) throws HttpAction, IOException {
+    CallContext callContext = new CallContext(context, sessionStore);
+    SAML2Profile user =
+        saml2Client
+            .getCredentials(callContext)
+            .flatMap(credentials -> saml2Client.validateCredentials(callContext, credentials))
+            .flatMap(credentials -> saml2Client.getUserProfile(callContext, credentials))
+            .map(SAML2Profile.class::cast)
+            .orElse(null);
     if (user != null) {
       log.debug(
           "Received SAML callback for userId={} with attributes: {}",
           getUserName(user),
           user.getAttributes());
-      HttpSession s = context.getRequest().getSession();
+      HttpSession s = context.getNativeRequest().getSession();
       AuthenticatedUser authenticatedUser =
           new AuthenticatedUser(
               getUserName(user),
@@ -206,21 +209,25 @@ class SamlWebFilter implements Filter {
         samlMembership.sync(authenticatedUser, user);
       }
 
-      String redirectUri = context.getRequest().getParameter("RelayState");
+      String redirectUri = context.getNativeRequest().getParameter("RelayState");
       if (null == redirectUri || redirectUri.isEmpty()) {
         redirectUri = "/";
       }
-      context.getResponse().sendRedirect(context.getRequest().getContextPath() + redirectUri);
+      context
+          .getNativeResponse()
+          .sendRedirect(context.getNativeRequest().getContextPath() + redirectUri);
     }
   }
 
-  private void startSamlLogin(J2EContext context) throws HttpAction {
-    String redirectUri = getRedirectUri(context.getRequest());
-    @SuppressWarnings("unchecked")
-    SessionStore<J2EContext> store = context.getSessionStore();
-    store.set(context, SAML2StateGenerator.SAML_RELAY_STATE_ATTRIBUTE, redirectUri);
+  private void startSamlLogin(JEEContext context) throws HttpAction {
+    String redirectUri = getRedirectUri(context.getNativeRequest());
+    sessionStore.set(context, SAML2StateGenerator.SAML_RELAY_STATE_ATTRIBUTE, redirectUri);
     log.debug("Setting redirectUri: {}", redirectUri);
-    saml2Client.redirect(context);
+    HttpAction action =
+        saml2Client
+            .getRedirectionAction(new CallContext(context, sessionStore))
+            .orElseThrow(() -> new TechnicalException("No SAML redirection action"));
+    JEEHttpActionAdapter.INSTANCE.adapt(action, context);
   }
 
   /**
