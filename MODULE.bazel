@@ -46,14 +46,18 @@ maven.install(
 )
 use_repo(maven, "external_plugin_deps")
 
-PAC4J_VERSION = "3.8.3"
+PAC4J_VERSION = "6.5.9"
 
 maven.install(
     name = "saml_plugin_deps",
     artifacts = [
         "org.pac4j:pac4j-saml:" + PAC4J_VERSION,
         "org.pac4j:pac4j-core:" + PAC4J_VERSION,
+        "org.pac4j:pac4j-javaee:" + PAC4J_VERSION,
+        # Used by pac4j for file and URL metadata resources.
+        "org.springframework:spring-core:6.2.19",
     ],
+    duplicate_version_warning = "error",
     excluded_artifacts = [
         # Provided by Gerrit at runtime, and must not be bundled into the plugin JAR.
         "com.google.code.findbugs:jsr305",
@@ -62,8 +66,14 @@ maven.install(
         "commons-codec:commons-codec",
         "commons-io:commons-io",
         "io.dropwizard.metrics:metrics-core",
+        "javax.servlet:javax.servlet-api",
+        "org.apache.commons:commons-lang3",
+        "org.apache.commons:commons-text",
         "org.apache.httpcomponents:httpclient",
         "org.apache.httpcomponents:httpcore",
+        "org.bouncycastle:bcpkix-jdk18on",
+        "org.bouncycastle:bcprov-jdk18on",
+        "org.bouncycastle:bcutil-jdk18on",
         "org.slf4j:jcl-over-slf4j",
         "org.slf4j:slf4j-api",
         # Transitive dependencies not used by the plugin, which should not be
@@ -100,9 +110,8 @@ maven.install(
         "org.springframework:spring-tx",
         "xalan:serializer",
         "xalan:xalan",
-        "xml-apis:xml-apis"
+        "xml-apis:xml-apis",
     ],
-    duplicate_version_warning = "error",
     fail_if_repin_required = True,
     fail_on_missing_checksum = True,
     fetch_sources = True,
