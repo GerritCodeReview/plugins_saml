@@ -8,6 +8,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 load("@rules_jvm_external//:defs.bzl", "artifact")
 
 SAML_DEPS = [
+    "org.opensaml:opensaml-saml-api",
     "org.pac4j:pac4j-core",
     "org.pac4j:pac4j-javaee",
     "org.pac4j:pac4j-saml",

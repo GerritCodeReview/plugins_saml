@@ -36,6 +36,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -46,9 +47,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
 import org.pac4j.core.context.CallContext;
 import org.pac4j.core.context.session.SessionStore;
+import org.pac4j.core.credentials.Credentials;
 import org.pac4j.core.exception.TechnicalException;
 import org.pac4j.core.exception.http.HttpAction;
 import org.pac4j.jee.context.JEEContext;
@@ -132,9 +135,9 @@ class SamlWebFilter implements Filter {
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
     try {
-      if (isSamlPostback(httpRequest)) {
+      if (isSamlCallback(httpRequest)) {
         JEEContext context = new JEEContext(httpRequest, httpResponse);
-        handleSamlCallback(context);
+        handleSamlCallback(context, chain);
       } else if (isGerritLogin(httpRequest)) {
         handleLoginRequest(httpRequest, httpResponse, chain);
       } else if (isGerritLogout(httpRequest)) {
@@ -179,31 +182,70 @@ class SamlWebFilter implements Filter {
   private void handleLogoutRequest(
       HttpServletRequest httpRequest, HttpServletResponse httpResponse, FilterChain chain)
       throws HttpAction, IOException, ServletException {
-    httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
-    chain.doFilter(httpRequest, httpResponse);
+    AuthenticatedUser user = userFromRequest(httpRequest);
+    if (!samlConfig.getLogoutType().isSlo() || user == null || user.getProfile() == null) {
+      // Keep ordinary logout and sessions created before SLO on Gerrit's normal path.
+      httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
+      chain.doFilter(httpRequest, httpResponse);
+    } else {
+      // Revoke the Gerrit token before contacting the IdP. Keep the HTTP session
+      // available for pac4j's logout request/response state.
+      logoutLocally(httpRequest, httpResponse, chain);
+      JEEContext context = new JEEContext(httpRequest, httpResponse);
+      Optional<? extends HttpAction> action =
+          saml2Client.getLogoutAction(
+              new CallContext(context, sessionStore), user.getProfile(), null);
+      if (action.isPresent()) {
+        JEEHttpActionAdapter.INSTANCE.adapt(action.get(), context);
+      } else {
+        httpResponse.sendError(
+            HttpServletResponse.SC_BAD_GATEWAY, "Unable to initiate SAML logout");
+      }
+    }
   }
 
-  private void handleSamlCallback(JEEContext context) throws HttpAction, IOException {
+  private void handleSamlCallback(JEEContext context, FilterChain chain)
+      throws HttpAction, IOException, ServletException {
     CallContext callContext = new CallContext(context, sessionStore);
-    SAML2Profile user =
+    // pac4j 3 validated credentials during extraction. pac4j 6 requires an
+    // explicit validation step before profile creation. An empty Optional
+    // stops the chain before an authenticated session is created.
+    Optional<Credentials> credentials =
         saml2Client
             .getCredentials(callContext)
-            .flatMap(credentials -> saml2Client.validateCredentials(callContext, credentials))
-            .flatMap(credentials -> saml2Client.getUserProfile(callContext, credentials))
+            .flatMap(extracted -> saml2Client.validateCredentials(callContext, extracted));
+    if (credentials.isEmpty()) {
+      context.getNativeResponse().sendError(HttpServletResponse.SC_FORBIDDEN);
+      return;
+    }
+    Credentials validated = credentials.get();
+    // The same callback endpoint receives login and logout messages.
+    // Process logout separately so it cannot create an authenticated session.
+    if (validated.isForAuthentication()) {
+      handleLoginCallback(context, callContext, validated);
+    } else {
+      handleLogoutCallback(context, callContext, validated, chain);
+    }
+  }
+
+  private void handleLoginCallback(
+      JEEContext context, CallContext callContext, Credentials validated)
+      throws HttpAction, IOException {
+    SAML2Profile user =
+        saml2Client
+            .getUserProfile(callContext, validated)
             .map(SAML2Profile.class::cast)
             .orElse(null);
     if (user != null) {
-      log.debug(
-          "Received SAML callback for userId={} with attributes: {}",
-          getUserName(user),
-          user.getAttributes());
+      log.debug("Received authenticated SAML callback");
       HttpSession s = context.getNativeRequest().getSession();
       AuthenticatedUser authenticatedUser =
           new AuthenticatedUser(
               getUserName(user),
               getDisplayName(user),
               getEmailAddress(user),
-              String.format("%s/%s", SAML, user.getId()));
+              String.format("%s/%s", SAML, user.getId()),
+              user);
       s.setAttribute(SESSION_ATTR_USER, authenticatedUser);
       if (samlMembership.isEnabled()) {
         samlMembership.sync(authenticatedUser, user);
@@ -217,6 +259,17 @@ class SamlWebFilter implements Filter {
           .getNativeResponse()
           .sendRedirect(context.getNativeRequest().getContextPath() + redirectUri);
     }
+  }
+
+  private void handleLogoutCallback(
+      JEEContext context, CallContext callContext, Credentials validated, FilterChain chain)
+      throws HttpAction, IOException, ServletException {
+    if (!samlConfig.getLogoutType().isSlo()) {
+      context.getNativeResponse().sendError(HttpServletResponse.SC_FORBIDDEN);
+      return;
+    }
+    logoutLocally(context.getNativeRequest(), context.getNativeResponse(), chain);
+    JEEHttpActionAdapter.INSTANCE.adapt(saml2Client.processLogout(callContext, validated), context);
   }
 
   private void startSamlLogin(JEEContext context) throws HttpAction {
@@ -246,12 +299,57 @@ class SamlWebFilter implements Filter {
   }
 
   private static boolean isGerritLogout(HttpServletRequest request) {
-    return request.getRequestURI().indexOf(GERRIT_LOGOUT) >= 0;
+    return request.getRequestURI().equals(request.getContextPath() + GERRIT_LOGOUT);
   }
 
-  private static boolean isSamlPostback(HttpServletRequest request) {
-    return "POST".equals(request.getMethod())
-        && request.getRequestURI().indexOf(SAML_CALLBACK) >= 0;
+  private static boolean isSamlCallback(HttpServletRequest request) {
+    return ("POST".equals(request.getMethod()) || "GET".equals(request.getMethod()))
+        && request.getRequestURI().equals(request.getContextPath() + "/" + SAML_CALLBACK);
+  }
+
+  private void logoutLocally(
+      HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+      throws IOException, ServletException {
+    HttpSession session = request.getSession(false);
+    if (session != null) {
+      session.removeAttribute(SESSION_ATTR_USER);
+    }
+    // This front-end filter runs outside Gerrit's request scope. Delegate to
+    // its ordinary logout servlet for token revocation, cookie expiry and audit.
+    HttpServletRequest logoutRequest =
+        new HttpServletRequestWrapper(request) {
+          @Override
+          public String getMethod() {
+            return "GET";
+          }
+
+          @Override
+          public String getRequestURI() {
+            return getContextPath() + GERRIT_LOGOUT;
+          }
+
+          @Override
+          public String getServletPath() {
+            return GERRIT_LOGOUT;
+          }
+
+          @Override
+          public String getPathInfo() {
+            return null;
+          }
+        };
+    chain.doFilter(
+        logoutRequest,
+        new HttpServletResponseWrapper(response) {
+          @Override
+          public void sendRedirect(String location) {
+            // Gerrit's logout servlet expires cookies and redirects without writing a body.
+            // Suppress that redirect so the SAML HTTP action can supply the response.
+          }
+        });
+    if (response.isCommitted()) {
+      throw new ServletException("Gerrit local logout committed the response before SAML logout");
+    }
   }
 
   private static String getAttribute(SAML2Profile user, String attrName) {

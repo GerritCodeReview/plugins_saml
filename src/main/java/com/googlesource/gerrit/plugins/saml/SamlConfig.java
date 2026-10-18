@@ -23,6 +23,18 @@ import org.eclipse.jgit.lib.Config;
 /** SAML 2.0 related settings from {@code gerrit.config}. */
 @Singleton
 public class SamlConfig {
+
+  public enum LogoutType {
+    REDIRECT,
+    SLO_DEFAULT,
+    SLO_POST,
+    SLO_REDIRECT;
+
+    public boolean isSlo() {
+      return this != REDIRECT;
+    }
+  }
+
   private static final String SAML_SECTION = "saml";
   private final String identityProviderEntityId;
   private final String serviceProviderEntityId;
@@ -41,6 +53,9 @@ public class SamlConfig {
   private final boolean forceAuth;
   private final boolean useNameQualifier;
   private final String memberOfAttr;
+  private final LogoutType logoutType;
+  private final boolean signSLORequest;
+  private final String postLogoutURL;
 
   @Inject
   public SamlConfig(@GerritServerConfig Config cfg, SitePaths sitePaths) {
@@ -61,6 +76,9 @@ public class SamlConfig {
     lastNameAttr = getStringWithDefault(cfg, "lastNameAttr", "LastName");
     useNameQualifier = cfg.getBoolean(SAML_SECTION, "useNameQualifier", true);
     memberOfAttr = getString(cfg, "memberOfAttr");
+    logoutType = cfg.getEnum(SAML_SECTION, null, "logoutType", LogoutType.REDIRECT);
+    signSLORequest = cfg.getBoolean(SAML_SECTION, "signSLORequest", true);
+    postLogoutURL = getString(cfg, "postLogoutURL");
   }
 
   public String getMetadataPath() {
@@ -137,5 +155,17 @@ public class SamlConfig {
 
   public String getMemberOfAttr() {
     return memberOfAttr;
+  }
+
+  public LogoutType getLogoutType() {
+    return logoutType;
+  }
+
+  public boolean signSLORequest() {
+    return signSLORequest;
+  }
+
+  public String getPostLogoutURL() {
+    return postLogoutURL;
   }
 }
