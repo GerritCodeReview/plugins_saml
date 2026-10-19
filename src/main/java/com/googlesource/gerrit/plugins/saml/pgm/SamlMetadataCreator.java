@@ -51,8 +51,8 @@ public class SamlMetadataCreator {
 
   private void createSamlMetadata() throws IOException {
     Path spMetadataPath = samlClientProvider.getSpMetadataPath();
-    if (overwrite && spMetadataPath.toFile().exists()) {
-      Files.delete(spMetadataPath);
+    if (overwrite) {
+      Files.deleteIfExists(spMetadataPath);
     }
 
     SAML2Client saml2Client = samlClientProvider.get();

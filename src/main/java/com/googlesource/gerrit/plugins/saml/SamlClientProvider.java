@@ -83,12 +83,16 @@ public class SamlClientProvider implements Provider<SAML2Client> {
               ? canonicalUrl
               : samlConfig.getPostLogoutURL());
 
-      // Can be set or rely on the default in pac4j
-      if (samlConfig.getLogoutType() == SamlConfig.LogoutType.SLO_REDIRECT) {
-        samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
-        samlClientConfig.setSpLogoutResponseBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
-      } else if (samlConfig.getLogoutType() == SamlConfig.LogoutType.SLO_POST) {
-        samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_POST_BINDING_URI);
+      switch (samlConfig.getLogoutType()) {
+        case SLO_REDIRECT -> {
+          samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+          samlClientConfig.setSpLogoutResponseBindingType(SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+        }
+        case SLO_POST ->
+            samlClientConfig.setSpLogoutRequestBindingType(SAMLConstants.SAML2_POST_BINDING_URI);
+        case SLO_DEFAULT, REDIRECT -> {
+          // Keep pac4j's default bindings.
+        }
       }
     }
 
