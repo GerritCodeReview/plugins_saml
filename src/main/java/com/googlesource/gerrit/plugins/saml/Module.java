@@ -14,7 +14,6 @@
 
 package com.googlesource.gerrit.plugins.saml;
 
-import com.google.common.collect.Sets;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.server.config.SitePath;
 import com.google.inject.AbstractModule;
@@ -24,6 +23,7 @@ import com.google.inject.Singleton;
 import com.googlesource.gerrit.plugins.saml.pgm.LibModuleDataDirUtil;
 import java.nio.file.Path;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import org.pac4j.saml.client.SAML2Client;
 
@@ -38,14 +38,15 @@ public class Module extends AbstractModule {
   @Singleton
   @AuthHeaders
   public Set<String> getAuthHeaders(AuthConfig auth) {
-    HashSet<String> authHeaders =
-        Sets.newHashSet(
-            auth.getLoginHttpHeader().toUpperCase(),
-            auth.getHttpEmailHeader().toUpperCase(),
-            auth.getHttpExternalIdHeader().toUpperCase());
-
-    if (authHeaders.contains("") || authHeaders.contains(null)) {
-      throw new ProvisionException("All authentication headers must be set.");
+    Set<String> authHeaders = new HashSet<>();
+    for (String header :
+        new String[] {
+          auth.getLoginHttpHeader(), auth.getHttpEmailHeader(), auth.getHttpExternalIdHeader()
+        }) {
+      if (header == null || header.isEmpty()) {
+        throw new ProvisionException("All authentication headers must be set.");
+      }
+      authHeaders.add(header.toUpperCase(Locale.ROOT));
     }
 
     if (authHeaders.size() != 3) {
@@ -54,7 +55,7 @@ public class Module extends AbstractModule {
               + "httpEmailHeader and httpExternalIdHeader are required.");
     }
 
-    return authHeaders;
+    return Set.copyOf(authHeaders);
   }
 
   @Provides
