@@ -417,12 +417,11 @@ class SamlWebFilter implements Filter {
 
     @Override
     public String getHeader(String name) {
-      String nameUpperCase = name.toUpperCase();
-      if (auth.getLoginHttpHeader().toUpperCase().equals(nameUpperCase)) {
+      if (auth.getLoginHttpHeader().equalsIgnoreCase(name)) {
         return user.getUsername();
-      } else if (auth.getHttpEmailHeader().toUpperCase().equals(nameUpperCase)) {
+      } else if (auth.getHttpEmailHeader().equalsIgnoreCase(name)) {
         return user.getEmail();
-      } else if (auth.getHttpExternalIdHeader().toUpperCase().equals(nameUpperCase)) {
+      } else if (auth.getHttpExternalIdHeader().equalsIgnoreCase(name)) {
         return user.getExternalId();
       } else {
         return super.getHeader(name);
@@ -442,7 +441,7 @@ class SamlWebFilter implements Filter {
       HashSet<String> headerNames = new HashSet<>();
       while (wrappedHeaderNames.hasMoreElements()) {
         String header = wrappedHeaderNames.nextElement();
-        if (!authHeaders.contains(header.toUpperCase())) {
+        if (!authHeaders.contains(header.toUpperCase(Locale.ROOT))) {
           headerNames.add(header);
         }
       }
@@ -451,7 +450,7 @@ class SamlWebFilter implements Filter {
 
     @Override
     public String getHeader(String name) {
-      String nameUpperCase = name.toUpperCase();
+      String nameUpperCase = name.toUpperCase(Locale.ROOT);
       if (authHeaders.contains(nameUpperCase)) {
         return null;
       }
