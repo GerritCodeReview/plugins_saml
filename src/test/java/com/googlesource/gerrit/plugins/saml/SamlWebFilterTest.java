@@ -30,6 +30,7 @@ import com.google.gerrit.server.account.Realm;
 import com.google.gerrit.server.config.AuthConfig;
 import com.google.gerrit.util.http.testutil.FakeHttpServletRequest;
 import com.google.gerrit.util.http.testutil.FakeHttpServletResponse;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 import javax.servlet.FilterChain;
@@ -100,6 +101,43 @@ public class SamlWebFilterTest {
     request.setPathInfo(path);
     request.setMethod(method);
     return request;
+  }
+
+  @Test
+  public void authenticationHeadersAreCaseInsensitive() throws Exception {
+    AuthConfig auth = mock(AuthConfig.class);
+    when(auth.getLoginHttpHeader()).thenReturn("X-SAML-UserName");
+    when(auth.getHttpEmailHeader()).thenReturn("X-SAML-Email");
+    when(auth.getHttpExternalIdHeader()).thenReturn("X-SAML-ExternalId");
+    filter =
+        new SamlWebFilter(
+            auth,
+            mock(Realm.class),
+            config,
+            mock(SamlMembership.class),
+            new Module().getAuthHeaders(auth),
+            null,
+            null,
+            client,
+            null);
+    FakeHttpServletRequest anonymous = request("/changes/", "GET");
+    anonymous.addHeader("X-SAML-EMAIL", "forged@example.com");
+    filter.doFilter(
+        anonymous,
+        response,
+        (req, res) -> {
+          HttpServletRequest wrapped = (HttpServletRequest) req;
+          assertThat(wrapped.getHeader("X-SAML-EMAIL")).isNull();
+          assertThat(Collections.list(wrapped.getHeaderNames())).doesNotContain("X-SAML-EMAIL");
+        });
+    when(session.getAttribute(SamlWebFilter.SESSION_ATTR_USER))
+        .thenReturn(new AuthenticatedUser("alice", "Alice", "alice@example.com", "saml/alice"));
+    filter.doFilter(
+        request("/login/", "GET"),
+        response,
+        (req, res) ->
+            assertThat(((HttpServletRequest) req).getHeader("X-SAML-EMAIL"))
+                .isEqualTo("alice@example.com"));
   }
 
   @Test
