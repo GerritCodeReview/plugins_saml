@@ -87,10 +87,10 @@ public class SamlMembership {
   public void sync(AuthenticatedUser user, SAML2Profile profile) throws IOException {
     Set<AccountGroup.UUID> samlMembership =
         Optional.ofNullable((List<?>) profile.getAttribute(memberAttr, List.class))
-            .orElse(Collections.emptyList()).stream()
+            .orElse(Collections.emptyList())
+            .stream()
             .map(m -> getOrCreateGroup(m.toString()))
-            .filter(Optional::isPresent)
-            .map(Optional::get)
+            .flatMap(Optional::stream)
             .collect(Collectors.toSet());
     IdentifiedUser identifiedUser = userFactory.create(getOrCreateAccountId(user));
     Set<AccountGroup.UUID> userMembership =
@@ -115,12 +115,7 @@ public class SamlMembership {
         .forEach(g -> this.updateMembers(g, members -> Sets.union(members, accountIdSet)));
     userMembership.stream()
         .filter(g -> !samlMembership.contains(g))
-        .forEach(
-            g ->
-                this.updateMembers(
-                    g,
-                    members ->
-                        Sets.difference(members, ImmutableSet.of(identifiedUser.getAccountId()))));
+        .forEach(g -> this.updateMembers(g, members -> Sets.difference(members, accountIdSet)));
   }
 
   /**
