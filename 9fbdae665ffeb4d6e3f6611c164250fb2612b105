@@ -22,6 +22,30 @@
       },
       "revId": "9fbdae665ffeb4d6e3f6611c164250fb2612b105",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d39ec38e_4ed6bdc7",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-10-19T08:30:08Z",
+      "side": 1,
+      "message": "Agreed on consistency. I renamed the predicate to `isSamlCallback()` so both names use `callback`, which also covers GET requests in the SLO follow-up.",
+      "parentUuid": "0676b044_82b20e0d",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 26
+      },
+      "revId": "9fbdae665ffeb4d6e3f6611c164250fb2612b105",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
