@@ -129,37 +129,13 @@ class SamlWebFilter implements Filter {
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
     try {
-      if (isSamlPostback(httpRequest)) {
+      if (isSamlCallback(httpRequest)) {
         J2EContext context = new J2EContext(httpRequest, httpResponse);
-        signin(context);
+        handleSamlCallback(context);
       } else if (isGerritLogin(httpRequest)) {
-        AuthenticatedUser user = userFromRequest(httpRequest);
-        if (user == null) {
-          J2EContext context = new J2EContext(httpRequest, httpResponse);
-          redirectToIdentityProvider(context);
-        } else {
-          HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
-
-          if (realmAllowsFullNameEditing) {
-            HttpServletBufferedStatusResponse respWrapper =
-                new HttpServletBufferedStatusResponse(httpResponse);
-            chain.doFilter(req, respWrapper);
-            try (ManualRequestContext ignored =
-                oneOffRequestContext.openAs(
-                    Account.id(accounts.id(user.getUsername()).get()._accountId))) {
-              gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
-              respWrapper.commit();
-            } catch (RestApiException e) {
-              log.error("Saml plugin could not set account name", e);
-              httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
-            }
-          } else {
-            chain.doFilter(req, httpResponse);
-          }
-        }
+        handleLoginRequest(httpRequest, httpResponse, chain);
       } else if (isGerritLogout(httpRequest)) {
-        httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
-        chain.doFilter(httpRequest, httpResponse);
+        handleLogoutRequest(httpRequest, httpResponse, chain);
       } else {
         chain.doFilter(httpRequest, httpResponse);
       }
@@ -174,7 +150,43 @@ class SamlWebFilter implements Filter {
     }
   }
 
-  private void signin(J2EContext context) throws HttpAction, IOException {
+  private void handleLoginRequest(
+      HttpServletRequest httpRequest, HttpServletResponse httpResponse, FilterChain chain)
+      throws HttpAction, IOException, ServletException {
+    AuthenticatedUser user = userFromRequest(httpRequest);
+    if (user == null) {
+      J2EContext context = new J2EContext(httpRequest, httpResponse);
+      startSamlLogin(context);
+    } else {
+      HttpServletRequest req = new AuthenticatedHttpRequest(httpRequest, user);
+
+      if (realmAllowsFullNameEditing) {
+        HttpServletBufferedStatusResponse respWrapper =
+            new HttpServletBufferedStatusResponse(httpResponse);
+        chain.doFilter(req, respWrapper);
+        try (ManualRequestContext ignored =
+            oneOffRequestContext.openAs(
+                Account.id(accounts.id(user.getUsername()).get()._accountId))) {
+          gApi.accounts().id(user.getUsername()).setName(user.getDisplayName());
+          respWrapper.commit();
+        } catch (RestApiException e) {
+          log.error("Saml plugin could not set account name", e);
+          httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+        }
+      } else {
+        chain.doFilter(req, httpResponse);
+      }
+    }
+  }
+
+  private void handleLogoutRequest(
+      HttpServletRequest httpRequest, HttpServletResponse httpResponse, FilterChain chain)
+      throws HttpAction, IOException, ServletException {
+    httpRequest.getSession().removeAttribute(SESSION_ATTR_USER);
+    chain.doFilter(httpRequest, httpResponse);
+  }
+
+  private void handleSamlCallback(J2EContext context) throws HttpAction, IOException {
     SAML2Credentials credentials = saml2Client.getCredentials(context);
     SAML2Profile user = saml2Client.getUserProfile(credentials, context);
     if (user != null) {
@@ -202,7 +214,7 @@ class SamlWebFilter implements Filter {
     }
   }
 
-  private void redirectToIdentityProvider(J2EContext context) throws HttpAction {
+  private void startSamlLogin(J2EContext context) throws HttpAction {
     String redirectUri = getRedirectUri(context.getRequest());
     @SuppressWarnings("unchecked")
     SessionStore<J2EContext> store = context.getSessionStore();
@@ -230,7 +242,7 @@ class SamlWebFilter implements Filter {
     return request.getRequestURI().indexOf(GERRIT_LOGOUT) >= 0;
   }
 
-  private static boolean isSamlPostback(HttpServletRequest request) {
+  private static boolean isSamlCallback(HttpServletRequest request) {
     return "POST".equals(request.getMethod())
         && request.getRequestURI().indexOf(SAML_CALLBACK) >= 0;
   }
