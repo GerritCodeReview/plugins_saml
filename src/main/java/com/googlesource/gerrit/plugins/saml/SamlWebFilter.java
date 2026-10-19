@@ -241,6 +241,11 @@ class SamlWebFilter implements Filter {
     if (user != null) {
       log.debug("Received authenticated SAML callback");
       HttpSession s = httpRequest.getSession();
+      // Rotate the session ID before storing the authenticated identity.
+      // Preserve existing session attributes.
+      String oldSessionId = s.getId();
+      httpRequest.changeSessionId();
+      saml2Client.notifySessionRenewal(callContext, oldSessionId);
       AuthenticatedUser authenticatedUser =
           new AuthenticatedUser(
               getUserName(user),

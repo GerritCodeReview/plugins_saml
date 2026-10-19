@@ -20,9 +20,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -56,10 +58,12 @@ public class SamlWebFilterTest {
   private final FakeHttpServletResponse response = new FakeHttpServletResponse();
   private final FilterChain chain = mock(FilterChain.class);
   private final SamlConfig config = mock(SamlConfig.class);
+  private String sessionId = "before-login";
   private SamlWebFilter filter;
 
   @Before
   public void setUp() throws Exception {
+    when(session.getId()).thenAnswer(ignored -> sessionId);
     doAnswer(
             call -> {
               ((HttpServletResponse) call.getArgument(1))
@@ -96,6 +100,12 @@ public class SamlWebFilterTest {
           @Override
           public HttpSession getSession(boolean create) {
             return session;
+          }
+
+          @Override
+          public String changeSessionId() {
+            sessionId = "after-login";
+            return sessionId;
           }
         };
     request.setPathInfo(path);
@@ -186,15 +196,43 @@ public class SamlWebFilterTest {
     when(client.getCredentials(any())).thenReturn(Optional.of(extracted));
     when(client.validateCredentials(any(), eq(extracted))).thenReturn(Optional.of(validated));
     when(client.getUserProfile(any(), eq(validated))).thenReturn(Optional.of(profile));
+    doAnswer(
+            ignored -> {
+              assertThat(session.getId()).isEqualTo("after-login");
+              return null;
+            })
+        .when(session)
+        .setAttribute(eq(SamlWebFilter.SESSION_ATTR_USER), any());
     filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
     ArgumentCaptor<AuthenticatedUser> user = ArgumentCaptor.forClass(AuthenticatedUser.class);
-    verify(session).setAttribute(eq(SamlWebFilter.SESSION_ATTR_USER), user.capture());
+    InOrder order = inOrder(client, session);
+    order.verify(client).getCredentials(any());
+    order.verify(client).validateCredentials(any(), eq(extracted));
+    order.verify(client).getUserProfile(any(), eq(validated));
+    order.verify(client).notifySessionRenewal(any(), eq("before-login"));
+    order.verify(session).setAttribute(eq(SamlWebFilter.SESSION_ATTR_USER), user.capture());
     assertThat(user.getValue().getUsername()).isEqualTo("alice");
     assertThat(user.getValue().getDisplayName()).isEqualTo("Alice");
     assertThat(user.getValue().getEmail()).isEqualTo("alice@example.com");
     assertThat(user.getValue().getExternalId()).isEqualTo("saml/persistent-subject");
     assertThat(user.getValue().getProfile()).isSameInstanceAs(profile);
     assertThat(response.getStatus()).isEqualTo(302);
+  }
+
+  @Test
+  public void sessionRotationFailureDoesNotPublishAuthenticatedIdentity() throws Exception {
+    Credentials credentials = mock(Credentials.class);
+    when(credentials.isForAuthentication()).thenReturn(true);
+    SAML2Profile profile = new SAML2Profile();
+    profile.setId("alice");
+    when(client.getCredentials(any())).thenReturn(Optional.of(credentials));
+    when(client.validateCredentials(any(), eq(credentials))).thenReturn(Optional.of(credentials));
+    when(client.getUserProfile(any(), eq(credentials))).thenReturn(Optional.of(profile));
+    FakeHttpServletRequest request = spy(request("/plugins/saml/callback", "POST"));
+    doThrow(new IllegalStateException("rotation failed")).when(request).changeSessionId();
+    assertThrows(IllegalStateException.class, () -> filter.doFilter(request, response, chain));
+    verify(session, never()).setAttribute(eq(SamlWebFilter.SESSION_ATTR_USER), any());
+    verify(client, never()).notifySessionRenewal(any(), any());
   }
 
   @Test
@@ -205,6 +243,8 @@ public class SamlWebFilterTest {
     filter.doFilter(request("/plugins/saml/callback", "POST"), response, chain);
     verify(client, never()).getUserProfile(any(CallContext.class), any());
     verify(session, never()).setAttribute(eq(SamlWebFilter.SESSION_ATTR_USER), any());
+    assertThat(session.getId()).isEqualTo("before-login");
+    verify(client, never()).notifySessionRenewal(any(), any());
   }
 
   private SAML2Profile enableSlo(SamlConfig.LogoutType type) {
@@ -250,6 +290,7 @@ public class SamlWebFilterTest {
     assertThat(response.getActualBodyString()).isEqualTo(form);
     assertThat(response.getHeader("Location")).isNull();
     verify(session, never()).invalidate();
+    assertThat(session.getId()).isEqualTo("before-login");
   }
 
   @Test
