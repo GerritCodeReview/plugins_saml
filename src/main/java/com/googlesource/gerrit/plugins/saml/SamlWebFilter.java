@@ -29,8 +29,6 @@ import com.google.inject.Inject;
 import com.google.inject.ProvisionException;
 import com.google.inject.Singleton;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
@@ -254,26 +252,11 @@ class SamlWebFilter implements Filter {
   }
 
   private static String getAttribute(SAML2Profile user, String attrName) {
-    // TODO(davido): Replace with the invocation from upstream method.
-    List<String> names = extractAttributeValues(user, attrName);
+    List<String> names = user.extractAttributeValues(attrName);
     if (names != null && !names.isEmpty()) {
       return names.get(0);
     }
     return null;
-  }
-
-  // TODO(davido): Remove if getAttribute() uses the upstream method.
-  private static List<String> extractAttributeValues(SAML2Profile user, String attrName) {
-    final Object value = user.getAttribute(attrName);
-    if (value instanceof String) {
-      return Collections.singletonList((String) value);
-    } else if (value instanceof String[]) {
-      return Arrays.asList((String[]) value);
-    } else if (value instanceof List) {
-      return (List<String>) value;
-    } else {
-      return null;
-    }
   }
 
   private static String getAttributeOrElseId(SAML2Profile user, String attrName) {
