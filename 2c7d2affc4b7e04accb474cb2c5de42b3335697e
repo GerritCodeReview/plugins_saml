@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "427eaddd_cc61c041",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-10-19T07:59:01Z",
+      "side": 1,
+      "message": "nit: Move this line to `handleSamlCallback()`. This fits the pattern used by the other cases betetr and context is not used in other places.",
+      "revId": "2c7d2affc4b7e04accb474cb2c5de42b3335697e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9442f0b_4f421ab9",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-10-19T07:59:01Z",
+      "side": 1,
+      "message": "Moving context creation to this method would make this unnecessary",
+      "range": {
+        "startLine": 200,
+        "startChar": 22,
+        "endLine": 200,
+        "endChar": 48
+      },
+      "revId": "2c7d2affc4b7e04accb474cb2c5de42b3335697e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
