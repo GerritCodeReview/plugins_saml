@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1953fa4_8a4fa3a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-10-20T09:01:08Z",
+      "side": 1,
+      "message": "Do I get this correctly that if somebody would get to know the ID of a SAML session, they could use it to authenticate using this session? To avoid this, we rotate the session ID.\nHow was the session ID exposed before and how is this prevented by rotating?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "a87327dd046ca53e1b002d1db245ba24117666a2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
