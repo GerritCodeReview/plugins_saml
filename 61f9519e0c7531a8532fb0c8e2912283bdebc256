@@ -16,6 +16,24 @@
       "message": "There is no check that the incoming request corresponds to an active authenticated session before delegating local logout. A POST to /plugins/saml/callback with a structurally valid but maliciously crafted LogoutResponse that passes validateCredentials (e.g., a replayed response) will trigger logoutLocally even if there is no authenticated user. While logoutLocally itself safely handles a missing session via request.getSession(false), the chain is still invoked unnecessarily with the synthetic logout request, which may have side effects.",
       "revId": "61f9519e0c7531a8532fb0c8e2912283bdebc256",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2bcb98b_20ffc19c",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/saml/SamlWebFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-10-20T20:24:44Z",
+      "side": 1,
+      "message": "You\u0027re right about the missing session gate. Done.",
+      "parentUuid": "2ab1cde1_e12e3157",
+      "revId": "61f9519e0c7531a8532fb0c8e2912283bdebc256",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
