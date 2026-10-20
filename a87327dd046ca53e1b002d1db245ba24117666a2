@@ -22,6 +22,30 @@
       },
       "revId": "a87327dd046ca53e1b002d1db245ba24117666a2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3314ae78_afbd8be0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-10-20T21:09:13Z",
+      "side": 1,
+      "message": "It\u0027s session fixation, not hijacking. The attacker fixes a pre-login session ID they already know onto the victim before login — so the ID isn\u0027t exposed by Gerrit, it\u0027s attacker-chosen.\n\nBefore this change, login stored the authenticated user into that same session in place, so the ID the attacker knows became authenticated as the victim.\n\nImproved the commit message wording to spell out the fixation vector.\n\nDone.",
+      "parentUuid": "c1953fa4_8a4fa3a7",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "a87327dd046ca53e1b002d1db245ba24117666a2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
