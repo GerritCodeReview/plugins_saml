@@ -3,6 +3,9 @@
   "__INPUT_ARTIFACTS_HASH": {
     "antlr:antlr": -2145275312,
     "com.beust:jcommander": 1163304480,
+    "com.fasterxml.jackson.core:jackson-core": 1031354456,
+    "com.fasterxml.jackson.core:jackson-databind": -1774975712,
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": -1327654372,
     "com.google.code.findbugs:jsr305": -313338248,
     "com.google.guava:guava": -2125091860,
     "com.google.j2objc:j2objc-annotations": 1772577837,
@@ -59,13 +62,13 @@
   "__RESOLVED_ARTIFACTS_HASH": {
     "com.fasterxml.jackson.core:jackson-annotations": -1012223496,
     "com.fasterxml.jackson.core:jackson-annotations:jar:sources": -164405597,
-    "com.fasterxml.jackson.core:jackson-core": 789964708,
-    "com.fasterxml.jackson.core:jackson-core:jar:sources": -616277826,
-    "com.fasterxml.jackson.core:jackson-databind": 1075068690,
-    "com.fasterxml.jackson.core:jackson-databind:jar:sources": 779577142,
-    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": 1674025786,
-    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:sources": -1994626552,
-    "io.dropwizard.metrics:metrics-json": 1295327220,
+    "com.fasterxml.jackson.core:jackson-core": -619345704,
+    "com.fasterxml.jackson.core:jackson-core:jar:sources": -630335594,
+    "com.fasterxml.jackson.core:jackson-databind": -329639675,
+    "com.fasterxml.jackson.core:jackson-databind:jar:sources": -1227756870,
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": 948402455,
+    "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:sources": 1591215383,
+    "io.dropwizard.metrics:metrics-json": 1648947093,
     "io.dropwizard.metrics:metrics-json:jar:sources": 521561687,
     "net.shibboleth:shib-networking": -2075164924,
     "net.shibboleth:shib-networking:jar:sources": -537605938,
@@ -93,7 +96,7 @@
     "org.glassfish:jakarta.json:jar:sources": -1199095535,
     "org.opensaml:opensaml-core-api": -175650615,
     "org.opensaml:opensaml-core-api:jar:sources": -1198783633,
-    "org.opensaml:opensaml-core-impl": 551542291,
+    "org.opensaml:opensaml-core-impl": 1717718375,
     "org.opensaml:opensaml-core-impl:jar:sources": -1477251049,
     "org.opensaml:opensaml-messaging-api": 9864133,
     "org.opensaml:opensaml-messaging-api:jar:sources": 410340122,
@@ -101,11 +104,11 @@
     "org.opensaml:opensaml-messaging-impl:jar:sources": -1385629921,
     "org.opensaml:opensaml-profile-api": 1509447967,
     "org.opensaml:opensaml-profile-api:jar:sources": -231042120,
-    "org.opensaml:opensaml-profile-impl": 356670148,
+    "org.opensaml:opensaml-profile-impl": -184858279,
     "org.opensaml:opensaml-profile-impl:jar:sources": -1951319021,
     "org.opensaml:opensaml-saml-api": -1070258419,
     "org.opensaml:opensaml-saml-api:jar:sources": -216031883,
-    "org.opensaml:opensaml-saml-impl": 152778957,
+    "org.opensaml:opensaml-saml-impl": 194333520,
     "org.opensaml:opensaml-saml-impl:jar:sources": 1862587643,
     "org.opensaml:opensaml-security-api": -1864435520,
     "org.opensaml:opensaml-security-api:jar:sources": 530113089,
@@ -113,7 +116,7 @@
     "org.opensaml:opensaml-security-impl:jar:sources": -180034428,
     "org.opensaml:opensaml-soap-api": -1023167944,
     "org.opensaml:opensaml-soap-api:jar:sources": 1001999878,
-    "org.opensaml:opensaml-soap-impl": -529478200,
+    "org.opensaml:opensaml-soap-impl": 1998480055,
     "org.opensaml:opensaml-soap-impl:jar:sources": 1837445766,
     "org.opensaml:opensaml-storage-api": 707041312,
     "org.opensaml:opensaml-storage-api:jar:sources": 140281274,
@@ -121,13 +124,13 @@
     "org.opensaml:opensaml-storage-impl:jar:sources": -1775057832,
     "org.opensaml:opensaml-xmlsec-api": -1276278267,
     "org.opensaml:opensaml-xmlsec-api:jar:sources": -1754718471,
-    "org.opensaml:opensaml-xmlsec-impl": -998588851,
+    "org.opensaml:opensaml-xmlsec-impl": -38492284,
     "org.opensaml:opensaml-xmlsec-impl:jar:sources": -1086138539,
-    "org.pac4j:pac4j-core": 1141069736,
+    "org.pac4j:pac4j-core": 344113194,
     "org.pac4j:pac4j-core:jar:sources": -21223306,
-    "org.pac4j:pac4j-javaee": 1975402300,
+    "org.pac4j:pac4j-javaee": -970125132,
     "org.pac4j:pac4j-javaee:jar:sources": -1358763818,
-    "org.pac4j:pac4j-saml": 1055445833,
+    "org.pac4j:pac4j-saml": 1332101481,
     "org.pac4j:pac4j-saml:jar:sources": -108708903,
     "org.springframework:spring-core": 1865325991,
     "org.springframework:spring-core:jar:sources": 1100676333
@@ -142,24 +145,24 @@
     },
     "com.fasterxml.jackson.core:jackson-core": {
       "shasums": {
-        "jar": "941ff029bcdb93e83d209ce516c1a7fb8bbac07d0a2fa122f5bf194b2cd7b4f4",
-        "sources": "f08c6bcea73ec33dcc18861a9c56e2ecb7c124619f5de46e1de89c02e4f65283"
+        "jar": "2d30c375cddea9657a1e1ef97547a2694b663b355facb4de53a097782b312d1a",
+        "sources": "470b0c061f786de32a48391a716656e14f73a7439466ca4ad17c1f4607982761"
       },
-      "version": "2.22.1"
+      "version": "2.22.4"
     },
     "com.fasterxml.jackson.core:jackson-databind": {
       "shasums": {
-        "jar": "7dcd7e53bec1f56c7ad278bd1ca0840bebcc595d61ce44d6a8439abb75b965b2",
-        "sources": "4e7160e0e90a844ae12ac3c73b70ea3855d29425890d3c5aed40723bca5bce52"
+        "jar": "d4cbf8947087f305869826801913abdc50735a1fab2074a1993e7bc67ca974a3",
+        "sources": "ffbe06fe73b9e3c3cd9b15ec9049711c91808cbbee133057bf13d3f9b43d7776"
       },
-      "version": "2.22.1"
+      "version": "2.22.4"
     },
     "com.fasterxml.jackson.datatype:jackson-datatype-jsr310": {
       "shasums": {
-        "jar": "85da45b7e5e565418963ff8f0dcb184365b0557c15468933f4318dde5c3ce845",
-        "sources": "a7ad98f51575c04073ce99f7eec64fbda91d853628a0abde0eaf4a014d74bebd"
+        "jar": "ec961697cbd631935b6fb6f673406861c75243521fb67fec10b59f1412ac50f7",
+        "sources": "8486f269386390a782cedc1a0a2e36101e9dfc70944638df66cd6e34660e1526"
       },
-      "version": "2.22.1"
+      "version": "2.22.4"
     },
     "io.dropwizard.metrics:metrics-json": {
       "shasums": {
@@ -618,7 +621,7 @@
       "com.fasterxml.jackson.core.exc",
       "com.fasterxml.jackson.core.filter",
       "com.fasterxml.jackson.core.format",
-      "com.fasterxml.jackson.core.internal.shaded.fdp.v2_22_1",
+      "com.fasterxml.jackson.core.internal.shaded.fdp.v2_22_4",
       "com.fasterxml.jackson.core.io",
       "com.fasterxml.jackson.core.io.schubfach",
       "com.fasterxml.jackson.core.json",
