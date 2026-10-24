@@ -48,9 +48,15 @@ use_repo(maven, "external_plugin_deps")
 
 PAC4J_VERSION = "6.5.9"
 
+JACKSON_VERSION = "2.22.4"
+
 maven.install(
     name = "saml_plugin_deps",
     artifacts = [
+        # Override transitive Jackson versions with the patched 2.22 release.
+        "com.fasterxml.jackson.core:jackson-core:" + JACKSON_VERSION,
+        "com.fasterxml.jackson.core:jackson-databind:" + JACKSON_VERSION,
+        "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:" + JACKSON_VERSION,
         "org.pac4j:pac4j-saml:" + PAC4J_VERSION,
         "org.pac4j:pac4j-core:" + PAC4J_VERSION,
         "org.pac4j:pac4j-javaee:" + PAC4J_VERSION,
